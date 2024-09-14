@@ -80,7 +80,17 @@ function public_path($path = null): string
     }
 }
 
-function asset($uri, $noCache = false): void
+function storage_path($path = null): string
+{
+    if (empty($path)){
+        return ROOT_PATH.'\\storage\\public';
+    }else{
+        $path = str_replace('/', '\\', $path);
+        return ROOT_PATH."\\storage\\public\\".$path;
+    }
+}
+
+function asset($uri = null, $noCache = false): void
 {
     $version = null;
     if ($noCache){
@@ -102,3 +112,4 @@ function getURLActual(): string
     // Combinar todo para obtener la URL completa
     return $protocolo . $host . $uri;
 }
+
