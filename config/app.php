@@ -47,6 +47,9 @@ function init(): void
     define('MAIL_ENCRYPTION', env('MAIL_ENCRYPTION'));
     define('MAIL_FROM_ADDRESS', env('MAIL_FROM_ADDRESS', "hello@example.com"));
     define('MAIL_FROM_NAME', env('MAIL_FROM_NAME', APP_NAME));
+
+    testConnection();
+
 }
 
 function env($env, $default = null): mixed
@@ -111,5 +114,13 @@ function getURLActual(): string
     $uri = $_SERVER['REQUEST_URI'];
     // Combinar todo para obtener la URL completa
     return $protocolo . $host . $uri;
+}
+
+function testConnection(): void
+{
+    $model = new \app\Models\Prueba();
+    $row = $model->where('nombre', "ramon' OR 'a' = 'a")->get();
+    echo json_encode($row);
+    exit();
 }
 
