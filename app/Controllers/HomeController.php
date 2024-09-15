@@ -35,9 +35,7 @@ class HomeController extends Controller
 
             $model = new Parametro();
             $i = 0;
-
-            $model->delete(6);
-            $rows = $model->all();
+            $rows = $model->where('id',  '>', 0)->get();
             //echo "eliminado";
             return $this->json($rows);
             //return $rows;

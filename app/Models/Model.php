@@ -119,21 +119,35 @@ class Model
         return $rows;
     }
 
-    public function where($column, $operator, $value = null): static
+    public function where($column, $operator, $value = 'nullable'): static
     {
-        //SELECT * FROM prueba WHERE nombre = 'yonathan';
+        //SELECT * FROM parametros WHERE valor = 'yonathan';
+        //valor IS NULL
+        //tabla_id IS NOT NULL
 
-        if (is_null($value)){
+        if ($value == 'nullable'){
             $value = $operator;
             $operator = '=';
         }
 
         try {
+
             if ($this->softDelete){
                 $this->deleted_at = "AND deleted_at IS NULL";
             }
-            $sql = "select * from {$this->table} WHERE {$column} {$operator} ? {$this->deleted_at} {$this->orderBy} {$this->limit};";
-            $this->query($sql, [$value]);
+
+            if (is_null($value)){
+                if ($operator == '='){
+                    $value = 'IS NULL';
+                }else{
+                    $value= 'IS NOT NULL';
+                }
+                $sql = "select * from {$this->table} WHERE {$column} {$value} {$this->deleted_at} {$this->orderBy} {$this->limit};";
+                $this->query($sql);
+            }else{
+                $sql = "select * from {$this->table} WHERE {$column} {$operator} ? {$this->deleted_at} {$this->orderBy} {$this->limit};";
+                $this->query($sql, [$value]);
+            }
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }
@@ -162,7 +176,7 @@ class Model
 
     public function update($id, $data)
     {
-        //UPDATE prueba SET nombre = 'aaa', apellido = 'bbbb' WHERE  id = 6;
+        //UPDATE parametros SET nombre = 'aaa', apellido = 'bbbb' WHERE  id = 6;
         $data['updated_at'] = getFecha();
         $fields = [];
         foreach ($data as $key => $value){
@@ -184,7 +198,7 @@ class Model
 
     public function delete($id): void
     {
-        //DELETE FROM prueba WHERE  id = 33;
+        //DELETE FROM parametros WHERE  id = 33;
         try {
             if ($this->softDelete){
                 $this->update($id, [
@@ -210,9 +224,43 @@ class Model
 
     public function orderBy($column, $opt = 'ASC'): static
     {
+        //ORDER BY nombre ASC
         if (empty($this->orderBy)){
             if ($opt != 'ASC'){ $opt = 'DESC'; }
             $this->orderBy = "ORDER BY {$column} {$opt}";
+        }
+        return $this;
+    }
+
+    public function onDelete($column, $operator, $value = 'nullable'): static
+    {
+        //SELECT * FROM parametros WHERE valor = 'yonathan';
+        //valor IS NULL
+        //tabla_id IS NOT NULL
+
+        if ($value == 'nullable'){
+            $value = $operator;
+            $operator = '=';
+        }
+
+        try {
+
+            $this->deleted_at = "AND deleted_at IS NOT NULL";
+
+            if (is_null($value)){
+                if ($operator == '='){
+                    $value = 'IS NULL';
+                }else{
+                    $value= 'IS NOT NULL';
+                }
+                $sql = "select * from {$this->table} WHERE {$column} {$value} {$this->deleted_at} {$this->orderBy} {$this->limit};";
+                $this->query($sql);
+            }else{
+                $sql = "select * from {$this->table} WHERE {$column} {$operator} ? {$this->deleted_at} {$this->orderBy} {$this->limit};";
+                $this->query($sql, [$value]);
+            }
+        }catch (PDOException $e){
+            $this->showError('Error en el Model', $e);
         }
         return $this;
     }
