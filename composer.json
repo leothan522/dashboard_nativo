@@ -25,7 +25,8 @@
     "psr-4": {
       "app\\Controllers\\": "app\\Controllers",
       "app\\Models\\": "app\\Models",
-      "lib\\Facades\\": "lib\\Facades"
+      "lib\\Facades\\": "lib\\Facades",
+      "app\\Middleware\\": "app\\Middleware"
     }
   }
 }

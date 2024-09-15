@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Hola desde una VIEW</h1>
-    <p><?= getFecha($title) ?></p>
+    <p><?= $title ?></p>
     <p><?= $texto ?></p>
     <p><?= json_encode(crearResponse('hola', 'message')) ?></p>
 </body>

@@ -2,6 +2,7 @@
 
 namespace app\Controllers;
 
+use app\Middleware\Middleware;
 use app\Models\Parametro;
 
 class HomeController extends Controller
@@ -42,6 +43,19 @@ class HomeController extends Controller
 
 
 
+        }catch (\Error $e){
+            $this->showError('Error en el Controller', $e);
+        }
+    }
+
+    public function vericifando()
+    {
+        try {
+            Middleware::auth(['hola', 'mundo', 'success']);
+            return $this->view('index', [
+                'title' => 'Verificando Middleware',
+                'texto' => 'prueba del Midleware'
+            ]);
         }catch (\Error $e){
             $this->showError('Error en el Controller', $e);
         }

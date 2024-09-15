@@ -121,3 +121,11 @@ function testConnection(): void
     $model = new \app\Models\Model();
 }
 
+function redirect($uri): void
+{
+    $url = APP_URL.'/';
+    $uri = trim($uri, '/');
+    header("location: {$url}{$uri}");
+    return;
+}
+
