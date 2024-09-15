@@ -2,6 +2,7 @@
 
 namespace app\Models;
 
+use JetBrains\PhpStorm\NoReturn;
 use PDO;
 use PDOStatement;
 use PDOException;
@@ -22,6 +23,10 @@ class Model
 
     protected string $table;
     protected array $fillable;
+
+    protected string $limit = '';
+
+    protected string $orderBy = '';
 
     public function __construct()
     {
@@ -77,12 +82,17 @@ class Model
         return $rows;
     }
 
+    public function count(): int
+    {
+        return $this->QUERY->rowCount();
+    }
+
     public function all(): array
     {
         //select * from prueba;
         $rows = [];
         try {
-            $sql = "select * from {$this->table};";
+            $sql = "select * from {$this->table} {$this->orderBy} {$this->limit};";
             $rows = $this->query($sql)->get();
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
@@ -113,7 +123,7 @@ class Model
         }
 
         try {
-            $sql = "select * from {$this->table} WHERE {$column} {$operator} ? ;";
+            $sql = "select * from {$this->table} WHERE {$column} {$operator} ? {$this->orderBy} {$this->limit};";
             $this->query($sql, [$value]);
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
@@ -172,7 +182,25 @@ class Model
         }
     }
 
-    protected function showError($title, $e): void
+    public function limit(int $limit): static
+    {
+        //LIMIT 1000;
+        if (empty($this->limit)){
+            $this->limit = "LIMIT {$limit}";
+        }
+        return $this;
+    }
+
+    public function orderBy($column, $opt = 'ASC'): static
+    {
+        if (empty($this->orderBy)){
+            if ($opt != 'ASC'){ $opt = 'DESC'; }
+            $this->orderBy = "ORDER BY {$column} {$opt}";
+        }
+        return $this;
+    }
+
+    #[NoReturn] protected function showError($title, $e): void
     {
         header('Content-Type: application/json; charset=utf-8');
         $response['result'] = false;

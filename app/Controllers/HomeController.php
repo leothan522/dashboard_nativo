@@ -2,19 +2,46 @@
 
 namespace app\Controllers;
 
+use app\Models\Parametro;
+
 class HomeController extends Controller
 {
     public function index()
     {
-        return $this->view('index', [
-            'title' => '1989-02-21',
-            'texto' => public_path()
-        ]);
+        try {
+            return $this->view('index', [
+                'title' => '1989-02-21',
+                'texto' => public_path()
+            ]);
+        }catch (\Error $e){
+            $this->showError('Error en el Controller', $e);
+        }
     }
 
     public function prueba()
     {
-        $data = crearResponse(getFecha(), root_path(), true);
-        return $this->json($data);
+        try {
+            $data = crearResponse(getFecha(), root_path(), true);
+            return $this->json($data);
+        }catch (\Error $e){
+            $this->showError('Error en el Controller', $e);
+        }
+    }
+
+    public function database()
+    {
+        try {
+
+
+            $model = new Parametro();
+            $rows = $model->where('id', '>', 0)->count();
+            //return $this->json($rows);
+            return $rows;
+
+
+
+        }catch (\Error $e){
+            $this->showError('Error en el Controller', $e);
+        }
     }
 }
