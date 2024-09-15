@@ -64,10 +64,14 @@ class HomeController extends Controller
                 'valor' => 'required'
             ]);
 
+            // establecer mensajes de error específicos de las reglas de campo
+            $gump->set_fields_error_messages([
+                //
+            ]);
+
             // establecer reglas de filtro
             $gump->filter_rules([
                 'nombre' => 'trim|rmpunctuation|sanitize_string',
-                'tabla_id' => 'trim|whole_number',
                 'valor'    => 'trim',
             ]);
 
@@ -77,7 +81,8 @@ class HomeController extends Controller
             $valid_data = $gump->run($_POST);
 
             if ($gump->errors()){
-                $row = $gump->get_errors_array();
+                $row = crearResponse('Faltan Datos', 'revisar');
+                $row['errors'] = $gump->get_errors_array();
             }else{
                 $data = array_values($valid_data);
                 $data[] = getRowquid($model);
