@@ -36,4 +36,4 @@ Route::get('/', [HomeController::class, 'database']);
 | que se definieron arriba, la primera que coincida se ejecuta, tener en cuenta con rutas con
 | la misma uri. la comparacion es independiente al metodo
 */
-Route::dispatch();;
+Route::dispatch();
