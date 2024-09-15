@@ -129,3 +129,10 @@ function redirect($uri): void
     return;
 }
 
+function route($uri): string
+{
+    $url = APP_URL.'/';
+    $uri = trim($uri, '/');
+    return $url . $uri;
+}
+

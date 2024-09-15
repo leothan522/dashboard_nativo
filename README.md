@@ -8,7 +8,7 @@ Lista de tecnologías utilizadas en el proyecto:
 * [PHP dotenv](https://github.com/vlucas/phpdotenv): ^5.6
 * [PHP Carbon](https://carbon.nesbot.com/): ^3.8
 * [Wixel / GUMP](https://github.com/Wixel/GUMP): ^2.1
-
+* [AdminLTE Bootstrap Admin Dashboard Template](https://adminlte.io/) ^3.2
 
 [//]: # (* [PHP MAILER]&#40;https://packagist.org/packages/phpmailer/phpmailer&#41;: v6.8.0)
 
