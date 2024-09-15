@@ -28,7 +28,7 @@ Route::get("home",[HomeController::class,'index']);
 */
 
 
-Route::get('/', [HomeController::class, 'prueba']);
+Route::get('/', [HomeController::class, 'index']);
 
 
 /*

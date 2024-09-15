@@ -7,16 +7,14 @@ class HomeController extends Controller
     public function index()
     {
         return $this->view('index', [
-            'title' => 'Prueba',
-            'texto' => 'Hola Mundo!'
+            'title' => '1989-02-21',
+            'texto' => public_path()
         ]);
     }
 
     public function prueba()
     {
-        return $this->json([
-            'title' => 'Prueba',
-            'texto' => 'Hola Mundo!'
-        ]);
+        $data = crearResponse(getFecha(), root_path(), true);
+        return $this->json($data);
     }
 }

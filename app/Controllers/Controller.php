@@ -23,10 +23,10 @@ class Controller
     public function json($data = [])
     {
         if (empty($data)){
-            $response = crearResponse(
-                'Array DATA EMPTY',
-                'No se definió la variable Data o esta vacía.'
-            );
+            $response['result'] = false;
+            $response['icon'] = "error";
+            $response['title'] = "Array DATA EMPTY";
+            $response['message'] = "No se definió la variable Data o esta vacía.";
         }else{
             $response = $data;
         }
