@@ -46,11 +46,21 @@ class Model
         }
     }
 
-    public function query($sql): static
+    public function query($sql, $data = []): static
     {
-        $this->QUERY = $this->CONNECTION->prepare($sql);
-        $this->QUERY->setFetchMode(PDO::FETCH_OBJ);
-        $this->QUERY->execute();
+        if ($data){
+            $stmt = $this->CONNECTION->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            for ($i = 0; $i < count($data); $i++){
+                $stmt->bindParam($i + 1, $data[$i]);
+            }
+            $stmt->execute();
+            $this->QUERY = $stmt;
+        }else{
+            $this->QUERY = $this->CONNECTION->prepare($sql);
+            $this->QUERY->setFetchMode(PDO::FETCH_OBJ);
+            $this->QUERY->execute();
+        }
         return $this;
     }
 
@@ -86,8 +96,8 @@ class Model
         //SELECT * FROM prueba WHERE id = 1;
         $rows = null;
         try {
-            $sql = "select * from {$this->table} WHERE id = {$id};";
-            $rows = $this->query($sql)->first();
+            $sql = "select * from {$this->table} WHERE id = ?;";
+            $rows = $this->query($sql, [$id])->first();
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }
@@ -104,8 +114,8 @@ class Model
         }
 
         try {
-            $sql = "select * from {$this->table} WHERE {$column} {$operator} '{$value}';";
-            $this->query($sql);
+            $sql = "select * from {$this->table} WHERE {$column} {$operator} ? ;";
+            $this->query($sql, [$value]);
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }
@@ -119,12 +129,9 @@ class Model
         $columns = array_values($this->fillable);
         $columns = implode(', ', $columns);
 
-        $values = array_values($data);
-        $values = "'". implode("', '", $values). "'";
-
         try {
-            $sql = "INSERT INTO {$this->table} ({$columns}) VALUES ({$values});";
-            $this->query($sql);
+            $sql = "INSERT INTO {$this->table} ({$columns}) VALUES (".str_repeat('?, ', count($data) - 1)."?);";
+            $this->query($sql, $data);
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }
@@ -139,13 +146,15 @@ class Model
 
         $fields = [];
         foreach ($data as $key => $value){
-            $fields[] = "{$key} = '{$value}'";
+            $fields[] = "{$key} = ?";
         }
         $fields = implode(', ', $fields);
 
         try {
-            $sql = "UPDATE {$this->table} SET {$fields} WHERE  id = {$id}";
-            $this->query($sql);
+            $sql = "UPDATE {$this->table} SET {$fields} WHERE  id = ?";
+            $values = array_values($data);
+            $values[] = $id;
+            $this->query($sql, $values);
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }
@@ -157,8 +166,8 @@ class Model
     {
         //DELETE FROM prueba WHERE  id = 33;
         try {
-            $sql = "DELETE FROM {$this->table} WHERE  id = {$id};";
-            $this->query($sql);
+            $sql = "DELETE FROM {$this->table} WHERE  id = ?;";
+            $this->query($sql, [$id]);
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }

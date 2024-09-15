@@ -118,9 +118,6 @@ function getURLActual(): string
 
 function testConnection(): void
 {
-    $model = new \app\Models\Prueba();
-    $row = $model->where('nombre', "ramon' OR 'a' = 'a")->get();
-    echo json_encode($row);
-    exit();
+    $model = new \app\Models\Model();
 }
 
