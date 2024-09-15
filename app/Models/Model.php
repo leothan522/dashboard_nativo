@@ -23,10 +23,10 @@ class Model
 
     protected string $table;
     protected array $fillable;
-
     protected string $limit = '';
-
     protected string $orderBy = '';
+    protected bool $softDelete = false;
+    protected string $deleted_at = '';
 
     public function __construct()
     {
@@ -89,10 +89,13 @@ class Model
 
     public function all(): array
     {
-        //select * from prueba;
+        //select * from parametros;
         $rows = [];
         try {
-            $sql = "select * from {$this->table} {$this->orderBy} {$this->limit};";
+            if ($this->softDelete){
+                $this->deleted_at = "WHERE deleted_at IS NULL";
+            }
+            $sql = "select * from {$this->table} {$this->deleted_at}  {$this->orderBy} {$this->limit};";
             $rows = $this->query($sql)->get();
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
@@ -102,10 +105,13 @@ class Model
 
     public function find($id): mixed
     {
-        //SELECT * FROM prueba WHERE id = 1;
+        //SELECT * FROM parametros WHERE id = 1;
         $rows = null;
         try {
-            $sql = "select * from {$this->table} WHERE id = ?;";
+            if ($this->softDelete){
+                $this->deleted_at = "AND deleted_at IS NULL";
+            }
+            $sql = "select * from {$this->table} WHERE id = ? {$this->deleted_at};";
             $rows = $this->query($sql, [$id])->first();
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
@@ -123,7 +129,10 @@ class Model
         }
 
         try {
-            $sql = "select * from {$this->table} WHERE {$column} {$operator} ? {$this->orderBy} {$this->limit};";
+            if ($this->softDelete){
+                $this->deleted_at = "AND deleted_at IS NULL";
+            }
+            $sql = "select * from {$this->table} WHERE {$column} {$operator} ? {$this->deleted_at} {$this->orderBy} {$this->limit};";
             $this->query($sql, [$value]);
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
@@ -136,7 +145,9 @@ class Model
         //INSERT INTO prueba (nombre, apellido) VALUES ('hola', 'tonton');
 
         $columns = array_values($this->fillable);
+        $columns[] = 'created_at';
         $columns = implode(', ', $columns);
+        $data[] = getFecha();
 
         try {
             $sql = "INSERT INTO {$this->table} ({$columns}) VALUES (".str_repeat('?, ', count($data) - 1)."?);";
@@ -152,7 +163,7 @@ class Model
     public function update($id, $data)
     {
         //UPDATE prueba SET nombre = 'aaa', apellido = 'bbbb' WHERE  id = 6;
-
+        $data['updated_at'] = getFecha();
         $fields = [];
         foreach ($data as $key => $value){
             $fields[] = "{$key} = ?";
@@ -175,8 +186,14 @@ class Model
     {
         //DELETE FROM prueba WHERE  id = 33;
         try {
-            $sql = "DELETE FROM {$this->table} WHERE  id = ?;";
-            $this->query($sql, [$id]);
+            if ($this->softDelete){
+                $this->update($id, [
+                    'deleted_at' => getFecha()
+                ]);
+            }else{
+                $sql = "DELETE FROM {$this->table} WHERE  id = ?;";
+                $this->query($sql, [$id]);
+            }
         }catch (PDOException $e){
             $this->showError('Error en el Model', $e);
         }

@@ -28,17 +28,11 @@ CREATE TABLE IF NOT EXISTS `parametros` (
   `rowquid` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla dashboard_nativo.parametros: ~6 rows (aproximadamente)
-INSERT INTO `parametros` (`id`, `nombre`, `tabla_id`, `valor`, `rowquid`, `created_at`, `updated_at`) VALUES
-	(1, 'fecha_instalacion', NULL, '2024-09-04 20:05:35', 'UMVRrWL5xVt7lmtu', '2024-09-05 00:05:35', NULL),
-	(2, 'hola', -1, NULL, '1z3E30D2CRG6YCOt', '2024-09-05 23:40:43', NULL),
-	(3, 'numRowsPaginate', NULL, '2', 'uUDIeCiQgEumHZy6', '2024-09-06 00:20:00', '2024-09-06 00:20:00'),
-	(4, 'prueba', -1, NULL, 'KilkG6oNRV8KU5js', '2024-09-07 17:40:27', '2024-09-07 17:40:27'),
-	(6, 'Administrador', -2, '1', 'cD36x9d5FnGQtcJC', '2024-09-12 23:01:44', '2024-09-12 23:01:44'),
-	(7, 'Público', -2, '0', 'PHEdU1M5fRztMgXw', '2024-09-12 23:01:44', '2024-09-12 23:03:10');
+-- Volcando datos para la tabla dashboard_nativo.parametros: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -34,7 +34,7 @@ function getFecha($fecha = null, $format = null): string
 {
     if (is_null($fecha)){
         if (is_null($format)){
-            $date = Carbon::now(APP_TIMEZONE)->toDateString();
+            $date = Carbon::now(APP_TIMEZONE)->toDateTimeString();
         }else{
             $date = Carbon::now(APP_TIMEZONE)->format($format);
         }
@@ -140,14 +140,14 @@ function crearResponse($title, $message, $result = false, $icon = 'error'): arra
     return $response;
 }
 
-/*function getRowquid($model): string
+function getRowquid($model): string
 {
     do{
         $rowquid = generarStringAleatorio(16);
-        $existe = $model->first('rowquid', '=', $rowquid);
+        $existe = $model->where('rowquid', $rowquid)->first();
     }while($existe);
     return $rowquid;
-}*/
+}
 
 /*function getDataSelect2($rows, $text, $id = "rowquid"): array
 {
