@@ -2,7 +2,6 @@
 
 namespace app\Models;
 
-use MongoDB\Driver\Query;
 use PDO;
 use PDOStatement;
 use PDOException;

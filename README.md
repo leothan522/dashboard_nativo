@@ -4,15 +4,22 @@
 
 Lista de tecnologías utilizadas en el proyecto:
 
-* [Composer](https://getcomposer.org/): v2.5.7
-* [PHP dotenv](https://packagist.org/packages/vlucas/phpdotenv): v5.5.0
-* [PHP MAILER](https://packagist.org/packages/phpmailer/phpmailer): v6.8.0
-* [PHP Carbon](https://carbon.nesbot.com/): v3.8.0
-* [Bootstrap](https://getbootstrap.com/): v4.6.2 
-* [jQuery](https://jquery.com/): v3.6.4
-* [SweetAlert2](https://sweetalert2.github.io/): v11.7.5
-* [Font Awesome Free](https://fontawesome.com): v6.4.0
-* [Inputmask](https://github.com/RobinHerbots/Inputmask): v5.0.9-beta.4
+* [Composer](https://getcomposer.org/): ^2.5.
+* [PHP dotenv](https://packagist.org/packages/vlucas/phpdotenv): ^5.6
+* [PHP Carbon](https://carbon.nesbot.com/): ^3.8
+
+
+[//]: # (* [PHP MAILER]&#40;https://packagist.org/packages/phpmailer/phpmailer&#41;: v6.8.0)
+
+[//]: # (* [Bootstrap]&#40;https://getbootstrap.com/&#41;: v4.6.2 )
+
+[//]: # (* [jQuery]&#40;https://jquery.com/&#41;: v3.6.4)
+
+[//]: # (* [SweetAlert2]&#40;https://sweetalert2.github.io/&#41;: v11.7.5)
+
+[//]: # (* [Font Awesome Free]&#40;https://fontawesome.com&#41;: v6.4.0)
+
+[//]: # (* [Inputmask]&#40;https://github.com/RobinHerbots/Inputmask&#41;: v5.0.9-beta.4)
 
 ### Language level
 
