@@ -19,8 +19,8 @@
   "autoload": {
       "files": [
         "config/app.php",
-        "routes/web.php",
-        "app/Funciones/Funciones.php"
+        "app/Funciones/Funciones.php",
+        "routes/web.php"
       ],
     "psr-4": {
       "app\\Controllers\\": "app\\Controllers",

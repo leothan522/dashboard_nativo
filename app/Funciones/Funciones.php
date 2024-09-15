@@ -117,16 +117,6 @@ function obtenerPorcentaje($cantidad, $total): float|int
     return 0;
 }
 
-//Crear JSON
-function crearJson($array): false|string
-{
-    $json = array();
-    foreach ($array as $key){
-        $json[$key] = true;
-    }
-    return json_encode($json);
-}
-
 //Función comprueba una hora entre un rango
 function hourIsBetween($from, $to, $input): bool
 {
@@ -138,6 +128,16 @@ function hourIsBetween($from, $to, $input): bool
     /*En la función lo que haremos será pasarle, el desde y el hasta del rango de horas que queremos que se encuentre y el datetime con la hora que nos llega.
 Comprobaremos si la segunda hora que le pasamos es inferior a la primera, con lo cual entenderemos que es para el día siguiente.
 Y al final devolveremos true o false dependiendo si el valor introducido se encuentra entre lo que le hemos pasado.*/
+}
+
+function crearResponse($title, $message, $result = false, $icon = 'error'): array
+{
+    if ($result){ $icon = 'success'; }
+    $response['result'] = $result;
+    $response['icon'] = $icon;
+    $response['title'] = $title;
+    $response['message'] = $message;
+    return $response;
 }
 
 /*function getRowquid($model): string

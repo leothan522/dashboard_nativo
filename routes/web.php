@@ -1,5 +1,6 @@
 <?php
 
+use app\Controllers\HomeController;
 use lib\Facades\Route;
 
 /*
@@ -27,9 +28,7 @@ Route::get("home",[HomeController::class,'index']);
 */
 
 
-Route::get('/', function (){
-    return "hola desde index";
-});
+Route::get('/', [HomeController::class, 'prueba']);
 
 
 /*
