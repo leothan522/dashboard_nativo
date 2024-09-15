@@ -5,8 +5,9 @@
 Lista de tecnologías utilizadas en el proyecto:
 
 * [Composer](https://getcomposer.org/): ^2.5.
-* [PHP dotenv](https://packagist.org/packages/vlucas/phpdotenv): ^5.6
+* [PHP dotenv](https://github.com/vlucas/phpdotenv): ^5.6
 * [PHP Carbon](https://carbon.nesbot.com/): ^3.8
+* [Wixel / GUMP](https://github.com/Wixel/GUMP): ^2.1
 
 
 [//]: # (* [PHP MAILER]&#40;https://packagist.org/packages/phpmailer/phpmailer&#41;: v6.8.0)

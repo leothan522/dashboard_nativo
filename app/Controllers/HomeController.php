@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 use app\Middleware\Middleware;
 use app\Models\Parametro;
+use lib\Facades\GUMP;
 
 class HomeController extends Controller
 {
@@ -51,22 +52,41 @@ class HomeController extends Controller
     {
         try {
 
-            /*foreach ($_POST as $key => $value) {
-                ${$key} = trim(addslashes(strip_tags($value)));
-            }*/
 
             $model = new Parametro();
-            $data = [
-                $_POST['nombre'],
-                $_POST['tabla_id'],
-                $_POST['valor'],
-                getRowquid($model)
-            ];
 
-           $row = $model->save($data);
+            $gump = new GUMP();
+
+            // establecer reglas de validación
+            $gump->validation_rules([
+                'nombre' => 'required|min_len, 3|max_len,50',
+                'tabla_id' => 'required|integer',
+                'valor' => 'required'
+            ]);
+
+            // establecer reglas de filtro
+            $gump->filter_rules([
+                'nombre' => 'trim|rmpunctuation|sanitize_string',
+                'tabla_id' => 'trim|whole_number',
+                'valor'    => 'trim',
+            ]);
+
+            // en caso de éxito: devuelve una matriz con la misma estructura de entrada,
+            // pero después de que se hayan ejecutado los filtros
+            // en caso de error: devuelve falso
+            $valid_data = $gump->run($_POST);
+
+            if ($gump->errors()){
+                $row = $gump->get_errors_array();
+            }else{
+                $data = array_values($valid_data);
+                $data[] = getRowquid($model);
+                $row = $model->save($data);
+            }
+
             return $this->json($row);
 
-        }catch (\Error $e){
+        }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);
         }
     }
