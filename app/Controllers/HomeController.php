@@ -11,8 +11,7 @@ class HomeController extends Controller
     {
         try {
             return $this->view('index', [
-                'title' => '1989-02-21',
-                'texto' => public_path()
+                'title' => 'Prueba Guardar Parametros'
             ]);
         }catch (\Error $e){
             $this->showError('Error en el Controller', $e);
@@ -51,11 +50,22 @@ class HomeController extends Controller
     public function vericifando()
     {
         try {
-            Middleware::auth(['hola', 'mundo', 'success']);
-            return $this->view('index', [
-                'title' => 'Verificando Middleware',
-                'texto' => 'prueba del Midleware'
-            ]);
+
+            /*foreach ($_POST as $key => $value) {
+                ${$key} = trim(addslashes(strip_tags($value)));
+            }*/
+
+            $model = new Parametro();
+            $data = [
+                $_POST['nombre'],
+                $_POST['tabla_id'],
+                $_POST['valor'],
+                getRowquid($model)
+            ];
+
+           $row = $model->save($data);
+            return $this->json($row);
+
         }catch (\Error $e){
             $this->showError('Error en el Controller', $e);
         }

@@ -29,7 +29,7 @@ Route::get("home",[HomeController::class,'index']);
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('middleware', [HomeController::class, 'vericifando']);
+Route::post('post', [HomeController::class, 'vericifando']);
 
 
 /*

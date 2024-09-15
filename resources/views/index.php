@@ -10,7 +10,13 @@
 <body>
     <h1>Hola desde una VIEW</h1>
     <p><?= $title ?></p>
-    <p><?= $texto ?></p>
-    <p><?= json_encode(crearResponse('hola', 'message')) ?></p>
+    <div>
+        <form action="<?= asset('post') ?>" method="post">
+            <p><input type="text" name="nombre" placeholder="nombre"></p>
+            <p><input type="text" name="tabla_id" placeholder="tabla_id"></p>
+            <p><input type="text" name="valor" placeholder="valor"></p>
+            <p><input type="submit" value="Guardar"></p>
+        </form>
+    </div>
 </body>
 </html>
