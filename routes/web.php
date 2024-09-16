@@ -29,7 +29,6 @@ Route::get("home",[HomeController::class,'index']);
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('dashboard', [HomeController::class, 'dashboard']);
 Route::post('post', [HomeController::class, 'vericifando']);
 
 

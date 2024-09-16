@@ -19,17 +19,6 @@ class HomeController extends Controller
         }
     }
 
-    public function dashboard()
-    {
-        try {
-            return $this->view('dashboard.index', [
-                'title' => 'Dashboard'
-            ]);
-        }catch (\Error $e){
-            $this->showError('Error en el Controller', $e);
-        }
-    }
-
     public function vericifando()
     {
         try {
