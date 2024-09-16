@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Prueba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="<?php asset('bootstrap/css/bootstrap.css') ?>">
 </head>
 <body>
-    <h1>Hola Mundo!</h1>
+<h1>Hello, world!</h1>
+
+<script src="<?php ('bootstrap/bootstrap.bundle.js') ?>"></script>
 </body>
 </html>
