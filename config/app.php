@@ -9,7 +9,7 @@ function init(): void
     try {
         $dotenv = Dotenv::createImmutable(dirname(__FILE__, 2));
         $dotenv->load();
-    }catch (Exception $exception){
+    } catch (Exception $exception) {
         echo $exception->getMessage();
         exit();
     }
@@ -19,7 +19,7 @@ function init(): void
     //Definimois valores por defecto para las variebles de entorno
     define('APP_NAME', env('APP_NAME'));
     $key = 'id';
-    if (env('APP_KEY')){
+    if (env('APP_KEY')) {
         $key = str_replace(':', '', env('APP_KEY'));
         $key = str_replace('=', '', $key);
     }
@@ -54,10 +54,12 @@ function init(): void
 
 function env($env, $default = null): mixed
 {
-    if (isset($_ENV[mb_strtoupper($env)])){
-        if ($_ENV[mb_strtoupper($env)] == "false"){ $_ENV[mb_strtoupper($env)] = false; }
+    if (isset($_ENV[mb_strtoupper($env)])) {
+        if ($_ENV[mb_strtoupper($env)] == "false") {
+            $_ENV[mb_strtoupper($env)] = false;
+        }
         $response = trim($_ENV[mb_strtoupper($env)], '/');
-    }else{
+    } else {
         $response = $default;
     }
     return $response;
@@ -65,43 +67,57 @@ function env($env, $default = null): mixed
 
 function root_path($path = null): string
 {
-    if (empty($path)){
+    if (empty($path)) {
         return ROOT_PATH;
-    }else{
+    } else {
         $path = str_replace('/', '\\', $path);
-        return ROOT_PATH."\\".$path;
+        return ROOT_PATH . "\\" . $path;
     }
 }
 
 function public_path($path = null): string
 {
-    if (empty($path)){
-        return ROOT_PATH.'\\public';
-    }else{
+    if (empty($path)) {
+        return ROOT_PATH . '\\public';
+    } else {
         $path = str_replace('/', '\\', $path);
-        return ROOT_PATH."\\public\\".$path;
+        return ROOT_PATH . "\\public\\" . $path;
     }
 }
 
 function storage_path($path = null): string
 {
-    if (empty($path)){
-        return ROOT_PATH.'\\storage\\public';
-    }else{
+    if (empty($path)) {
+        return ROOT_PATH . '\\storage\\public';
+    } else {
         $path = str_replace('/', '\\', $path);
-        return ROOT_PATH."\\storage\\public\\".$path;
+        return ROOT_PATH . "\\storage\\public\\" . $path;
     }
 }
 
 function asset($uri = null, $noCache = false): void
 {
+    $uri = trim($uri, '/');
     $version = null;
-    if ($noCache){
-        if (env('APP_DEBUG')){
-            $version = "?v=".rand();
+    if ($noCache) {
+        if (env('APP_DEBUG')) {
+            $version = "?v=" . rand();
         }
     }
-    echo APP_URL . '/' . $uri . $version;
+    $url = trim(APP_URL, '/');
+    echo $url . '/' . $uri . $version;
+}
+
+function getAssetDominio($uri = null, $noCache = false): void
+{
+    $url = trim(dirname(APP_URL), '/');
+    $version = null;
+    if ($noCache) {
+        if (env('APP_DEBUG')) {
+            $version = "?v=" . rand();
+        }
+    }
+    echo $url . '/' . $uri . $version;
 }
 
 function getURLActual(): string
@@ -116,14 +132,9 @@ function getURLActual(): string
     return $protocolo . $host . $uri;
 }
 
-function testConnection(): void
-{
-    $model = new \app\Models\Model();
-}
-
 function redirect($uri): void
 {
-    $url = APP_URL.'/';
+    $url = APP_URL . '/';
     $uri = trim($uri, '/');
     header("location: {$url}{$uri}");
     return;
@@ -131,8 +142,24 @@ function redirect($uri): void
 
 function route($uri): string
 {
-    $url = APP_URL.'/';
+    $url = APP_URL . '/';
     $uri = trim($uri, '/');
     return $url . $uri;
+}
+
+function require_view($route): void
+{
+    $route = str_replace('.', '/', $route);
+    $path = root_path("resources/views/{$route}.php");
+    if (file_exists($path)) {
+        include $path;
+    }else{
+        echo "No se encuentra la vista [<code> {$route}.php </code>]";
+    }
+}
+
+function testConnection(): void
+{
+    $model = new \app\Models\Model();
 }
 

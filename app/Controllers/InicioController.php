@@ -2,16 +2,15 @@
 
 namespace app\Controllers;
 
-use app\Middleware\Middleware;
 use app\Models\Parametro;
 use lib\Facades\GUMP;
 
-class HomeController extends Controller
+class InicioController extends Controller
 {
     public function index()
     {
         try {
-            return $this->view('web.index', [
+            return $this->view('inicio', [
                 'title' => 'Web'
             ]);
         }catch (\Error $e){
@@ -19,7 +18,7 @@ class HomeController extends Controller
         }
     }
 
-    public function vericifando()
+    public function testGUMP()
     {
         try {
 

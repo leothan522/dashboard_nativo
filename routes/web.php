@@ -1,6 +1,6 @@
 <?php
 
-use app\Controllers\HomeController;
+use app\Controllers\InicioController;
 use lib\Facades\Route;
 
 /*
@@ -28,8 +28,8 @@ Route::get("home",[HomeController::class,'index']);
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::post('post', [HomeController::class, 'vericifando']);
+Route::get('/', [InicioController::class, 'index']);
+Route::post('post', [InicioController::class, 'testGUMP']);
 
 
 /*
