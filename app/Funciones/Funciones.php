@@ -2,9 +2,12 @@
 
 use Carbon\Carbon;
 
-function generarStringAleatorio($largo = 10, $espacio = false): string
+function generarStringAleatorio($largo = 10, $soloNumeros = false , $espacio = false): string
 {
     $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if ($soloNumeros){
+        $caracteres = '0123456789';
+    }
     $caracteres = $espacio ? $caracteres . ' ' : $caracteres;
     $string = '';
     for ($i = 0; $i < $largo; $i++) {
