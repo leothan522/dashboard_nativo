@@ -29,7 +29,7 @@ Route::get("home",[HomeController::class,'index']);
 
 
 Route::get('/', [InicioController::class, 'index']);
-Route::post('post', [InicioController::class, 'testGUMP']);
+Route::post('prueba', [InicioController::class, 'testGUMP']);
 
 
 /*
