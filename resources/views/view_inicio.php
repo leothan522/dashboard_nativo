@@ -41,30 +41,38 @@
 
         <h1>¡Hola Mundo!</h1>
 
+
         <p class="col-12"><?= route('prueba')  ?></p>
 
-        <div class="row m-5">
-            <form id="form_prueba">
-                <input type="text" class="form-control m-2" placeholder="nombre" name="nombre">
-                <input type="text" class="form-control m-2" placeholder="tabla_id" name="tabla_id">
-                <input type="text" class="form-control m-2" placeholder="valor" name="valor">
-                <button type="submit" class="btn btn-primary m-2"  id="hola_prueba">Hola Probando</button>
-            </form>
 
-            <!--<div class="">
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+
+
+
+        <div class="row justify-content-center">
+
+                <div class="col-md-6">
+
+                    <div class="card">
+                        <div class="card-header">
+                            Pruebas de Peticiones Asincronas
+                        </div>
+                        <div class="card-body position-relative" id="hola">
+                            <h5 class="card-title">Usando el Modelo Parametros</h5>
+                            <form id="form_prueba">
+                                <input type="text" class="form-control mb-2" placeholder="nombre" name="nombre">
+                                <input type="text" class="form-control mb-2" placeholder="tabla_id" name="tabla_id">
+                                <input type="text" class="form-control mb-2" placeholder="valor" name="valor">
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary" id="btn_guardar">Guardar</button>
+                                    <button type="reset" class="btn btn-secondary" id="btn_calcelar">Cancelar</button>
+                                </div>
+                            </form>
+                            <?php verCargando(); ?>
+                        </div>
                     </div>
+
                 </div>
-            </div>-->
 
-        </div>
-
-        <div class="row">
-            <div class="col-4">
-                <button type="button" class="btn btn-primary m-2" onclick="prueba('VAnneza')">Probando Confirm</button>
-            </div>
         </div>
 
     </div>
@@ -80,27 +88,16 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
 <script type="application/javascript">
-
-    function prueba(nombre) {
-        confirmToastBootstrap(function () {
-            let url = "<?= route('prueba') ?>";
-            let data = {
-                nombre: "vanessa",
-                tabla_id: 25,
-                valor: "Mujer"
-            }
-            ajaxRequest({ url: url, data: data }, function (data) {
-                //
-            })
-        })
-    }
+    
 
     let form = document.getElementById("form_prueba");
     form.addEventListener('submit', function (e) {
         e.preventDefault();
+        verCargando("hola");
         let url = "<?= route('prueba') ?>";
         ajaxRequest({ url: url, form: form }, function (data) {
             //acciones extras
+            verCargando('hola', false);
         });
     });
 

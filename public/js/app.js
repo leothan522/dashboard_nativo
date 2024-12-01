@@ -64,8 +64,8 @@ function toastBootstrap(options = {}) {
 
     liveToastClass.classList.add(color);
     liveToastIcon.innerHTML = icon;
-    liveToastTitle.innerHTML = title;
-    liveToasMessage.innerHTML = message;
+    liveToastTitle.textContent = title;
+    liveToasMessage.textContent = message;
 
     if (!noToast) {
         toast.show()
@@ -203,10 +203,10 @@ function confirmToastBootstrap(callback, options = {}) {
     let close = options.close ? options.close : "Cancelar";
 
     confirmToastClass.classList.add(color);
-    confirmToastTitle.innerHTML = title;
-    confirmToastMessage.innerHTML = message;
-    confirmToastButtonText.innerHTML = button;
-    confirmToastCancelButtonText.innerHTML = close;
+    confirmToastTitle.textContent = title;
+    confirmToastMessage.textContent = message;
+    confirmToastButtonText.textContent = button;
+    confirmToastCancelButtonText.textContent = close;
 
     toast.show();
 
@@ -215,6 +215,35 @@ function confirmToastBootstrap(callback, options = {}) {
     })
 
 }
+
+/**
+ * Muestra un Spinner mientras Carga.
+ *
+ * require agregar con php la funcion verCargando()
+ * @param id
+ * @param show
+ */
+function verCargando(id, show = true) {
+    let selector = document.querySelector('#' + id);
+    if (selector){
+        let spinner = document.querySelector("#" + id + " .verCargando");
+        if (spinner){
+            if (show){
+                selector.classList.add('opacity-25');
+                spinner.classList.remove('d-none');
+            }else {
+                selector.classList.remove('opacity-25');
+                spinner.classList.add('d-none');
+            }
+        }else {
+            console.log('Falta verCargando() dentro del elemento #' + id)
+        }
+    }else{
+        console.log("id no encontrado: #" + id);
+    }
+
+}
+
 
 
 /**
