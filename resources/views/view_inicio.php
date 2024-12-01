@@ -57,16 +57,37 @@
                             Pruebas de Peticiones Asincronas
                         </div>
                         <div class="card-body position-relative" id="hola">
-                            <h5 class="card-title">Usando el Modelo Parametros</h5>
-                            <form id="form_prueba">
-                                <input type="text" class="form-control mb-2" placeholder="nombre" name="nombre">
-                                <input type="text" class="form-control mb-2" placeholder="tabla_id" name="tabla_id">
-                                <input type="text" class="form-control mb-2" placeholder="valor" name="valor">
+                            <h5 class="card-title mb-3">Usando el Modelo Parametros</h5>
+
+
+                            <form id="form_prueba" novalidate>
+
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input id="nombre" type="text" class="form-control" placeholder="nombre" name="nombre" required>
+                                    <small id="error_nombre" class="invalid-feedback form-text">El campo nombre es requerido.</small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="tabla_id" class="form-label">Tabla ID</label>
+                                    <input id="tabla_id" type="text" class="form-control" placeholder="tabla_id" name="tabla_id" required>
+                                    <small id="error_tabla_id" class="invalid-feedback form-text">El campo tabla_id es requerido.</small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="valor" class="form-label">Valor</label>
+                                    <input id="valor" type="text" class="form-control" placeholder="valor" name="valor" required>
+                                    <small id="error_valor" class="invalid-feedback form-text">El campo valor es requerido</small>
+                                </div>
+
                                 <div class="d-flex justify-content-between">
                                     <button type="submit" class="btn btn-primary" id="btn_guardar">Guardar</button>
                                     <button type="reset" class="btn btn-secondary" id="btn_calcelar">Cancelar</button>
                                 </div>
+
                             </form>
+
+
                             <?php verCargando(); ?>
                         </div>
                     </div>
@@ -88,20 +109,34 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
 <script type="application/javascript">
-    
 
-    let form = document.getElementById("form_prueba");
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        verCargando("hola");
-        let url = "<?= route('prueba') ?>";
-        ajaxRequest({ url: url, form: form }, function (data) {
-            //acciones extras
-            verCargando('hola', false);
-        });
+
+    const form = document.querySelector("#form_prueba");
+    const btnGuardar = document.querySelector("#btn_guardar");
+    const btnCancelar = document.querySelector("#btn_calcelar");
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        form.classList.add('was-validated');
+        if (form.checkValidity()){
+            btnGuardar.disabled = "disabled"
+            verCargando("hola");
+            let url = "<?= route('prueba') ?>";
+            ajaxRequest({ url: url, form: form }, function (data) {
+                //acciones extras
+                btnGuardar.removeAttribute('disabled');
+                verCargando('hola', false);
+            });
+        }
+
     });
 
-    console.log('Hi!')
+    btnCancelar.addEventListener('click', event => {
+        form.classList.remove('was-validated');
+    })
+
+    console.log('Hidfd!')
 </script>
 </body>
 </html>
