@@ -169,6 +169,6 @@ function getRowquid($model): string
 //Necesario para iniciar Toast Bootstrap con JS
 function verToast(): void
 {
-    echo '<!-- Toast Bootstrap con JS --><div id="toastBootstrap" class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 mt-5"><!-- JS --></div>';
+    echo '<!-- Toast Bootstrap con JS --><div id="toastBootstrap"><!-- JS --></div>';
 }
 

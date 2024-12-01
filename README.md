@@ -12,7 +12,8 @@ Lista de tecnologías utilizadas en el proyecto:
 * [Wixel / GUMP](https://github.com/Wixel/GUMP): ^2.1
 * [Bootstrap](https://getbootstrap.com/): v5.3.3
 * [Font Awesome Free](https://fontawesome.com): v6.7.1
-* [SweetAlert2](https://sweetalert2.github.io/): v11.14.5
+
+[//]: # (* [SweetAlert2]&#40;https://sweetalert2.github.io/&#41;: v11.14.5 &#40;integrado pero no implementado&#41;)
 
 [//]: # (* [PHP MAILER]&#40;https://packagist.org/packages/phpmailer/phpmailer&#41;: v6.8.0)
 

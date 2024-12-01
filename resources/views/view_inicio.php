@@ -61,6 +61,12 @@
 
         </div>
 
+        <div class="row">
+            <div class="col-4">
+                <button type="button" class="btn btn-primary m-2" onclick="prueba('VAnneza')">Probando Confirm</button>
+            </div>
+        </div>
+
     </div>
 </main>
 
@@ -69,9 +75,25 @@
 
 <?php verToast(); ?>
 
+
+
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
 <script type="application/javascript">
+
+    function prueba(nombre) {
+        confirmToastBootstrap(function () {
+            let url = "<?= route('prueba') ?>";
+            let data = {
+                nombre: "vanessa",
+                tabla_id: 25,
+                valor: "Mujer"
+            }
+            ajaxRequest({ url: url, data: data }, function (data) {
+                //
+            })
+        })
+    }
 
     let form = document.getElementById("form_prueba");
     form.addEventListener('submit', function (e) {

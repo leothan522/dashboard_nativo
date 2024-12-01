@@ -1,3 +1,10 @@
+const colores = {
+    success: "text-bg-success",
+    info: "text-bg-info",
+    error: "text-bg-danger",
+    warning: "text-bg-warning"
+};
+
 /**
  * Envía notificaciones del sistema con un toast.
  *
@@ -6,7 +13,8 @@
  */
 function toastBootstrap(options = {}) {
 
-    let html = '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"> ' +
+    let html = '<div class="toast-container position-fixed p-3 top-0 start-50 translate-middle-x mt-5">' +
+        '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"> ' +
         '<div class="toast-header" id="liveToastClass"> ' +
         '<span class="ms-2 me-3" id="liveToastIcon"> ' +
         '<i class="fa-regular fa-circle-exclamation"></i> ' +
@@ -18,6 +26,7 @@ function toastBootstrap(options = {}) {
         '<div class="toast-body" id="liveToasMessage">' +
         'Hello, world! This is a toast message. ' +
         '</div> ' +
+        '</div>' +
         '</div>';
 
     document.getElementById('toastBootstrap').innerHTML = html;
@@ -30,13 +39,6 @@ function toastBootstrap(options = {}) {
     const liveToastTitle = document.getElementById('liveToastTitle');
     const liveToasMessage = document.getElementById('liveToasMessage');
     const liveToastTime = document.getElementById('liveToastTime');
-
-    const colores = {
-        success: "text-bg-success",
-        info: "text-bg-info",
-        error: "text-bg-danger",
-        warning: "text-bg-warning"
-    };
 
     const iconos = {
         success: '<i class="fa-solid fa-check"></i>',
@@ -152,6 +154,65 @@ function ajaxRequest(options, callback) {
         });
     *-------------------------------------------------------------------
     * */
+
+}
+
+/**
+ * Envía notificaciones del sistema con un toast Confirm.
+ *
+ * Usando Toasts de Bootstrap 5
+ * @param options
+ * @param callback
+ */
+function confirmToastBootstrap(callback, options = {}) {
+
+    let html = '<div class="toast-container position-fixed p-3 top-50 start-50 translate-middle">' +
+        '<div id="confirmToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">' +
+        '<div class="toast-header" id="confirmToastClass"> ' +
+        '<i class="fa-solid fa-question ms-2 me-2"></i> ' +
+        '<strong class="me-auto">¿<span id="confirmToastTitle">Estas seguro</span>?</strong> ' +
+        '<small class="d-none" id="confirmToastTime">11 mins ago</small> ' +
+        '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> ' +
+        '</div> ' +
+        '<div class="toast-body"> ' +
+        '<span id="confirmToastMessage">¡No podrás revertir esto!</span> ' +
+        '<div class="d-flex mt-2 pt-2 border-top justify-content-between"> ' +
+        '<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="toast" id="confirmToastButtonText">¡Sí, bórralo!</button> ' +
+        '<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast" id="confirmToastCancelButtonText">Cancelar</button> ' +
+        '</div> ' +
+        '</div> ' +
+        '</div>' +
+        '</div>';
+
+    document.getElementById('toastBootstrap').innerHTML = html;
+
+    const toastConfirm = document.getElementById('confirmToast')
+    const toast = bootstrap.Toast.getOrCreateInstance(toastConfirm);
+
+    const confirmToastClass = document.getElementById('confirmToastClass');
+    const confirmToastTitle = document.getElementById('confirmToastTitle');
+    const confirmToastMessage = document.getElementById('confirmToastMessage');
+    const confirmToastButtonText = document.getElementById('confirmToastButtonText');
+    const confirmToastCancelButtonText = document.getElementById('confirmToastCancelButtonText');
+    const confirmToastTime = document.getElementById('confirmToastTime');
+
+    const color = options.color ? options.color : "text-bg-warning";
+    let title = options.title ? options.title : "Estas seguro";
+    let message = options.message ? options.message : "¡No podrás revertir esto!";
+    let button = options.button ? options.button : "¡Sí, bórralo!";
+    let close = options.close ? options.close : "Cancelar";
+
+    confirmToastClass.classList.add(color);
+    confirmToastTitle.innerHTML = title;
+    confirmToastMessage.innerHTML = message;
+    confirmToastButtonText.innerHTML = button;
+    confirmToastCancelButtonText.innerHTML = close;
+
+    toast.show();
+
+    confirmToastButtonText.addEventListener('click', function () {
+        callback();
+    })
 
 }
 
