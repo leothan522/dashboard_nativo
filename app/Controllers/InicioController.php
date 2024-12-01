@@ -10,7 +10,7 @@ class InicioController extends Controller
     public function index()
     {
         try {
-            return $this->view('inicio', [
+            return $this->view('view_inicio', [
                 'title' => 'Web'
             ]);
         }catch (\Error $e){
@@ -51,12 +51,13 @@ class InicioController extends Controller
             $valid_data = $gump->run($_POST);
 
             if ($gump->errors()){
-                $row = crearResponse('Faltan Datos', 'revisar');
+                $row = crearResponse();
                 $row['errors'] = $gump->get_errors_array();
             }else{
                 $data = array_values($valid_data);
                 $data[] = getRowquid($model);
                 $row = $model->save($data);
+                $row->ok = true;
             }
 
             return $this->json($row);

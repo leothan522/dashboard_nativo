@@ -64,8 +64,8 @@ class Route
 
         //echo '404 Not Found';
         header('Content-Type: application/json; charset=utf-8');
-        $response['result'] = false;
-        $response['icon'] = "error";
+        $response['ok'] = false;
+        $response['toast'] = "error";
         $response['title'] = '404 Not Found';
         $response['text'] = "Errores 404 (Page Not Found) de página no encontrada";
         echo json_encode($response, JSON_UNESCAPED_UNICODE);

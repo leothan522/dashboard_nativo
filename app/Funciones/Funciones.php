@@ -2,10 +2,10 @@
 
 use Carbon\Carbon;
 
-function generarStringAleatorio($largo = 10, $soloNumeros = false , $espacio = false): string
+function generarStringAleatorio($largo = 10, $soloNumeros = false, $espacio = false): string
 {
     $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if ($soloNumeros){
+    if ($soloNumeros) {
         $caracteres = '0123456789';
     }
     $caracteres = $espacio ? $caracteres . ' ' : $caracteres;
@@ -21,13 +21,13 @@ function verUtf8($string, $safeNull = false): string
     //$utf8_string = "Some UTF-8 encoded BATE QUEBRADO ÑñíÍÁÜ niño ó Ó string: é, ö, ü";
     $response = null;
     $text = 'NULL';
-    if ($safeNull){
+    if ($safeNull) {
         $text = '';
     }
-    if (!is_null($string)){
+    if (!is_null($string)) {
         $response = mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8');
     }
-    if (!is_null($response)){
+    if (!is_null($response)) {
         $text = "$response";
     }
     return $text;
@@ -35,16 +35,16 @@ function verUtf8($string, $safeNull = false): string
 
 function getFecha($fecha = null, $format = null): string
 {
-    if (is_null($fecha)){
-        if (is_null($format)){
+    if (is_null($fecha)) {
+        if (is_null($format)) {
             $date = Carbon::now(APP_TIMEZONE)->toDateTimeString();
-        }else{
+        } else {
             $date = Carbon::now(APP_TIMEZONE)->format($format);
         }
-    }else{
-        if (is_null($format)){
+    } else {
+        if (is_null($format)) {
             $date = Carbon::parse($fecha)->format('d/m/Y');
-        }else{
+        } else {
             $date = Carbon::parse($fecha)->format($format);
         }
     }
@@ -62,7 +62,7 @@ function fechaEnLetras($fecha, $isoFormat = null): string
     // dddd => Nombre del DIA ejemplo: lunes
     // MMMM => nombre del mes ejemplo: febrero
     $format = "dddd D [de] MMMM [de] YYYY"; // fecha completa
-    if (!is_null($isoFormat)){
+    if (!is_null($isoFormat)) {
         $format = $isoFormat;
     }
     return Carbon::parse($fecha)->isoFormat($format);
@@ -86,17 +86,17 @@ function leerJson($json, $key)
 
 function listarDias(): array
 {
-    return ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
+    return ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 }
 
 function ListarMeses(): array
 {
-    return ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 }
 
 function formatoMillares($cantidad, $decimal = 2): string
 {
-    if (!is_numeric($cantidad)){
+    if (!is_numeric($cantidad)) {
         $cantidad = 0;
     }
     return number_format($cantidad, $decimal, ',', '.');
@@ -133,36 +133,42 @@ Comprobaremos si la segunda hora que le pasamos es inferior a la primera, con lo
 Y al final devolveremos true o false dependiendo si el valor introducido se encuentra entre lo que le hemos pasado.*/
 }
 
-function crearResponse($title, $message, $result = false, $icon = 'error'): array
+function crearResponse($message = null, $title = null, $ok = false, $alert = 'warning', $noToast = false): array
 {
-    if ($result){ $icon = 'success'; }
-    $response['result'] = $result;
-    $response['icon'] = $icon;
-    $response['title'] = $title;
-    $response['message'] = $message;
+    if ($ok) {
+        $alert = 'success';
+    }
+
+    if (!is_null($title)){
+        $response['title'] = $title;
+    }
+
+    if ($noToast){
+        $response['noToast'] = $noToast;
+    }
+
+    if (is_null($message)){
+        $response['message'] = "Los datos no cumplen con la validación requerida.";
+    }
+
+    $response['ok'] = $ok;
+    $response['toast'] = $alert;
+
     return $response;
 }
 
 function getRowquid($model): string
 {
-    do{
+    do {
         $rowquid = generarStringAleatorio(16);
         $existe = $model->where('rowquid', $rowquid)->first();
-    }while($existe);
+    } while ($existe);
     return $rowquid;
 }
 
-/*function getDataSelect2($rows, $text, $id = "rowquid"): array
+//Necesario para iniciar Toast Bootstrap con JS
+function verToast(): void
 {
-    $data = [];
-    $filas = $rows->toArray();
-    foreach ($filas as $row){
-        $option = [
-            'id' => $row[$id],
-            'text' => $row[$text]
-        ];
-        $data[] = $option;
-    }
-    return $data;
-}*/
+    echo '<!-- Toast Bootstrap con JS --><div id="toastBootstrap" class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 mt-5"><!-- JS --></div>';
+}
 

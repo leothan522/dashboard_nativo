@@ -1,5 +1,7 @@
 # Dashboard
+
 ### Utilizando **PHP y Mysql**
+
 ## Tecnologías
 
 Lista de tecnologías utilizadas en el proyecto:
@@ -9,19 +11,15 @@ Lista de tecnologías utilizadas en el proyecto:
 * [PHP Carbon](https://carbon.nesbot.com/): ^3.8
 * [Wixel / GUMP](https://github.com/Wixel/GUMP): ^2.1
 * [Bootstrap](https://getbootstrap.com/): v5.3.3
+* [Font Awesome Free](https://fontawesome.com): v6.7.1
+* [SweetAlert2](https://sweetalert2.github.io/): v11.14.5
 
 [//]: # (* [PHP MAILER]&#40;https://packagist.org/packages/phpmailer/phpmailer&#41;: v6.8.0)
-
-[//]: # (* [Bootstrap]&#40;https://getbootstrap.com/&#41;: v4.6.2 )
-
-[//]: # (* [jQuery]&#40;https://jquery.com/&#41;: v3.6.4)
-
-[//]: # (* [SweetAlert2]&#40;https://sweetalert2.github.io/&#41;: v11.7.5)
-
-[//]: # (* [Font Awesome Free]&#40;https://fontawesome.com&#41;: v6.4.0)
-
-[//]: # (* [Inputmask]&#40;https://github.com/RobinHerbots/Inputmask&#41;: v5.0.9-beta.4)
 
 ### Language level
 
 * [PHP](https://www.php.net/) ^8.2
+
+### Información extra
+
+* Podemos realizar peticiones HTTP asíncronas utilizando [fetch()](#información-extra) la API para JavaScript con la función local [ajaxRequest()](public/js/app.js) que esta ubicada en el archivo [public/js/app.js](public/js/app.js). ya esta configurada para disparar alertas usando los Toast de Boostrap 5.

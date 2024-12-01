@@ -268,8 +268,8 @@ class Model
     #[NoReturn] protected function showError($title, $e): void
     {
         header('Content-Type: application/json; charset=utf-8');
-        $response['result'] = false;
-        $response['icon'] = "error";
+        $response['ok'] = false;
+        $response['toast'] = "error";
         $response['title'] = $title;
         $response['message'] = "PDOException {$e->getMessage()}";
         echo json_encode($response, JSON_UNESCAPED_UNICODE);
