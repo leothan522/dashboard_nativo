@@ -7,7 +7,7 @@ use lib\Facades\GUMP;
 
 class TestController extends Controller
 {
-    
+
     public function index()
     {
         try {

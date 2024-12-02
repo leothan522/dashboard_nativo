@@ -30,7 +30,7 @@
 <body class="d-flex flex-column h-100">
 
 <!--Icons Switch Theme-->
-<?php require_view('test.layouts.switch'); ?>
+<?php require_view('layouts.switch'); ?>
 
 <!-- Fixed navbar -->
 <?php require_view('test.layouts.navbar'); ?>

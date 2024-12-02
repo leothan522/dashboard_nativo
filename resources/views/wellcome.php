@@ -28,11 +28,19 @@
     <link rel="stylesheet" href="<?php asset('vendor/adminlte/css/adminlte.css'); ?>">
     <!--end::Required Plugin(AdminLTE)-->
 
+
+    <!--Switch Theme -->
+    <script src="<?php getAssetDominio('resources/js/color-modes.js'); ?>"></script>
+    <link rel="stylesheet" href="<?php getAssetDominio('resources/css/color-modes.css'); ?>">
+
 </head>
 <!--end::Head-->
 
 <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary">
+
+<!--Icons Switch Theme-->
+<?php require_view('layouts.switch'); ?>
 
 <!--begin::App Wrapper-->
 <div class="app-wrapper">
