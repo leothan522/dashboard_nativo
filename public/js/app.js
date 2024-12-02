@@ -152,6 +152,35 @@ function ajaxRequest(options, callback) {
                 //acciones extras
             });
         });
+
+        *
+        *
+        *
+        *
+        *
+
+        const form = document.querySelector("#form_prueba");
+        const btnGuardar = document.querySelector("#btn_guardar");
+        const btnCancelar = document.querySelector("#btn_calcelar");
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated');
+            if (form.checkValidity()){
+                btnGuardar.disabled = "disabled"
+                verCargando("hola");
+                let url = "<?= route('prueba') ?>";
+                ajaxRequest({ url: url, form: form }, function (data) {
+                    //acciones extras
+                    btnGuardar.removeAttribute('disabled');
+                    verCargando('hola', false);
+                });
+            }
+        });
+
+
+    *
     *-------------------------------------------------------------------
     * */
 

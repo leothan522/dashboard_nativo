@@ -1,6 +1,6 @@
 <?php
 
-use app\Controllers\InicioController;
+use app\Controllers\WellcomeController;
 use lib\Facades\Route;
 
 /*
@@ -28,8 +28,8 @@ Route::get("home",[HomeController::class,'index']);
 */
 
 
-Route::get('/', [InicioController::class, 'index']);
-Route::post('prueba', [InicioController::class, 'testGUMP']);
+Route::get('/', [WellcomeController::class, 'index']);
+Route::post('testGUMP', [WellcomeController::class, 'testGUMP']);
 
 
 /*

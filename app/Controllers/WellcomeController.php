@@ -5,14 +5,12 @@ namespace app\Controllers;
 use app\Models\Parametro;
 use lib\Facades\GUMP;
 
-class InicioController extends Controller
+class WellcomeController extends Controller
 {
     public function index()
     {
         try {
-            return $this->view('view_inicio', [
-                'title' => 'Web'
-            ]);
+            return $this->view('wellcome');
         }catch (\Error $e){
             $this->showError('Error en el Controller', $e);
         }
@@ -66,4 +64,5 @@ class InicioController extends Controller
             $this->showError('Error en el Controller', $e);
         }
     }
+
 }
