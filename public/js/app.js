@@ -29,46 +29,52 @@ function toastBootstrap(options = {}) {
         '</div>' +
         '</div>';
 
-    document.getElementById('toastBootstrap').innerHTML = html;
+    if (document.querySelector('#toastBootstrap')){
 
-    const toastLive = document.getElementById('liveToast');
-    const toast = bootstrap.Toast.getOrCreateInstance(toastLive);
+        document.getElementById('toastBootstrap').innerHTML = html;
 
-    const liveToastClass = document.getElementById('liveToastClass');
-    const liveToastIcon = document.getElementById('liveToastIcon');
-    const liveToastTitle = document.getElementById('liveToastTitle');
-    const liveToasMessage = document.getElementById('liveToasMessage');
-    const liveToastTime = document.getElementById('liveToastTime');
+        const toastLive = document.getElementById('liveToast');
+        const toast = bootstrap.Toast.getOrCreateInstance(toastLive);
 
-    const iconos = {
-        success: '<i class="fa-solid fa-check"></i>',
-        info: '<i class="fa-solid fa-info"></i>',
-        error: '<i class="fa-regular fa-triangle-exclamation"></i>',
-        warning: '<i class="fa-regular fa-circle-exclamation"></i>'
-    };
+        const liveToastClass = document.getElementById('liveToastClass');
+        const liveToastIcon = document.getElementById('liveToastIcon');
+        const liveToastTitle = document.getElementById('liveToastTitle');
+        const liveToasMessage = document.getElementById('liveToasMessage');
+        const liveToastTime = document.getElementById('liveToastTime');
 
-    const titulos = {
-        success: "¡Éxito!",
-        info: "Información",
-        error: "¡Error!",
-        warning: "¡Alerta!"
-    };
+        const iconos = {
+            success: '<i class="fa-solid fa-check"></i>',
+            info: '<i class="fa-solid fa-info"></i>',
+            error: '<i class="fa-regular fa-triangle-exclamation"></i>',
+            warning: '<i class="fa-regular fa-circle-exclamation"></i>'
+        };
 
-    let type = options.toast ? options.toast : "success";
+        const titulos = {
+            success: "¡Éxito!",
+            info: "Información",
+            error: "¡Error!",
+            warning: "¡Alerta!"
+        };
 
-    let color = options.color ? colores[options.color] : colores[type];
-    let icon = options.icon ? iconos[options.icon] : iconos[type];
-    let title = options.title ? options.title : titulos[type];
-    let message = options.message ? options.message : "Datos Guardados.";
-    let noToast = options.noToast ? options.noToast : false;
+        let type = options.toast ? options.toast : "success";
 
-    liveToastClass.classList.add(color);
-    liveToastIcon.innerHTML = icon;
-    liveToastTitle.textContent = title;
-    liveToasMessage.textContent = message;
+        let color = options.color ? colores[options.color] : colores[type];
+        let icon = options.icon ? iconos[options.icon] : iconos[type];
+        let title = options.title ? options.title : titulos[type];
+        let message = options.message ? options.message : "Datos Guardados.";
+        let noToast = options.noToast ? options.noToast : false;
 
-    if (!noToast) {
-        toast.show()
+        liveToastClass.classList.add(color);
+        liveToastIcon.innerHTML = icon;
+        liveToastTitle.textContent = title;
+        liveToasMessage.textContent = message;
+
+        if (!noToast) {
+            toast.show()
+        }
+
+    }else {
+        console.log("Falta incluir con php en el html la funcion verToast();");
     }
 
 }
@@ -144,17 +150,7 @@ function ajaxRequest(options, callback) {
     /*
     * Ejemplo de Uso:
     *-------------------------------------------------------------------
-        let form = document.getElementById("form_prueba");
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let url = "<?= route('prueba') ?>";
-            ajaxRequest({ url: url, form: form }, function (data) {
-                //acciones extras
-            });
-        });
-
-        *
-        *
+    *
         *
         *
         *
@@ -213,35 +209,41 @@ function confirmToastBootstrap(callback, options = {}) {
         '</div>' +
         '</div>';
 
-    document.getElementById('toastBootstrap').innerHTML = html;
+    if (document.querySelector('#toastBootstrap')){
 
-    const toastConfirm = document.getElementById('confirmToast')
-    const toast = bootstrap.Toast.getOrCreateInstance(toastConfirm);
+        document.getElementById('toastBootstrap').innerHTML = html;
 
-    const confirmToastClass = document.getElementById('confirmToastClass');
-    const confirmToastTitle = document.getElementById('confirmToastTitle');
-    const confirmToastMessage = document.getElementById('confirmToastMessage');
-    const confirmToastButtonText = document.getElementById('confirmToastButtonText');
-    const confirmToastCancelButtonText = document.getElementById('confirmToastCancelButtonText');
-    const confirmToastTime = document.getElementById('confirmToastTime');
+        const toastConfirm = document.getElementById('confirmToast')
+        const toast = bootstrap.Toast.getOrCreateInstance(toastConfirm);
 
-    const color = options.color ? options.color : "text-bg-warning";
-    let title = options.title ? options.title : "Estas seguro";
-    let message = options.message ? options.message : "¡No podrás revertir esto!";
-    let button = options.button ? options.button : "¡Sí, bórralo!";
-    let close = options.close ? options.close : "Cancelar";
+        const confirmToastClass = document.getElementById('confirmToastClass');
+        const confirmToastTitle = document.getElementById('confirmToastTitle');
+        const confirmToastMessage = document.getElementById('confirmToastMessage');
+        const confirmToastButtonText = document.getElementById('confirmToastButtonText');
+        const confirmToastCancelButtonText = document.getElementById('confirmToastCancelButtonText');
+        const confirmToastTime = document.getElementById('confirmToastTime');
 
-    confirmToastClass.classList.add(color);
-    confirmToastTitle.textContent = title;
-    confirmToastMessage.textContent = message;
-    confirmToastButtonText.textContent = button;
-    confirmToastCancelButtonText.textContent = close;
+        const color = options.color ? options.color : "text-bg-warning";
+        let title = options.title ? options.title : "Estas seguro";
+        let message = options.message ? options.message : "¡No podrás revertir esto!";
+        let button = options.button ? options.button : "¡Sí, bórralo!";
+        let close = options.close ? options.close : "Cancelar";
 
-    toast.show();
+        confirmToastClass.classList.add(color);
+        confirmToastTitle.textContent = title;
+        confirmToastMessage.textContent = message;
+        confirmToastButtonText.textContent = button;
+        confirmToastCancelButtonText.textContent = close;
 
-    confirmToastButtonText.addEventListener('click', function () {
-        callback();
-    })
+        toast.show();
+
+        confirmToastButtonText.addEventListener('click', function () {
+            callback();
+        });
+
+    }else {
+        console.log("Falta incluir con php en el html la funcion verToast();");
+    }
 
 }
 
