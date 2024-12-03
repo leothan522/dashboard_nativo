@@ -1,6 +1,6 @@
 <?php
 
-use app\Controllers\BlankController;
+use app\Controllers\ParametrosController;
 use app\Controllers\TestController;
 use app\Controllers\WellcomeController;
 use lib\Facades\Route;
@@ -37,7 +37,7 @@ Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
 
 
-Route::get('ejemplo', [BlankController::class,'index']);
+Route::get('parametros', [ParametrosController::class, 'index']);
 
 /*
 | Esto debe estar siempre al final, ejecuta el enrutador y compara las rutas en el orden en

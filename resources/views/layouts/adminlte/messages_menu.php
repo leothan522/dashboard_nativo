@@ -1,4 +1,4 @@
-<a class="nav-link" data-bs-toggle="dropdown" href="#">
+<a class="nav-link d-none" data-bs-toggle="dropdown" href="#">
     <i class="bi bi-chat-text"></i>
     <span class="navbar-badge badge text-bg-danger">3</span>
 </a>
