@@ -49,6 +49,8 @@
     <script src="<?php getAssetDominio('resources/js/color-modes.js'); ?>"></script>
     <link rel="stylesheet" href="<?php getAssetDominio('resources/css/color-modes.css'); ?>">
 
+     <!--para el input numerico-->
+    <link rel="stylesheet" href="<?php asset('css/input_number_no_button.css'); ?>">
 
 
 </head>
@@ -72,7 +74,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a></li>
-                    <?php require_view('parametros.components.navbar_links'); ?>
+                    <?php require_view('parametros.layouts.navbar_links'); ?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -164,7 +166,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php require_view('parametros.components.content_header'); ?>
+                <?php require_view('parametros.layouts.content_header'); ?>
                 <!--end::Row-->
 
             </div>
@@ -177,7 +179,7 @@
         <div class="app-content">
             <!--begin::Container-->
             <div class="container-fluid">
-                <?php require_view('parametros.components.content'); ?>
+                <?php require_view('parametros.layouts.content'); ?>
             </div>
         </div>
         <!--end::Container-->

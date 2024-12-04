@@ -70,7 +70,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a>
                 </li>
-                    <?php require_view('layouts.adminlte._blank.components.navbar_links'); ?>
+                    <?php require_view('layouts.adminlte._blank.layouts.navbar_links'); ?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -162,7 +162,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php require_view('layouts.adminlte._blank.components.content_header'); ?>
+                <?php require_view('layouts.adminlte._blank.layouts.content_header'); ?>
                 <!--end::Row-->
 
             </div>
@@ -175,7 +175,7 @@
         <div class="app-content">
             <!--begin::Container-->
             <div class="container-fluid">
-                <?php require_view('layouts.adminlte._blank.components.content'); ?>
+                <?php require_view('layouts.adminlte._blank.layouts.content'); ?>
             </div>
         </div>
         <!--end::Container-->
