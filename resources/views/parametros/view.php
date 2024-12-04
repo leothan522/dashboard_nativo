@@ -59,9 +59,6 @@
 <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary">
 
-<!--Icons Switch Theme-->
-<?php require_view('layouts.switch'); ?>
-
 <!--begin::App Wrapper-->
 <div class="app-wrapper">
 
@@ -98,6 +95,12 @@
                     <?php require_view('layouts.adminlte.notifications_menu'); ?>
                 </li>
                 <!--end::Notifications Dropdown Menu-->
+
+                <!--begin::Navbar Search-->
+                <li class="nav-item">
+                    <?php require_view('layouts.adminlte.color_mode_toggle'); ?>
+                </li>
+                <!--end::Navbar Search-->
 
                 <!--begin::Fullscreen Toggle-->
                 <li class="nav-item">
