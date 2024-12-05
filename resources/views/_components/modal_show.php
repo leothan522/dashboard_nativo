@@ -40,9 +40,10 @@
                     <i class="fa-solid fa-pen-to-square"></i> Editar
                 </button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                     Cerrar
+                    Cerrar
                 </button>
             </div>
         </div>
     </div>
 </div>
+
