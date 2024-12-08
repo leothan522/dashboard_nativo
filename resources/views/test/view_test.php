@@ -42,10 +42,12 @@
         <h1>¡Hola Mundo!</h1>
 
 
-        <p class="col-12"><?= route('test')  ?></p>
-
-
-
+        <div class="row mb-5 justify-content-between">
+            <span class="col-4"><?= route('test')  ?></span>
+            <button id="pruebaToast" type="button" class="col-2 btn btn-primary">Toast</button>
+            <button id="pruebaConfirm" type="button" class="col-2 btn btn-primary">Confirm Toast</button>
+            <button id="pruebaHTML" type="button" class="col-2 btn btn-primary">HTML Toast</button>
+        </div>
 
 
         <div class="row justify-content-center">
@@ -107,8 +109,32 @@
 
 
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
+<script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
 <script type="application/javascript">
+
+    const btnToast = document.querySelector('#pruebaToast');
+    btnToast.addEventListener('click', event => {
+        toastBootstrap({
+            type: 'info',
+            title: "hola desde title",
+            message: "probando mensaje <b class='text-danger'>HTML</b>"
+        });
+    });
+
+    const btnConfirm = document.querySelector("#pruebaConfirm");
+    btnConfirm.addEventListener('click', event => {
+       confirmToastBootstrap(function () {
+           toastBootstrap({
+               message: "hola Callback"
+           });
+       });
+    });
+
+    const btnHTML = document.querySelector("#pruebaHTML");
+    btnHTML.addEventListener('click', event => {
+        htmlToasBootstrap();
+    });
 
 
     const form = document.querySelector("#form_prueba");

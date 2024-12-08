@@ -133,10 +133,10 @@ Comprobaremos si la segunda hora que le pasamos es inferior a la primera, con lo
 Y al final devolveremos true o false dependiendo si el valor introducido se encuentra entre lo que le hemos pasado.*/
 }
 
-function crearResponse($message = null, $title = null, $ok = false, $alert = 'warning', $noToast = false): array
+function crearResponse($message = null, $title = null, $ok = false, $type = 'warning', $noToast = false): array
 {
     if ($ok) {
-        $alert = 'success';
+        $type = 'success';
     }
 
     if (!is_null($title)){
@@ -152,7 +152,7 @@ function crearResponse($message = null, $title = null, $ok = false, $alert = 'wa
     }
 
     $response['ok'] = $ok;
-    $response['toast'] = $alert;
+    $response['type'] = $type;
 
     return $response;
 }
