@@ -147,14 +147,14 @@ function route($uri): string
     return $url . $uri;
 }
 
-function require_view($route): void
+function view_path($route): string
 {
     $route = str_replace('.', '/', $route);
     $path = root_path("resources/views/{$route}.php");
     if (file_exists($path)) {
-        include $path;
+        return $path;
     }else{
-        echo "No se encuentra la vista [<code> {$route}.php </code>]";
+        return $route.'.php';
     }
 }
 

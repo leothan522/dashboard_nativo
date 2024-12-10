@@ -30,10 +30,10 @@
 <body class="d-flex flex-column h-100">
 
 <!--Icons Switch Theme-->
-<?php require_view('layouts.switch'); ?>
+<?php include view_path('layouts.switch'); ?>
 
 <!-- Fixed navbar -->
-<?php require_view('test.layouts.navbar'); ?>
+<?php include view_path('test.layouts.navbar'); ?>
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
@@ -102,7 +102,7 @@
 </main>
 
 <!-- Footer -->
-<?php require_view('test.layouts.footer'); ?>
+<?php include view_path('test.layouts.footer'); ?>
 
 <?php verToast(); ?>
 

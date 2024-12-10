@@ -67,7 +67,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a>
                 </li>
-                    <?php require_view('layouts.adminlte._blank.layouts.navbar_links'); ?>
+                    <?php include view_path('layouts.adminlte._blank.layouts.navbar_links'); ?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -76,25 +76,25 @@
 
                 <!--begin::Navbar Search-->
                 <li class="nav-item">
-                    <?php require_view('layouts.adminlte.search_menu'); ?>
+                    <?php include view_path('layouts.adminlte.search_menu'); ?>
                 </li>
                 <!--end::Navbar Search-->
 
                 <!--begin::Messages Dropdown Menu-->
                 <li class="nav-item dropdown">
-                    <?php require_view('layouts.adminlte.messages_menu'); ?>
+                    <?php include view_path('layouts.adminlte.messages_menu'); ?>
                 </li>
                 <!--end::Messages Dropdown Menu-->
 
                 <!--begin::Notifications Dropdown Menu-->
                 <li class="nav-item dropdown">
-                    <?php require_view('layouts.adminlte.notifications_menu'); ?>
+                    <?php include view_path('layouts.adminlte.notifications_menu'); ?>
                 </li>
                 <!--end::Notifications Dropdown Menu-->
 
                 <!--begin::Navbar Search-->
                 <li class="nav-item">
-                    <?php require_view('layouts.adminlte.color_mode_toggle'); ?>
+                    <?php include view_path('layouts.adminlte.color_mode_toggle'); ?>
                 </li>
                 <!--end::Navbar Search-->
 
@@ -109,7 +109,7 @@
 
                 <!--begin::User Menu Dropdown-->
                 <li class="nav-item dropdown user-menu">
-                    <?php require_view('layouts.adminlte.user_menu'); ?>
+                    <?php include view_path('layouts.adminlte.user_menu'); ?>
                 </li>
                 <!--end::User Menu Dropdown-->
             </ul>
@@ -145,7 +145,7 @@
             <nav class="mt-2">
                 <!--begin::Sidebar Menu-->
                 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                    <?php require_view('layouts.adminlte.sidebar_menu'); ?>
+                    <?php include view_path('layouts.adminlte.sidebar_menu'); ?>
                 </ul>
                 <!--end::Sidebar Menu-->
             </nav>
@@ -165,7 +165,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php require_view('layouts.adminlte._blank.layouts.content_header'); ?>
+                <?php include view_path('layouts.adminlte._blank.layouts.content_header'); ?>
                 <!--end::Row-->
 
             </div>
@@ -178,7 +178,7 @@
         <div class="app-content">
             <!--begin::Container-->
             <div class="container-fluid">
-                <?php require_view('layouts.adminlte._blank.layouts.content'); ?>
+                <?php include view_path('layouts.adminlte._blank.layouts.content'); ?>
             </div>
         </div>
         <!--end::Container-->
@@ -189,7 +189,7 @@
 
 <!--begin::Footer-->
 <footer class="app-footer">
-    <?php require_view('layouts.adminlte.footer'); ?>
+    <?php include view_path('layouts.adminlte.footer'); ?>
 </footer>
 <!--end::Footer-->
 </div>

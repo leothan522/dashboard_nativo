@@ -40,7 +40,7 @@
 <body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary lockscreen bg-body-secondary">
 
 <!--Icons Switch Theme-->
-<?php require_view('layouts.switch'); ?>
+<?php include view_path('layouts.switch'); ?>
 
 <!--begin::App Wrapper-->
 <div class="lockscreen-wrapper">

@@ -44,7 +44,7 @@
 <body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary">
 
 <!--Icons Switch Theme-->
-<?php require_view('layouts.switch'); ?>
+<?php include view_path('layouts.switch'); ?>
 
 <!--begin::App Wrapper-->
 <div class="app-wrapper">
@@ -59,7 +59,7 @@
                 <li class="nav-item"><a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i
                                 class="bi bi-list"></i> </a></li>
 
-                <?php require_view('layouts.adminlte._blank.components.navbar_links'); ?>
+                <?php include view_path('layouts.adminlte._blank.components.navbar_links'); ?>
                 <!--
                 <li class="nav-item d-none d-md-block"> <a href="#" class="nav-link">Home</a> </li>
                 <li class="nav-item d-none d-md-block"> <a href="#" class="nav-link">Contact</a> </li>
@@ -80,7 +80,7 @@
 
                 <!--begin::Messages Dropdown Menu-->
                 <li class="nav-item dropdown">
-                    <?php require_view('layouts.adminlte.messages_menu'); ?>
+                    <?php include view_path('layouts.adminlte.messages_menu'); ?>
                     <!--
                     <a class="nav-link" data-bs-toggle="dropdown" href="#">
                         <i class="bi bi-chat-text"></i>
@@ -180,7 +180,7 @@
 
                 <!--begin::Notifications Dropdown Menu-->
                 <li class="nav-item dropdown">
-                    <?php require_view('layouts.adminlte.notifications_menu'); ?>
+                    <?php include view_path('layouts.adminlte.notifications_menu'); ?>
                     <!--
                     <a class="nav-link" data-bs-toggle="dropdown" href="#">
                         <i class="bi bi-bell-fill"></i>
@@ -237,7 +237,7 @@
 
                 <!--begin::User Menu Dropdown-->
                 <li class="nav-item dropdown user-menu">
-                    <?php require_view('layouts.adminlte.user_menu'); ?>
+                    <?php include view_path('layouts.adminlte.user_menu'); ?>
 
                     <!--<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <img src="<?php /*asset('vendor/adminlte/assets/img/user2-160x160.jpg'); */ ?>" class="user-image rounded-circle shadow" alt="User Image">
@@ -308,7 +308,7 @@
             <nav class="mt-2">
                 <!--begin::Sidebar Menu-->
                 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                    <?php require_view('layouts.adminlte.sidebar_menu'); ?>
+                    <?php include view_path('layouts.adminlte.sidebar_menu'); ?>
                     <!--
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -365,7 +365,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php require_view('layouts.adminlte._blank.components.content_header'); ?>
+                <?php include view_path('layouts.adminlte._blank.components.content_header'); ?>
                 <!--<div class="row">
                     <div class="col-sm-6">
                         <h3 class="mb-0">Content Header</h3>
@@ -396,7 +396,7 @@
 
 
                 <!--begin::Row-->
-                <?php require_view('layouts.adminlte._blank.components.content'); ?>
+                <?php include view_path('layouts.adminlte._blank.components.content'); ?>
                 <!--<div class="row">
                     <div class="col-12">-->
                 <!-- Default box -->
@@ -427,7 +427,7 @@
 
 <!--begin::Footer-->
 <footer class="app-footer">
-    <?php require_view('layouts.adminlte.footer'); ?>
+    <?php include view_path('layouts.adminlte.footer'); ?>
     <!--begin::To the end-->
 <!--    <div class="float-end d-none d-sm-inline">Anything you want</div>-->
     <!--end::To the end-->
