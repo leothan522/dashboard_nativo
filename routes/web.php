@@ -1,5 +1,6 @@
 <?php
 
+use app\Controllers\LoginController;
 use app\Controllers\ParametrosController;
 use app\Controllers\TestController;
 use app\Controllers\WellcomeController;
@@ -41,6 +42,8 @@ Route::get('parametros', [ParametrosController::class, 'index']);
 Route::post('parametro', [ParametrosController::class, 'store']);
 
 Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
+
+Route::get('propuesta', [LoginController::class, 'index']);
 
 
 

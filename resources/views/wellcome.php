@@ -57,7 +57,7 @@
     <div class="help-block text-center d-none">
         Ir a Parametros
     </div>
-    <div class="text-center"> <a href="<?php echo route('parametros') ?>" class="text-decoration-none">Parametros</a> </div>
+    <div class="text-center"> <a href="<?php echo route('propuesta') ?>" class="text-decoration-none">Parametros</a> </div>
     <div class="lockscreen-footer text-center d-none">
         Copyright © 2014-2024 &nbsp;
         <b><a href="https://adminlte.io" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">AdminLTE.io</a></b> <br>
