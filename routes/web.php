@@ -38,6 +38,11 @@ Route::post('test', [TestController::class, 'testGUMP']);
 
 
 Route::get('parametros', [ParametrosController::class, 'index']);
+Route::post('parametro', [ParametrosController::class, 'store']);
+
+Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
+
+
 
 /*
 | Esto debe estar siempre al final, ejecuta el enrutador y compara las rutas en el orden en

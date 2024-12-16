@@ -1,9 +1,9 @@
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="card-title">Todos [ <b class="text-primary">100</b> ]</h3>
+        <h3 class="card-title">Todos [ <b class="text-primary"><?= $total ?></b> ]</h3>
         <div class="card-tools">
 
-            <button type="button" class="btn btn-tool">
+            <button type="button" class="btn btn-tool" onclick="verMas()">
                 <i class="fa-solid fa-arrow-down-short-wide"></i> Ver mas
             </button>
         </div>
@@ -22,21 +22,14 @@
             </tr>
             </thead>
             <tbody >
-            <?php for ($i=0; $i <= 100; $i++){ ?>
+            <?php
+            $i = 1;
+            foreach ($parametros as $parametro){ ?>
                 <tr class="align-middle">
-                    <td><?= $i ?></td>
-                    <td class="text-truncate" style="max-width: 150px">
-                        Update software
-                        Update software
-                        Update software
-                    </td>
-                    <td class="d-none d-md-table-cell text-center">999999</td>
-                    <td class="text-truncate d-none d-md-table-cell" style="max-width: 150px">
-                        Update software
-                        Update software
-                        Update software
-                        Update software
-                    </td>
+                    <td><?= $i++ ?></td>
+                    <td class="text-truncate text-lowercase" style="max-width: 150px"><?= $parametro->nombre ?></td>
+                    <td class="d-none d-md-table-cell text-center"><?= $parametro->tabla_id ?></td>
+                    <td class="text-truncate d-none d-md-table-cell" style="max-width: 150px"><?= $parametro->valor ?></td>
                     <td class="align-items-end">
                         <div class="btn-toolbar justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
 
@@ -67,7 +60,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-        <span> Mostranto <b class="text-primary">20</b></span>
+        <span data-rows="<?= $totalRows ?>" id="total_rows_parametros"> Mostrando <b class="text-primary"><?= $totalRows ?></b></span>
     </div>
     <!-- /.card-footer-->
 </div>
