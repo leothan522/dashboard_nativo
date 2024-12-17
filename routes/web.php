@@ -1,5 +1,6 @@
 <?php
 
+use app\Controllers\AuthController;
 use app\Controllers\LoginController;
 use app\Controllers\ParametrosController;
 use app\Controllers\TestController;
@@ -33,6 +34,7 @@ Route::get("home",[HomeController::class,'index']);
 
 Route::get('/', [WellcomeController::class, 'index']);
 
+Route::get('login', [AuthController::class, 'login']);
 
 Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
@@ -43,7 +45,6 @@ Route::post('parametro', [ParametrosController::class, 'store']);
 
 Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
 
-Route::get('login', [LoginController::class, 'index']);
 
 
 

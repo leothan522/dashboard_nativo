@@ -1,91 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<!--begin::Head-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Yonathan Castillo and Bootstrap contributors">
+    <meta name="generator" content="leothan 0.1">
 
     <title><?= env('app_name', 'Inicio') ?></title>
 
-    <!--begin::Primary Meta Tags-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="AdminLTE 4 | Sidebar Mini">
-    <meta name="author" content="ColorlibHQ">
-    <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
-    <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
-    <!--end::Primary Meta Tags-->
+    <!--Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 
-    <!--begin::Fonts-->
-    <link rel="stylesheet" href="<?php asset('vendor/adminlte/plugins/source-sans/index.css'); ?>" >
-    <!--end::Fonts-->
-    <!--begin::Third Party Plugin(OverlayScrollbars)-->
-    <link rel="stylesheet" href="<?php asset('vendor/adminlte/plugins/overlayscrollbars/styles/overlayscrollbars.min.css'); ?>">
-    <!--end::Third Party Plugin(OverlayScrollbars)-->
-    <!--begin::Third Party Plugin(Bootstrap Icons)-->
-    <link rel="stylesheet" href="<?php asset('vendor/adminlte/plugins/bootstrap-icons/font/bootstrap-icons.min.css'); ?>" >
-    <!--end::Third Party Plugin(Bootstrap Icons)-->
-    <!--begin::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="<?php asset('vendor/adminlte/css/adminlte.css'); ?>">
-    <!--end::Required Plugin(AdminLTE)-->
+    <style>
+        *{
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .text_title{
+            color: rgba(8,23,44,1);
+            font-weight: bold;
+        }
 
 
-    <!--Switch Theme -->
-    <script src="<?php getAssetDominio('resources/js/color-modes.js'); ?>"></script>
-    <link rel="stylesheet" href="<?php getAssetDominio('resources/css/color-modes.css'); ?>">
+        .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: rgb(18,58,108);
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-radial-gradient(circle, rgba(18,58,108,1) 0%, rgba(8,23,44,1) 100%);
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: radial-gradient(circle, rgba(18,58,108,1) 0%, rgba(8,23,44,1) 100%);
+        }
+
+        @media (min-width: 768px) {
+            .gradient-form {
+                height: 100vh !important;
+            }
+        }
+        @media (min-width: 769px) {
+            .gradient-custom-2 {
+                border-top-right-radius: .3rem;
+                border-bottom-right-radius: .3rem;
+            }
+        }
+
+
+        .gobernacion{
+            display: block;
+            position: absolute;
+            height: 80px;
+            width: 80px;
+            right: 3%;
+            top: 3%;
+        }
+
+        .gobernacion_start{
+            display: block;
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            left: 3%;
+            top: 3%;
+        }
+
+
+    </style>
+
+
 
 </head>
-<!--end::Head-->
+<body>
 
-<!--begin::Body-->
-<body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary lockscreen bg-body-secondary">
-
-<!--Icons Switch Theme-->
-<?php include view_path('layouts.switch'); ?>
-
-<!--begin::App Wrapper-->
-<div class="lockscreen-wrapper">
-    <div class="lockscreen-logo"> <a href="<?php echo route('/') ?>"><b>Admin</b>LTE</a> </div>
-    <div class="lockscreen-name d-none">John Doe</div>
-    <div class="lockscreen-item d-none">
-        <div class="lockscreen-image"> <img src="<?php asset('vendor/adminlte/assets/img/user1-128x128.jpg'); ?>" alt="User Image"> </div>
-        <form class="lockscreen-credentials">
-            <div class="input-group"> <input type="password" class="form-control shadow-none" placeholder="password">
-                <div class="input-group-text border-0 bg-transparent px-1"> <button type="button" class="btn shadow-none"> <i class="bi bi-box-arrow-right text-body-secondary"></i> </button> </div>
-            </div>
-        </form>
-    </div>
-    <div class="help-block text-center d-none">
-        Ir a Parametros
-    </div>
-    <div class="text-center"> <a href="<?php echo route('propuesta') ?>" class="text-decoration-none">Parametros</a> </div>
-    <div class="lockscreen-footer text-center d-none">
-        Copyright © 2014-2024 &nbsp;
-        <b><a href="https://adminlte.io" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">AdminLTE.io</a></b> <br>
-        All rights reserved
-    </div>
-</div>
+<?php require view_path('layouts.content')?>
 
 
-<!--begin::Script-->
+<?php verToast(); ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
+<script src="<?php asset('js/app.js', true); ?>"></script>
 
-<!--begin::Third Party Plugin(OverlayScrollbars)-->
-<script src="<?php asset('vendor/adminlte/plugins/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js'); ?>"></script>
-<!--end::Third Party Plugin(OverlayScrollbars)-->
-<!--begin::Required Plugin(popperjs for Bootstrap 5)-->
-<script src="<?php asset('vendor/adminlte/plugins/core/dist/umd/popper.min.js'); ?>"></script>
-<!--end::Required Plugin(popperjs for Bootstrap 5)-->
-<!--begin::Required Plugin(Bootstrap 5)-->
-<script src="<?php getAssetDominio('bootstrap/js/bootstrap.min.js'); ?>" ></script>
-<!--end::Required Plugin(Bootstrap 5)-->
-<!--begin::Required Plugin(AdminLTE)-->
-<script src="<?php asset('vendor/adminlte/js/adminlte.js'); ?>"></script>
-<!--end::Required Plugin(AdminLTE)-->
-
-<!--begin::OverlayScrollbars Configure-->
-<script src="<?php asset('vendor/adminlte/js/config-overlayscrollbars.js');?>"></script>
-<!--end::OverlayScrollbars Configure-->
-
-<!--end::Script-->
 </body>
-<!--end::Body-->
 </html>
