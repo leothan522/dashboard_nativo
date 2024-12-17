@@ -78,7 +78,7 @@
 </head>
 <body>
 
-<?php require view_path('login.layouts.content_wellcome')?>
+<?php require view_path('login.layouts.content')?>
 
 
 <?php //verToast(); ?>

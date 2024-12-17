@@ -6,7 +6,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return $this->view('propuestas.view');
+        return $this->view('login.view');
     }
 
 }

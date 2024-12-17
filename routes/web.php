@@ -43,7 +43,7 @@ Route::post('parametro', [ParametrosController::class, 'store']);
 
 Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
 
-Route::get('propuesta', [LoginController::class, 'index']);
+Route::get('login', [LoginController::class, 'index']);
 
 
 
