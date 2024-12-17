@@ -36,6 +36,8 @@ Route::get('/', [WellcomeController::class, 'index']);
 
 Route::get('login', [AuthController::class, 'login']);
 
+Route::get('register', [AuthController::class, 'register']);
+
 Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
 
