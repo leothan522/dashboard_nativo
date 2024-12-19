@@ -7,7 +7,7 @@
     <meta name="author" content="Yonathan Castillo and Bootstrap contributors">
     <meta name="generator" content="leothan 0.1">
 
-    <title><?= env('app_name', 'Inicio') ?> | Register</title>
+    <title><?= env('app_name', 'Inicio') ?> | Olvedé mi contraseña</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="<?php asset('favicon/apple-icon-57x57.png'); ?>">
     <link rel="apple-touch-icon" sizes="60x60" href="<?php asset('favicon/apple-icon-60x60.png'); ?>">
@@ -116,7 +116,7 @@
 
                                     <?php require view_path('auth.layouts.section_logo') ?>
 
-                                    <?php require view_path('auth.components.register') ?>
+                                    <?php require view_path('auth.components.forgot-password') ?>
 
                                     <?php require view_path('auth.layouts.footer') ?>
 

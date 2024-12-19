@@ -38,6 +38,12 @@ Route::get('login', [AuthController::class, 'login']);
 
 Route::get('register', [AuthController::class, 'register']);
 
+Route::get('forgot/password', [AuthController::class, 'forgotPassword']);
+
+Route::get('reset/password', [AuthController::class, 'resetPassword']);
+
+Route::get('verify/email', [AuthController::class, 'verifyEmail']);
+
 Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
 

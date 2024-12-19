@@ -3,8 +3,8 @@
 <div class="row">
     <div class="col-12 text-center">
         <a href="<?= route('/') ?>">
-            <img class="img-fluid d-none d-lg-inline-flex w-50"
-                 src="<?php asset('img/logo_gobernacion.svg'); ?>"
+            <img class="img-fluid d-none d-lg-inline-flex w-50 mb-3"
+                 src="<?php asset('img/logo_gobernacion_small.png'); ?>"
                  alt="Logo Gobernacion">
             <img class="img-fluid d-lg-none mt-5 mb-5"
                  src="<?php asset('img/logo_alguarisa.png'); ?>"
