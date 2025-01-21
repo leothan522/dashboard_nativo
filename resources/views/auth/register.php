@@ -116,7 +116,78 @@
 
                                     <?php require view_path('auth.layouts.section_logo') ?>
 
-                                    <?php require view_path('auth.components.register') ?>
+
+                                    <form id="form_register_user" novalidate>
+                                        <div class="row gy-3 overflow-hidden">
+                                            <div class="col-12">
+                                                <div class="form-floating mb-2 has-validation">
+                                                    <input id="input_name" type="text" class="form-control" name="name"  placeholder="Ingrese su nombre" required>
+                                                    <label for="input_name" class="form-label">Nombre</label>
+                                                    <div id="error_name" class="invalid-feedback">
+                                                        Por favor ingrese su nombre.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-floating mb-2 has-validation">
+                                                    <input id="input_email" type="email" class="form-control" name="email"  placeholder="name@example.com" required>
+                                                    <label for="input_email" class="form-label">Correo electrónico</label>
+                                                    <div id="error_email" class="invalid-feedback">
+                                                        Por favor ingrese su correo eletrónico.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-floating mb-2 has-validation">
+                                                    <input id="input_password" type="password" class="form-control" name="password" placeholder="Password" required>
+                                                    <label for="input_password" class="form-label">Contraseña</label>
+                                                    <div id="error_password" class="invalid-feedback">
+                                                        Por favor ingrese su contraseña.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-floating mb-2 has-validation">
+                                                    <input id="input_confirmar" type="password" class="form-control" placeholder="Password" required>
+                                                    <label for="input_confirmar" class="form-label">Confirmar contraseña</label>
+                                                    <div id="error_confirmar" class="invalid-feedback">
+                                                        Por favor confirme su contraseña.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 d-none">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
+                                                    <label class="form-check-label text-secondary" for="remember_me">
+                                                        Keep me logged in
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="d-grid">
+                                                    <button class="btn btn-dark btn-lg gradient-custom-2" type="submit">
+                                                        Registrarse
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
+                                                <a href="<?= route('login'); ?>" class="link-secondary text-decoration-none">
+                                                    ¿Ya se registró?
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
 
                                     <?php require view_path('auth.layouts.footer') ?>
 
@@ -137,6 +208,81 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
+<script type="application/javascript">
 
+    const form = document.querySelector("#form_register_user");
+    const input_name =document.querySelector('#input_name');
+    const error_name =document.querySelector('#error_name');
+    const input_email =document.querySelector('#input_email');
+    const error_email =document.querySelector('#error_email');
+    const input_password =document.querySelector('#input_password');
+    const error_password =document.querySelector('#error_password');
+    const input_confirmar =document.querySelector('#input_confirmar');
+    const error_confirmar =document.querySelector('#error_confirmar');
+
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        let procesar = false;
+
+        if (input_password.value !== input_confirmar.value) {
+            input_password.classList.add('is-invalid');
+            input_confirmar.classList.add('is-invalid');
+            form.classList.remove('was-validated');
+        }else {
+            procesar = true;
+            input_password.classList.remove('is-invalid');
+            input_confirmar.classList.remove('is-invalid');
+            form.classList.add('was-validated');
+        }
+
+        if (form.checkValidity() && procesar){
+            let url = '<?= route('register') ?>';
+            ajaxRequest({ url: url, form: form}, function (data) {
+                if (data.ok){
+                    input_name.classList.remove('is-invalid');
+                    input_email.classList.remove('is-invalid');
+                    input_password.classList.remove('is-invalid');
+
+                    window.location.replace('<?= route('/') ?>');
+                }else {
+                    form.classList.remove('was-validated');
+                   let errors = data.errors;
+
+                   if (errors.name){
+                       input_name.classList.add('is-invalid');
+                       error_name.textContent = errors.name;
+                   }else {
+                       input_name.classList.remove('is-invalid');
+                       input_name.classList.add('is-valid');
+                   }
+
+                   if (errors.email){
+                       input_email.classList.add('is-invalid');
+                       error_email.textContent = errors.email;
+                   }else {
+                       input_email.classList.remove('is-invalid');
+                       input_email.classList.add('is-valid');
+                   }
+
+                   if (errors.password){
+                       input_password.classList.add('is-invalid');
+                       error_password.textContent = errors.password;
+                   }else {
+                       input_password.classList.remove('is-invalid');
+                       input_password.classList.add('is-valid');
+                   }
+
+                }
+            })
+        }
+    })
+
+
+
+
+    console.log('hi!');
+</script>
 </body>
 </html>
