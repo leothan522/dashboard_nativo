@@ -1,6 +1,7 @@
 <?php
 
 use app\Controllers\AuthController;
+use app\Controllers\GuestController;
 use app\Controllers\LoginController;
 use app\Controllers\ParametrosController;
 use app\Controllers\TestController;
@@ -34,15 +35,16 @@ Route::get("home",[HomeController::class,'index']);
 
 Route::get('/', [WellcomeController::class, 'index']);
 
-Route::get('login', [AuthController::class, 'login']);
+Route::get('login', [GuestController::class, 'login']);
 
-Route::get('register', [AuthController::class, 'register']);
+Route::get('register', [GuestController::class, 'register']);
+Route::post('register', [AuthController::class, 'register']);
 
-Route::get('forgot/password', [AuthController::class, 'forgotPassword']);
+Route::get('forgot/password', [GuestController::class, 'forgotPassword']);
 
-Route::get('reset/password', [AuthController::class, 'resetPassword']);
+Route::get('reset/password', [GuestController::class, 'resetPassword']);
 
-Route::get('verify/email', [AuthController::class, 'verifyEmail']);
+Route::get('verify/email', [GuestController::class, 'verifyEmail']);
 
 Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
