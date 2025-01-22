@@ -92,13 +92,53 @@
         }
 
 
+
+        /* styles.css */
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff no-repeat center center;
+            z-index: 9999;
+        }
+
+        #preloader::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: url('<?php asset('img/logo_alguarisa.png'); ?>') no-repeat center center;
+            background-size: contain;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+
+
+
     </style>
 
 
 
 </head>
 <body>
-
+<div id="preloader"></div>
 <!-- Login 8 - Bootstrap Brain Component -->
 <section class="bg-light p-3 p-md-4 p-xl-5 position-relative" style="min-height: 100vh;">
     <div class="container  position-absolute top-50 start-50 translate-middle">
@@ -118,23 +158,23 @@
 
 
 
-                                    <form class="needs-validation" novalidate action="#!" >
+                                    <form id="form_login_user" novalidate>
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-2 has-validation">
-                                                    <input id="email" type="email" class="form-control" name="email"  placeholder="name@example.com" required>
-                                                    <label for="email" class="form-label">Correo electrónico</label>
-                                                    <div class="invalid-feedback">
-                                                        Please choose a username.
+                                                    <input id="input_email" type="email" class="form-control" name="email"  placeholder="name@example.com" required>
+                                                    <label for="input_email" class="form-label">Correo electrónico</label>
+                                                    <div id="error_email" class="invalid-feedback">
+                                                        Por favor ingrese su correo eletrónico.
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-2 has-validation">
-                                                    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
-                                                    <label for="password" class="form-label">Contraseña</label>
-                                                    <div class="invalid-feedback">
-                                                        Please choose a username.
+                                                    <input id="input_password" type="password" class="form-control" name="password" placeholder="Password" required>
+                                                    <label for="input_password" class="form-label">Contraseña</label>
+                                                    <div id="error_password" class="invalid-feedback">
+                                                        Por favor ingrese su contraseña.
                                                     </div>
                                                 </div>
                                             </div>
@@ -193,6 +233,61 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
+<script type="application/javascript">
+
+    const form = document.querySelector('#form_login_user');
+    const input_email = document.querySelector('#input_email');
+
+    const input_password = document.querySelector('#input_password');
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        form.classList.add('was-validated');
+        if (form.checkValidity()){
+            let url = '<?= route('login') ?>';
+            ajaxRequest({ url: url, form: form }, function (data) {
+                if (data.ok){
+                    input_email.classList.remove('is-invalid');
+                    input_password.classList.remove('is-invalid');
+
+                    window.location.replace('<?= route('/') ?>');
+                }else{
+                    form.classList.remove('was-validated');
+                    let errors = data.errors;
+
+                    if (errors.email){
+                        input_email.classList.add('is-invalid');
+                        error_email.textContent = errors.email;
+                    }else {
+                        input_email.classList.remove('is-invalid');
+                        input_email.classList.add('is-valid');
+                    }
+
+                    if (errors.password){
+                        input_password.classList.add('is-invalid');
+                        error_password.textContent = errors.password;
+                    }else {
+                        input_password.classList.remove('is-invalid');
+                        input_password.classList.add('is-valid');
+                    }
+
+                }
+            });
+
+        }
+
+    });
+
+    //Script para ejecurar el preloader
+    window.addEventListener('load', function() {
+        document.querySelector('#preloader').style.display = 'none';
+        document.querySelector('.container').style.display = 'block';
+    });
+
+
+</script>
 
 </body>
 </html>

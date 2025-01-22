@@ -46,6 +46,7 @@ class AuthController extends Controller
             ]);
 
             $valid_data = $gump->run($_POST);
+            $valid_data['password'] = password_hash($valid_data['password'], PASSWORD_DEFAULT);
 
             $exite = $model->where('email', $valid_data['email'])->first();
 
@@ -77,4 +78,75 @@ class AuthController extends Controller
         }
 
     }
+
+    public function login(){
+        try {
+            $model = new User();
+            $row = [];
+
+            $gump = new GUMP();
+
+            $gump->validation_rules([
+                'email'       => 'required|valid_email',
+                'password'    => 'required|max_len,50|min_len,8',
+            ]);
+
+            $gump->set_fields_error_messages([
+                'email' => [
+                    'required' => 'El campo correo electrónico es requerido.',
+                    'valid_email' => 'Correo electrónico no válido.'
+                ],
+                'password' => [
+                    'required' => 'El campo contraseña es requerido.',
+                    'max_len' => 'El campo contraseña no puede tener más de 50 caracteres de longitud',
+                    'min_len' => 'El campo contraseña debe tener al menos 8 caracteres de longitud'
+                ]
+            ]);
+
+            $gump->filter_rules([
+                'password' => 'trim',
+                'email' => 'sanitize_email'
+            ]);
+
+            $valid_data = $gump->run($_POST);
+
+
+            $exite = $model->where('email', $valid_data['email'])->first();
+
+            if ($gump->errors() || !$exite){
+                //mando mesajes de error
+                $row = crearResponse();
+                if ($gump->errors()){
+                    $row['errors'] = $gump->get_errors_array();
+                }else{
+                    $row['errors'] = ['email' => 'El correo electrónico no se encuentra en nuestros registros.'];
+                }
+
+
+            }else{
+               $db_password = $exite->password;
+               if (password_verify($valid_data['password'], $db_password)){
+                   $row = crearResponse(
+                       'Bienvenido',
+                       'Bienvenido',
+                       'true',
+                       'sussces'
+                   );
+               }else{
+                   $row = crearResponse();
+                   $row['errors'] = ['password' => 'La contraseña es incorrecta.'];
+               }
+
+            }
+
+            return $this->json($row);
+
+
+
+
+        }catch (\Error|\Exception $e){
+            $this->showError('Error en el Controller', $e);
+        }
+    }
+
 }
