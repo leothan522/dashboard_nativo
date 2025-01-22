@@ -1,25 +1,19 @@
 <?php
 
-namespace app\Middleware;
+namespace app\Middlewares;
+
+use JetBrains\PhpStorm\NoReturn;
 
 class Middleware
 {
-    public static function auth($closure): void
+    use Authenticate;
+
+    protected static function notAuthorized($closure): void
     {
-        if (isset($_SESSION[APP_KEY])) {
-
-
-            $_SESSION[APP_KEY] = 'true';
-
-
-
+        if (is_array($closure)){
+            self::json(...$closure);
         }else{
-            session_destroy();
-            if (is_array($closure)){
-                self::json(...$closure);
-            }else{
-                self::redirect($closure);
-            }
+            self::redirect($closure);
         }
     }
 
@@ -28,7 +22,7 @@ class Middleware
         redirect($uri);
     }
 
-    protected static function json($title = null, $message = null, $error = 'error'): void
+    #[NoReturn] protected static function json($title = null, $message = null, $error = 'error'): void
     {
         if (is_null($title)){
             $title = 'Access denied.';

@@ -27,7 +27,8 @@
       "app\\Controllers\\": "app\\Controllers",
       "app\\Models\\": "app\\Models",
       "lib\\Facades\\": "lib\\Facades",
-      "app\\Middleware\\": "app\\Middleware"
+      "app\\Middlewares\\": "app\\Middlewares",
+      "app\\Providers\\": "app\\Providers"
     }
   }
 }
