@@ -74,10 +74,10 @@
     </style>
 
 
-
+    <?php include view_path('layouts.preloader') ?>
 </head>
 <body>
-
+<div id="preloader"></div>
 <?php require view_path('layouts.content')?>
 
 
