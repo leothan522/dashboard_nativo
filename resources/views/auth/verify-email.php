@@ -37,6 +37,13 @@
 
 
     <style>
+
+        @media (min-width: 768px) {
+            #scale {
+                transform: scale(0.8); /* Reduce el tamaño al 80% */
+            }
+        }
+
         *{
             font-family: "Poppins", sans-serif;
             font-weight: 400;
@@ -93,16 +100,14 @@
 
 
     </style>
-
-
-
+    <?php include view_path('layouts.preloader') ?>
 </head>
 <body>
-
+<div id="preloader"></div>
 <!-- Login 8 - Bootstrap Brain Component -->
 <section class="bg-light p-3 p-md-4 p-xl-5 position-relative" style="min-height: 100vh;">
     <div class="container  position-absolute top-50 start-50 translate-middle">
-        <div class="row justify-content-center">
+        <div id="scale" class="row justify-content-center">
             <div class="col-12 col-xxl-11">
                 <div class="card border-light-subtle shadow-sm">
                     <div class="row g-0">

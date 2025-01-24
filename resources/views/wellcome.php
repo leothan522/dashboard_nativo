@@ -16,6 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 
     <style>
+        @media (min-width: 768px) {
+            #scale {
+                transform: scale(0.8); /* Reduce el tamaño al 80% */
+            }
+        }
+
         *{
             font-family: "Poppins", sans-serif;
             font-weight: 400;
