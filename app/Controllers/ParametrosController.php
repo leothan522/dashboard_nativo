@@ -2,7 +2,9 @@
 
 namespace app\Controllers;
 
+use app\Middlewares\Middleware;
 use app\Models\Parametro;
+use app\Providers\Auth;
 use lib\Facades\GUMP;
 
 class ParametrosController extends Controller
@@ -10,6 +12,13 @@ class ParametrosController extends Controller
     public $totalRows = 5;
 
     function index()
+    {
+        Auth::logout();
+        Middleware::auth();
+        return $this->json(Auth::user());
+    }
+
+    function index_old()
     {
         $model = new Parametro();
         $total = $model->where('id', '!=', 0)->count();

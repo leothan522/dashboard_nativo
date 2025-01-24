@@ -37,13 +37,16 @@ CREATE TABLE IF NOT EXISTS `parametros` (
 -- Volcando estructura para tabla dashboard_nativo.sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned DEFAULT NULL,
+  `users_id` bigint unsigned DEFAULT NULL,
   `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `user_client` text COLLATE utf8mb4_unicode_ci,
+  `user_os` text COLLATE utf8mb4_unicode_ci,
+  `rowquid` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `sessions_user_id_index` (`user_id`)
+  KEY `sessions_user_id_index` (`users_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla dashboard_nativo.sessions: ~0 rows (aproximadamente)
