@@ -1,6 +1,8 @@
 <?php
 
-namespace app\Controllers;
+namespace app\Controllers\web;
+
+use app\Controllers\Controller;
 
 class GuestController extends Controller
 {

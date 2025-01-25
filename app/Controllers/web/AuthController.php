@@ -1,6 +1,7 @@
 <?php
 
-namespace app\Controllers;
+namespace app\Controllers\web;
+use app\Controllers\Controller;
 use app\Models\User;
 use lib\Facades\GUMP;
 

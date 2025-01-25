@@ -1,10 +1,9 @@
 <?php
 
-namespace app\Controllers;
+namespace app\Controllers\dashboard;
 
-use app\Middlewares\Middleware;
+use app\Controllers\Controller;
 use app\Models\Parametro;
-use app\Providers\Auth;
 use lib\Facades\GUMP;
 
 class ParametrosController extends Controller
@@ -12,12 +11,6 @@ class ParametrosController extends Controller
     public $totalRows = 5;
 
     function index()
-    {
-        Middleware::auth();
-        return $this->json(Auth::user());
-    }
-
-    function index_old()
     {
         $model = new Parametro();
         $total = $model->where('id', '!=', 0)->count();
@@ -30,7 +23,7 @@ class ParametrosController extends Controller
             "totalRows" => $this->totalRows
         ];
 
-        return $this->view('parametros.view', $data);
+        return $this->view('dashboard.parametros.view', $data);
     }
     function store()
     {
@@ -92,7 +85,7 @@ class ParametrosController extends Controller
             "total" => $total,
             "totalRows" => $this->totalRows
         ];
-        return $this->view('parametros.components.table', $data);
+        return $this->view('dashboard.parametros.components.table', $data);
     }
 
 }

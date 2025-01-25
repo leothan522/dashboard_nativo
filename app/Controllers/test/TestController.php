@@ -1,7 +1,8 @@
 <?php
 
-namespace app\Controllers;
+namespace app\Controllers\test;
 
+use app\Controllers\Controller;
 use app\Models\Parametro;
 use lib\Facades\GUMP;
 

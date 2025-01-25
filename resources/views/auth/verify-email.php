@@ -34,72 +34,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php getAssetDominio('resources/css/auth.css'); ?>">
 
-
-    <style>
-
-        @media (min-width: 768px) {
-            #scale {
-                transform: scale(0.8); /* Reduce el tamaño al 80% */
-            }
-        }
-
-        *{
-            font-family: "Poppins", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .text_title{
-            color: rgba(8,23,44,1);
-            font-weight: bold;
-        }
-
-
-        .gradient-custom-2 {
-            /* fallback for old browsers */
-            background: rgb(18,58,108);
-
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-radial-gradient(circle, rgba(18,58,108,1) 0%, rgba(8,23,44,1) 100%);
-
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: radial-gradient(circle, rgba(18,58,108,1) 0%, rgba(8,23,44,1) 100%);
-        }
-
-        @media (min-width: 768px) {
-            .gradient-form {
-                height: 100vh !important;
-            }
-        }
-        @media (min-width: 769px) {
-            .gradient-custom-2 {
-                border-top-right-radius: .3rem;
-                border-bottom-right-radius: .3rem;
-            }
-        }
-
-
-        .gobernacion{
-            display: block;
-            position: absolute;
-            height: 80px;
-            width: 80px;
-            right: 3%;
-            top: 3%;
-        }
-
-        .gobernacion_start{
-            display: block;
-            position: absolute;
-            height: 100px;
-            width: 100px;
-            left: 3%;
-            top: 3%;
-        }
-
-
-    </style>
     <?php include view_path('layouts.preloader') ?>
 </head>
 <body>

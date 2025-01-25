@@ -67,7 +67,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a>
                 </li>
-                    <?php include view_path('layouts.adminlte._blank.layouts.navbar_links'); ?>
+                    <?php include view_path('dashboard.parametros.links'); ?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -165,7 +165,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php include view_path('layouts.adminlte._blank.layouts.content_header'); ?>
+                <?php include view_path('dashboard.parametros.header'); ?>
                 <!--end::Row-->
 
             </div>
@@ -175,11 +175,12 @@
 
 
         <!--begin::App Content-->
-        <div class="app-content">
+        <div class="app-content" id="content_view_parametros">
             <!--begin::Container-->
             <div class="container-fluid">
-                <?php include view_path('layouts.adminlte._blank.layouts.content'); ?>
+                <?php include view_path('dashboard.parametros.content'); ?>
             </div>
+            <?php verCargando(); ?>
         </div>
         <!--end::Container-->
 
@@ -216,10 +217,12 @@
 <script src="<?php asset('vendor/adminlte/js/config-overlayscrollbars.js'); ?>"></script>
 <!--end::OverlayScrollbars Configure-->
 
+<script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <!--Js para notificaciones y peticiones asincronas-->
 <script src="<?php asset('js/app.js', true); ?>"></script>
 
 <!--end::Script-->
+<?php include view_path('dashboard.parametros.scripts'); ?>
 </body>
 <!--end::Body-->
 </html>

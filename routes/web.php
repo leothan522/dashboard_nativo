@@ -1,11 +1,10 @@
 <?php
 
-use app\Controllers\AuthController;
-use app\Controllers\GuestController;
-use app\Controllers\LoginController;
-use app\Controllers\ParametrosController;
-use app\Controllers\TestController;
-use app\Controllers\WellcomeController;
+use app\Controllers\dashboard\ParametrosController;
+use app\Controllers\test\TestController;
+use app\Controllers\web\AuthController;
+use app\Controllers\web\GuestController;
+use app\Controllers\web\WellcomeController;
 use lib\Facades\Route;
 
 /*

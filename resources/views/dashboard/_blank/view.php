@@ -67,7 +67,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a>
                 </li>
-                    <?php include view_path('parametros.layouts.navbar_links'); ?>
+                    <?php include view_path('dashboard._blank.links'); ?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -165,7 +165,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php include view_path('parametros.layouts.content_header'); ?>
+                <?php include view_path('dashboard._blank.header'); ?>
                 <!--end::Row-->
 
             </div>
@@ -178,7 +178,7 @@
         <div class="app-content" id="content_view_parametros">
             <!--begin::Container-->
             <div class="container-fluid">
-                <?php include view_path('parametros.layouts.content'); ?>
+                <?php include view_path('dashboard._blank.content'); ?>
             </div>
             <?php verCargando(); ?>
         </div>
@@ -222,70 +222,7 @@
 <script src="<?php asset('js/app.js', true); ?>"></script>
 
 <!--end::Script-->
-
-
-<script>
-
-    function display(opcion = 'table') {
-        verCargando('content_view_parametros');
-        const form = document.querySelector('#row_div_form_parametros');
-        const table = document.querySelector('#row_div_table_parametros');
-
-        switch (opcion) {
-            case 'form':
-                table.classList.add('d-none');
-                form.classList.remove('d-none');
-                verCargando("content_view_parametros", false);
-                break;
-
-            case 'table':
-                form.classList.add('d-none');
-                table.classList.remove('d-none');
-                verCargando("content_view_parametros", false);
-                break;
-            default:
-                form.classList.add('d-none');
-                table.classList.remove('d-none');
-                verCargando("content_view_parametros", false);
-                break;
-        }
-    }
-
-    const form = document.querySelector('#form_parametros');
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        event.stopPropagation();
-        form.classList.add('was-validated');
-        if (form.checkValidity()){
-            verCargando('content_view_parametros');
-            let url = "<?= route('parametro') ?>";
-            ajaxRequest({ url: url, form: form }, function (data) {
-                //acciones extras
-                verCargando('content_view_parametros', false);
-                if (data.ok){
-
-                }else {
-
-                }
-
-            });
-        }
-
-
-    });
-
-    function verMas() {
-        const rows = document.querySelector('#total_rows_parametros');
-
-
-       }
-
-
-
-
-</script>
-
-
+<?php include view_path('dashboard._blank.scripts'); ?>
 </body>
 <!--end::Body-->
 </html>
