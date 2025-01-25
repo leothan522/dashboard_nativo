@@ -41,8 +41,12 @@ class Auth
 
     public static function logout(): void
     {
+        $model = new Session();
+        $sesion = $model->where('rowquid', $_SESSION[APP_KEY] ?? 'null')->first();
+        if ($sesion) {
+            $model->update($sesion->id, []);
+        }
         session_destroy();
-        redirect('/');
     }
 
 }

@@ -13,7 +13,6 @@ class ParametrosController extends Controller
 
     function index()
     {
-        Auth::logout();
         Middleware::auth();
         return $this->json(Auth::user());
     }
