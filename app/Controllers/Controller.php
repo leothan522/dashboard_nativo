@@ -2,10 +2,14 @@
 
 namespace app\Controllers;
 
+use Exception;
 use JetBrains\PhpStorm\NoReturn;
+use lib\Facades\GUMP;
 
 class Controller
 {
+    public mixed $VALID_DATA;
+
     public function view($route, $data = [])
     {
         //Destructurar el array
@@ -31,6 +35,32 @@ class Controller
         }
         header('Content-Type: application/json; charset=utf-8');
         return json_encode($response, JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function validate(array $rules = [], array $messages = [], array $filter = []): void
+    {
+        $gump = new GUMP();
+        // establecer reglas de validación
+        $gump->validation_rules($rules);
+        // establecer mensajes de error específicos de las reglas de campo
+        $gump->set_fields_error_messages($messages);
+        // establecer reglas de filtro
+        $gump->filter_rules($filter);
+        // en caso de éxito: devuelve una matriz con la misma estructura de entrada,
+        // pero después de que se hayan ejecutado los filtros
+        // en caso de error: devuelve falso
+        $this->VALID_DATA = $gump->run($_POST);
+        //chequeamos si no cumple las validaciones
+        if ($gump->errors()){
+            //mando mesajes de error
+            $row = crearResponse();
+            $row['errors'] = $gump->get_errors_array();
+            echo $this->json($row);
+            exit();
+        }
     }
 
     #[NoReturn] protected function showError($title, $e, $isText = false): void

@@ -3,7 +3,6 @@
 namespace app\Controllers\web;
 use app\Controllers\Controller;
 use app\Models\User;
-use lib\Facades\GUMP;
 
 class AuthController extends Controller
 {
@@ -11,18 +10,13 @@ class AuthController extends Controller
     {
         try {
 
-            $model = new User();
-            $row = [];
-
-            $gump = new GUMP();
-
-            $gump->validation_rules([
+            $rules = [
                 'name'    => 'required|valid_name|max_len,50|min_len,3',
                 'email'       => 'required|valid_email',
                 'password'    => 'required|max_len,50|min_len,8',
-            ]);
+            ];
 
-            $gump->set_fields_error_messages([
+            $messages = [
                 'name' => [
                     'required' => 'El campo nombre es requerido.',
                     'valid_name' => 'El campo nombre debe contener un nombre humano válido.',
@@ -39,37 +33,33 @@ class AuthController extends Controller
                     'min_len' => 'El campo contraseña debe tener al menos 8 caracteres de longitud'
                 ]
 
-            ]);
+            ];
 
-            $gump->filter_rules([
+            $filter = [
                 'name' => 'trim',
                 'email' => 'sanitize_email'
-            ]);
+            ];
 
-            $valid_data = $gump->run($_POST);
-            $valid_data['password'] = password_hash($valid_data['password'], PASSWORD_DEFAULT);
+            $this->validate($rules, $messages, $filter);
 
-            $exite = $model->where('email', $valid_data['email'])->first();
+            $model = new User();
+            $row = [];
 
+            $this->VALID_DATA['password'] = password_hash($this->VALID_DATA['password'], PASSWORD_DEFAULT);
 
-            if ($gump->errors() || $exite){
+            $exite = $model->where('email', $this->VALID_DATA['email'])->first();
+
+            if ($exite){
                 //mando mesajes de error
                 $row = crearResponse();
-                if ($gump->errors()){
-                    $row['errors'] = $gump->get_errors_array();
-                }else{
-                    $row['errors'] = ['email' => 'El correo electrónico ya se encuentra registrado.'];
-                }
-
-
+                $row['errors'] = ['email' => 'El correo electrónico ya se encuentra registrado.'];
             }else{
                 //guardo en la database
-                $data = array_values($valid_data);
+                $data = array_values($this->VALID_DATA);
                 $data[] = getRowquid($model);
                 $row = $model->save($data);
                 $row->ok = true;
             }
-
 
             return $this->json($row);
 
@@ -82,17 +72,13 @@ class AuthController extends Controller
 
     public function login(){
         try {
-            $model = new User();
-            $row = [];
 
-            $gump = new GUMP();
-
-            $gump->validation_rules([
+            $rules = [
                 'email'       => 'required|valid_email',
                 'password'    => 'required|max_len,50|min_len,8',
-            ]);
+            ];
 
-            $gump->set_fields_error_messages([
+            $messages = [
                 'email' => [
                     'required' => 'El campo correo electrónico es requerido.',
                     'valid_email' => 'Correo electrónico no válido.'
@@ -102,31 +88,27 @@ class AuthController extends Controller
                     'max_len' => 'El campo contraseña no puede tener más de 50 caracteres de longitud',
                     'min_len' => 'El campo contraseña debe tener al menos 8 caracteres de longitud'
                 ]
-            ]);
+            ];
 
-            $gump->filter_rules([
+            $filter = [
                 'password' => 'trim',
                 'email' => 'sanitize_email'
-            ]);
+            ];
 
-            $valid_data = $gump->run($_POST);
+            $this->validate($rules, $messages, $filter);
 
+            $model = new User();
+            $row = [];
 
-            $exite = $model->where('email', $valid_data['email'])->first();
+            $exite = $model->where('email', $this->VALID_DATA['email'])->first();
 
-            if ($gump->errors() || !$exite){
+            if (!$exite){
                 //mando mesajes de error
                 $row = crearResponse();
-                if ($gump->errors()){
-                    $row['errors'] = $gump->get_errors_array();
-                }else{
-                    $row['errors'] = ['email' => 'El correo electrónico no se encuentra en nuestros registros.'];
-                }
-
-
+                $row['errors'] = ['email' => 'El correo electrónico no se encuentra en nuestros registros.'];
             }else{
                $db_password = $exite->password;
-               if (password_verify($valid_data['password'], $db_password)){
+               if (password_verify($this->VALID_DATA['password'], $db_password)){
                    $row = crearResponse(
                        'Bienvenido',
                        'Bienvenido',
@@ -141,9 +123,6 @@ class AuthController extends Controller
             }
 
             return $this->json($row);
-
-
-
 
         }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);
