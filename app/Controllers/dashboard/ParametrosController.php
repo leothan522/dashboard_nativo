@@ -4,6 +4,7 @@ namespace app\Controllers\dashboard;
 
 use app\Controllers\Controller;
 use app\Models\Parametro;
+use app\Providers\Rule;
 use lib\Facades\GUMP;
 
 class ParametrosController extends Controller
@@ -36,13 +37,14 @@ class ParametrosController extends Controller
         try {
 
             $rules = [
-                "nombre" => "required|alpha_numeric_dash",
+                //"nombre" => "required|alpha_numeric_dash",
+                "nombre" => ['required', 'alpha_numeric_dash', 'unique' => Rule::unique('parametros', 'nombre')],
                 "tabla_id" => "required|integer",
                 "valor" => "required"
             ];
 
             $messages = [
-                "nombre" => ["alpha_numeric_dash" => "hola"]
+                "nombre" => ["alpha_numeric_dash" => "alpha_numeric_dash"]
             ];
 
             $filter = [

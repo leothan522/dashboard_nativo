@@ -43,6 +43,26 @@ class Controller
     public function validate(array $rules = [], array $messages = [], array $filter = []): void
     {
         $gump = new GUMP();
+
+        /* *********************************************************************************
+         * Agregamos un validador personalizado para unique en Database
+         * Ejemplo en el controller:
+
+            $rules = [
+                "nombre" => ['required', 'alpha_numeric_dash', 'unique' => Rule::unique('parametros', 'nombre')],
+            ];
+
+        */
+
+        $gump::add_validator("unique", function($field, array $input, array $params, $value) {
+            if (isset($params[0]) && $params[0]){
+                return false;
+            }
+            return true;
+        }, 'El campo {field} ya se encuentra registrado.');
+
+        //************************************************************************************
+
         // establecer reglas de validación
         $gump->validation_rules($rules);
         // establecer mensajes de error específicos de las reglas de campo
