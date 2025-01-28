@@ -3,6 +3,8 @@
 namespace app\Controllers\web;
 use app\Controllers\Controller;
 use app\Models\User;
+use app\Providers\Auth;
+use app\Providers\Rule;
 
 class AuthController extends Controller
 {
@@ -12,7 +14,7 @@ class AuthController extends Controller
 
             $rules = [
                 'name'    => 'required|valid_name|max_len,50|min_len,3',
-                'email'       => 'required|valid_email',
+                'email'       => ['required','valid_email', 'unique' => Rule::unique('users', 'email')],
                 'password'    => 'required|max_len,50|min_len,8',
             ];
 
@@ -47,19 +49,12 @@ class AuthController extends Controller
 
             $this->VALID_DATA['password'] = password_hash($this->VALID_DATA['password'], PASSWORD_DEFAULT);
 
-            $exite = $model->where('email', $this->VALID_DATA['email'])->first();
+            //guardo en la database
+            $data = array_values($this->VALID_DATA);
+            $data[] = getRowquid($model);
+            $row = $model->save($data);
+            $row->ok = true;
 
-            if ($exite){
-                //mando mesajes de error
-                $row = crearResponse();
-                $row['errors'] = ['email' => 'El correo electrónico ya se encuentra registrado.'];
-            }else{
-                //guardo en la database
-                $data = array_values($this->VALID_DATA);
-                $data[] = getRowquid($model);
-                $row = $model->save($data);
-                $row->ok = true;
-            }
 
             return $this->json($row);
 
@@ -74,14 +69,15 @@ class AuthController extends Controller
         try {
 
             $rules = [
-                'email'       => 'required|valid_email',
+                'email'       => ['required', 'valid_email', 'unique' => !Rule::unique('users', 'email')],
                 'password'    => 'required|max_len,50|min_len,8',
             ];
 
             $messages = [
                 'email' => [
                     'required' => 'El campo correo electrónico es requerido.',
-                    'valid_email' => 'Correo electrónico no válido.'
+                    'valid_email' => 'Correo electrónico no válido.',
+                    'unique' => 'El correo electrónico no se encuentra en nuestros registros.'
                 ],
                 'password' => [
                     'required' => 'El campo contraseña es requerido.',
@@ -100,27 +96,22 @@ class AuthController extends Controller
             $model = new User();
             $row = [];
 
-            $exite = $model->where('email', $this->VALID_DATA['email'])->first();
+            $user = $model->where('email', $this->VALID_DATA['email'])->first();
 
-            if (!$exite){
-                //mando mesajes de error
-                $row = crearResponse();
-                $row['errors'] = ['email' => 'El correo electrónico no se encuentra en nuestros registros.'];
+            $db_password = $user->password;
+            if (password_verify($this->VALID_DATA['password'], $db_password)){
+                Auth::loginUsingId($user->id);
+                $row = crearResponse(
+                    'Bienvenido',
+                    'Bienvenido',
+                    'true',
+                    'sussces'
+                );
             }else{
-               $db_password = $exite->password;
-               if (password_verify($this->VALID_DATA['password'], $db_password)){
-                   $row = crearResponse(
-                       'Bienvenido',
-                       'Bienvenido',
-                       'true',
-                       'sussces'
-                   );
-               }else{
-                   $row = crearResponse();
-                   $row['errors'] = ['password' => 'La contraseña es incorrecta.'];
-               }
-
+                $row = crearResponse();
+                $row['errors'] = ['password' => 'La contraseña es incorrecta.'];
             }
+
 
             return $this->json($row);
 

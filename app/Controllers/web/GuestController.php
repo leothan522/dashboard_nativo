@@ -3,9 +3,15 @@
 namespace app\Controllers\web;
 
 use app\Controllers\Controller;
+use app\Middlewares\Middleware;
 
 class GuestController extends Controller
 {
+
+    public function __construct()
+    {
+        Middleware::guest('/');
+    }
 
     public function login()
     {
