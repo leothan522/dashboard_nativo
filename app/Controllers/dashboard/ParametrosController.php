@@ -4,8 +4,10 @@ namespace app\Controllers\dashboard;
 
 use app\Controllers\Controller;
 use app\Models\Parametro;
+use app\Providers\Mail;
 use app\Providers\Rule;
 use lib\Facades\GUMP;
+use PHPMailer\PHPMailer\Exception;
 
 class ParametrosController extends Controller
 {
@@ -32,6 +34,7 @@ class ParametrosController extends Controller
             $this->showError('Error en el Controller', $e);
         }
     }
+
     function store()
     {
         try {
