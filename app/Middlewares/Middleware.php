@@ -7,6 +7,7 @@ use JetBrains\PhpStorm\NoReturn;
 class Middleware
 {
     use Authenticate;
+    use Guest;
 
     protected static function notAuthorized($closure): void
     {
