@@ -12,9 +12,11 @@ class WellcomeController extends Controller
         try {
             if (Auth::user()){
                 if (Auth::user()->role){
+                    //user admin al dashboard
                     redirect('parametros');
                 }else{
-                    return $this->json(['message' => 'Falta crear la vista web home']);
+                    //user public a web
+                    redirect('web');
                 }
             }
             return $this->view('wellcome');

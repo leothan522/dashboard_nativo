@@ -53,6 +53,7 @@ class AuthController extends Controller
             $data = array_values($this->VALID_DATA);
             $data[] = getRowquid($model);
             $row = $model->save($data);
+            Auth::loginUsingId($row->id);
             $row->ok = true;
 
 
@@ -118,6 +119,12 @@ class AuthController extends Controller
         }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        redirect('login');
     }
 
 }

@@ -73,7 +73,7 @@
 
 <!-- content -->
 <div style="min-height: calc(100vh - 520px)">
-    <?php include view_path('web._blank.content'); ?>
+    <?php include view_path('layouts.finanza.content'); ?>
 </div>
 
 

@@ -56,7 +56,9 @@ Route::post('parametro', [ParametrosController::class, 'store']);
 
 Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
 
-Route::get('finanza', [WebController::class, 'index']);
+Route::get('web', [WebController::class, 'index']);
+
+Route::get('logout', [AuthController::class, 'logout']);
 
 
 
