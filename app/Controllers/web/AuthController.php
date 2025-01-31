@@ -4,6 +4,7 @@ namespace app\Controllers\web;
 use app\Controllers\Controller;
 use app\Models\User;
 use app\Providers\Auth;
+use app\Providers\Mail;
 use app\Providers\Rule;
 
 class AuthController extends Controller
@@ -54,6 +55,8 @@ class AuthController extends Controller
             $data[] = getRowquid($model);
             $row = $model->save($data);
             Auth::loginUsingId($row->id);
+            $body =  $this->view('emails.verify');
+            $this->sendVerifyEmail($row->email, verUtf8('Correo de Verificación'), $body);
             $row->ok = true;
 
 
@@ -121,10 +124,22 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(): void
     {
         Auth::logout();
         redirect('login');
+    }
+
+    protected function sendVerifyEmail($to, $subject, $body): string
+    {
+        $respopnse = '';
+        try {
+            Mail::sendMail($to, $subject, $body);
+            $respopnse = "email enviado";
+        }catch (\Error|\Exception $e){
+            $respopnse = $e->getMessage();
+        }
+        return $respopnse;
     }
 
 }

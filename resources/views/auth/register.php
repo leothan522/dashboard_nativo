@@ -58,7 +58,7 @@
                                     <?php require view_path('auth.layouts.section_logo') ?>
 
 
-                                    <form id="form_register_user" novalidate>
+                                    <form id="form_register_user" class="position-relative" novalidate >
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-2 has-validation">
@@ -116,6 +116,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php verCargando(); ?>
                                     </form>
 
                                     <div class="row">
@@ -180,7 +181,9 @@
 
         if (form.checkValidity() && procesar){
             let url = '<?= route('register') ?>';
+            verCargando('form_register_user');
             ajaxRequest({ url: url, form: form}, function (data) {
+                verCargando('form_register_user', false);
                 if (data.ok){
                     input_name.classList.remove('is-invalid');
                     input_email.classList.remove('is-invalid');
