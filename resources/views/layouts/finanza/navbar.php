@@ -26,7 +26,7 @@
                 <a href="#" class="nav-link dropdown-toggle text-capitalize" data-bs-toggle="dropdown"><?= \app\Providers\Auth::user()->name ?></a>
                 <div class="dropdown-menu border-light m-0">
                     <a href="<?= route('profile') ?>" class="dropdown-item">Perfil <span class="float-end"><i class="fas fa-user text-primary"></i></span></a>
-                    <a href="<?= route('logout') ?>" class="dropdown-item">Salir <span class="float-end"><i class="fas fa-sign-out-alt text-primary"></i></span></a>
+                    <a id="btn_pruebas" href="<?= route('logout') ?>" class="dropdown-item">Salir <span class="float-end"><i class="fas fa-sign-out-alt text-primary"></i></span></a>
 
                 </div>
             </div>

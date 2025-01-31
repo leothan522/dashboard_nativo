@@ -21,12 +21,10 @@
     <link rel="stylesheet" href="<?php asset('vendor/adminlte/plugins/source-sans/index.css'); ?>">
     <!--end::Fonts-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
-    <link rel="stylesheet"
-          href="<?php asset('vendor/adminlte/plugins/overlayscrollbars/styles/overlayscrollbars.min.css'); ?>">
+    <link rel="stylesheet" href="<?php asset('vendor/adminlte/plugins/overlayscrollbars/styles/overlayscrollbars.min.css'); ?>">
     <!--end::Third Party Plugin(OverlayScrollbars)-->
     <!--begin::Third Party Plugin(Bootstrap Icons)-->
-    <link rel="stylesheet"
-          href="<?php asset('vendor/adminlte/plugins/bootstrap-icons/font/bootstrap-icons.min.css'); ?>">
+    <link rel="stylesheet" href="<?php asset('vendor/bootstrap-icons/font/bootstrap-icons.min.css'); ?>">
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="<?php asset('vendor/adminlte/css/adminlte.css'); ?>">
