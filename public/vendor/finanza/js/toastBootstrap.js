@@ -1,14 +1,14 @@
 const htmlToast = '<div class="toast-container position-fixed p-3 top-0 start-50 translate-middle-x mt-5">' +
     '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"> ' +
     '<div id="liveToastClass" class="toast-header"> ' +
-    '<span id="liveToastIcon" class="ms-2 me-3"> ' +
+    '<span id="liveToastIcon" class="ms-2 me-3 liveToastLightColor"> ' +
     '<i class="fa-regular fa-circle-exclamation"></i> ' +
     '</span> ' +
-    '<strong class="me-auto" id="liveToastTitle">¡Éxito!</strong> ' +
+    '<strong class="me-auto liveToastLightColor"><span id="liveToastTitle">¡Éxito!</span></strong> ' +
     '<small class="d-none" id="liveToastSubTitle">11 mins ago</small> ' +
     '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> ' +
     '</div> ' +
-    '<div id="liveToastLightColor" class="toast-body">' +
+    '<div class="toast-body bg-light">' +
     '<div id="liveToastMessage">Hello, world! This is a toast message.</div>' +
     '</div> ' +
     '</div>' +
@@ -17,14 +17,14 @@ const htmlToast = '<div class="toast-container position-fixed p-3 top-0 start-50
 const htmlConfirm = '<div class="toast-container position-fixed p-3 top-50 start-50 translate-middle">' +
     '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">' +
     '<div id="liveToastClass" class="toast-header"> ' +
-    '<span id="liveToastIcon" class="ms-2 me-3"> ' +
+    '<span id="liveToastIcon" class="ms-2 me-3 liveToastLightColor"> ' +
     '<i class="fa-solid fa-question ms-2 me-2"></i> ' +
     '</span> ' +
-    '<strong class="me-auto"><span id="liveToastTitle">Estas seguro</span></strong> ' +
+    '<strong class="me-auto liveToastLightColor"><span id="liveToastTitle">Estas seguro</span></strong> ' +
     '<small class="d-none" id="liveToastSubTitle">11 mins ago</small> ' +
     '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> ' +
     '</div> ' +
-    '<div id="liveToastLightColor" class="toast-body"> ' +
+    '<div class="toast-body bg-light"> ' +
     '<div id="liveToastMessage">¡No podrás revertir esto!</div>' +
     '<div class="d-flex mt-2 pt-2 border-top justify-content-between"> ' +
     '<button id="liveToastBtnSI" type="button" class="btn btn-primary btn-sm" data-bs-dismiss="toast">¡Sí, bórralo!</button> ' +
@@ -35,17 +35,17 @@ const htmlConfirm = '<div class="toast-container position-fixed p-3 top-50 start
     '</div>';
 
 const colores = {
-    success: "text-bg-success",
-    info: "text-bg-info",
-    error: "text-bg-danger",
-    warning: "text-bg-warning"
+    success: "bg-success",
+    info: "bg-info",
+    error: "bg-danger",
+    warning: "bg-warning"
 };
 
 const lightColor = {
-    success: "bg-success-subtle",
-    info: "bg-info-subtle",
-    error: "bg-danger-subtle",
-    warning: "bg-warning-subtle"
+    success: "text-white",
+    info: "bg-light",
+    error: "bg-light",
+    warning: "bg-light"
 };
 
 const iconos = {
@@ -76,7 +76,7 @@ function toastBootstrap(options = {}) {
         document.querySelector('#toastBootstrap').innerHTML = htmlToast;
 
         const liveToastClass = document.querySelector('#liveToastClass');
-        const liveToastLightColor = document.querySelector('#liveToastLightColor');
+        const liveToastLightColor = document.querySelectorAll('.liveToastLightColor');
         const liveToastIcon = document.querySelector('#liveToastIcon');
         const liveToastTitle = document.querySelector('#liveToastTitle');
         const liveToastSubTitle = document.querySelector('#liveToastSubTitle');
@@ -92,7 +92,9 @@ function toastBootstrap(options = {}) {
         const noToast = options.noToast ? options.noToast : false;
 
         liveToastClass.classList.add(color);
-        liveToastLightColor.classList.add(bgcolor);
+        for (let i = 0; i < liveToastLightColor.length; i++) {
+            liveToastLightColor[i].classList.add(bgcolor);
+        }
         liveToastIcon.innerHTML = icon;
         liveToastTitle.textContent = title;
         liveToastSubTitle.textContent = subtitle;

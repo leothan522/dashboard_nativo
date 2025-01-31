@@ -13,11 +13,11 @@ class ParametrosController extends Controller
 {
     public $totalRows = 5;
 
-    public function index_prueba()
+    public function index()
     {
         return $this->view('web._blank.view_example');
     }
-    function index()
+    function index_old()
     {
         try {
 

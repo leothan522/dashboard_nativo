@@ -5,7 +5,7 @@
     btn_pruebas.addEventListener('click', event => {
        event.preventDefault();
        event.stopPropagation();
-        confirmToastBootstrap('hola');
+        toastBootstrap()
         console.log('Toast Show');
     });
 
