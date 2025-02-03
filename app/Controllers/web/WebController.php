@@ -10,6 +10,7 @@ class WebController extends Controller
     public function __construct()
     {
         Middleware::auth('login');
+        Middleware::verifyEmail('verify/email');
     }
 
     public function index()

@@ -33,9 +33,16 @@ class GuestController extends Controller
         return $this->view('auth.reset-password');
     }
 
-    public function verifyEmail()
+    /*momentaneo para probar vista de email*/
+    public function verify()
     {
-        return $this->view('auth.verify-email');
+
+        $url = route('verify/email/leonardo');
+        $data = [
+            'url' => $url
+        ];
+        return $this->view('emails.verify', $data
+        );
     }
 
 }

@@ -91,9 +91,9 @@
                                             Editar Perfil
                                         </a>
                                         <form id="form_sing_out">
-                                            <button type="submit" class="btn btn-link link-secondary text-decoration-none">
+                                            <a href="<?= route('logout') ?>" class="btn btn-link link-secondary text-decoration-none">
                                                 Finalizar sesión
-                                            </button>
+                                            </a>
                                         </form>
 
                                     </div>
