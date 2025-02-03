@@ -43,9 +43,9 @@ const colores = {
 
 const lightColor = {
     success: "text-white",
-    info: "bg-light",
-    error: "bg-light",
-    warning: "bg-light"
+    info: "text-dark",
+    error: "text-white",
+    warning: "text-dark"
 };
 
 const iconos = {
@@ -128,7 +128,7 @@ function confirmToastBootstrap(callback, options = {}) {
         document.querySelector('#toastBootstrap').innerHTML = htmlConfirm;
 
         const liveToastClass = document.querySelector('#liveToastClass');
-        const liveToastLightColor = document.querySelector('#liveToastLightColor');
+        const liveToastLightColor = document.querySelectorAll('.liveToastLightColor');
         const liveToastIcon = document.querySelector('#liveToastIcon');
         const liveToastTitle = document.querySelector('#liveToastTitle');
         const liveToastSubTitle = document.querySelector('#liveToastSubTitle');
@@ -148,7 +148,9 @@ function confirmToastBootstrap(callback, options = {}) {
         const is_callback = options.callback ? ""+ options.callback +"" : "isCallback";
 
         liveToastClass.classList.add(color);
-        liveToastLightColor.classList.add(bgcolor);
+        for (let i = 0; i < liveToastLightColor.length; i++) {
+            liveToastLightColor[i].classList.add(bgcolor);
+        }
         liveToastIcon.innerHTML = icon;
         liveToastTitle.textContent = title;
         liveToastSubTitle.textContent = subtitle;
