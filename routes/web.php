@@ -62,9 +62,6 @@ Route::get('web', [WebController::class, 'index']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 
-/*momentaneo para probar vista de email*/
-Route::get('prueba', [GuestController::class, 'verify']);
-
 
 
 

@@ -1,8 +1,9 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Confirm email address</title>
+    <title>Confirma tu Correo Electrónico</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400&display=swap" em-class="em-font-Mulish-Regular">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,600&display=swap" em-class="em-font-Inter-SemiBold">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400&display=swap" em-class="em-font-Inter-Regular">
@@ -73,7 +74,7 @@
     </style>
 </head>
 <body style="margin: 0; padding: 0;">
-<span class="preheader" style="display: none !important; visibility: hidden; opacity: 0; color: #F8F8F8; height: 0; width: 0; font-size: 1px;">&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌</span>
+<span class="preheader" style="display: none !important; visibility: hidden; opacity: 0; color: #F8F8F8; height: 0; width: 0; font-size: 1px;">Alimentos del Guárico S.A.</span>
 <!--[if !mso]><!-->
 <div style="font-size:0px;color:transparent;opacity:0;">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
 <!--<![endif]-->
@@ -85,14 +86,14 @@
             <![endif]-->
             <table cellpadding="0" cellspacing="0" width="100%" border="0" style="max-width: 640px; min-width: 640px; width: 640px;" class="em-narrow-table">
                 <tr em="block" class="em-structure">
-                    <td align="center" style="padding: 20px 40px 30px;" class="em-mob-padding_left-20 em-mob-padding_right-20">
+                    <td align="center" style="padding: 20px 40px 30px; background-color: #fbf7ee;" class="em-mob-padding_left-20 em-mob-padding_right-20" bgcolor="#fbf7ee">
                         <table border="0" cellspacing="0" cellpadding="0" class="em-mob-width-100perc">
                             <tr>
                                 <td width="560" valign="top" class="em-mob-wrap em-mob-width-100perc">
                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                         <tr>
                                             <td align="center">
-                                                <img src="https://i.ibb.co/N6q6HF8K/logo-alguarisa.png" width="60%" border="0" alt="" style="display: inline-block;">
+                                                <img src="https://cdn.useblocks.io/47707/250205_2559_Izvb4is.png" width="300" border="0" alt="" style="display: inline-block; width: 100%; max-width: 300px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -109,7 +110,7 @@
                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                         <tr>
                                             <td style="padding: 10px 0px 40px; color: rgba(51, 51, 51, 0.2);">
-                                                <div style="font-family: Helvetica, Arial, sans-serif; font-size: 25px; line-height: 34px; color: #000000;" class="em-font-Inter-Regular" align="center">Hola</div>
+                                                <div style="font-family: Helvetica, Arial, sans-serif; font-size: 25px; line-height: 34px; color: #000000;" class="em-font-Inter-Regular" align="center">¡Hola, <?= $nombre ?>!</div>
                                             </td>
                                         </tr>
                                     </table>
@@ -123,14 +124,14 @@
                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                         <tr>
                                             <td style="padding: 40px 0px 20px; color: rgba(51, 51, 51, 0.2);">
-                                                <div style="font-family: Helvetica, Arial, sans-serif; font-size: 30px; line-height: 40px; color: #000000;" class="em-font-Inter-SemiBold em-mob-font_size-25px" align="center">Confirm Your Email</div>
+                                                <div style="font-family: Helvetica, Arial, sans-serif; font-size: 30px; line-height: 40px; color: #000000;" class="em-font-Inter-SemiBold em-mob-font_size-25px" align="center">Confirma tu correo electrónico</div>
                                             </td>
                                         </tr>
                                     </table>
                                     <table cellpadding="0" cellspacing="0" border="0" width="80%" em="atom" class="em-mob-width-100perc">
                                         <tr>
                                             <td style="padding-bottom: 10px;" align="center">
-                                                <div style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; color: #595959;" class="em-font-Mulish-Regular" align="center">You're almost done! Please confirm your email below to get early access.</div>
+                                                <div style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; color: #595959;" class="em-font-Mulish-Regular" align="center">¡Ya casi has terminado! Confirma tu correo electrónico a continuación para obtener acceso.</div>
                                             </td>
                                         </tr>
                                     </table>
@@ -140,8 +141,8 @@
                                                 <table cellpadding="0" cellspacing="0" border="0" width="200">
                                                     <tr>
                                                         <td align="center" valign="middle" height="41" style="background-color: #4f70e9; border-radius: 6px; height: 41px;" bgcolor="#4F70E9">
-                                                            <a href="<?= route('verify/email/'. $token) ?>" target="_blank" style="display: block; height: 41px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px; line-height: 41px; text-decoration: none; white-space: nowrap;" class="em-font-Inter-Regular">
-                                                                Confirm email
+                                                            <a href="<?= $url ?>" target="_blank" style="display: block; height: 41px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px; line-height: 41px; text-decoration: none; white-space: nowrap;" class="em-font-Inter-Regular">
+                                                                Confirmar Email
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -162,39 +163,15 @@
                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                         <tr>
                                             <td style="padding-right: 0px; padding-bottom: 16px; padding-left: 0px;">
-                                                <div class="em-font-Mulish-Bold" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #1f1f1f;" align="center"><strong>Follow for more insights</strong></div>
+                                                <div class="em-font-Mulish-Bold" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #1f1f1f;" align="center"><strong>Alimentos del Guárico S.A (ALGUARISA)</strong></div>
                                             </td>
                                         </tr>
                                     </table>
-                                    <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
-                                        <tr>
-                                            <td align="center" style="padding-bottom: 16px;">
-                                                <table border="0" cellspacing="0" cellpadding="0">
-                                                    <tr>
-                                                        <td style="padding: 0 8px;" em="atom">
-                                                            <a href="" target="_blank"><img src="https://cdn.useblocks.io/1865/230705_18_o1RmlFe.png" width="16" border="0" alt="" style="display: block; width: 100%; max-width: 16px;"></a>
-                                                        </td>
-                                                        <td style="padding: 0 8px;" em="atom">
-                                                            <a href="" target="_blank"><img src="https://cdn.useblocks.io/1865/230705_18_0WwBkq1.png" width="16" border="0" alt="" style="display: block; width: 100%; max-width: 16px;"></a>
-                                                        </td>
-                                                        <td style="padding: 0 8px;" em="atom">
-                                                            <a href="" target="_blank"><img src="https://cdn.useblocks.io/1865/231011_17_CRCCmRM.png" width="16" border="0" alt="" style="display: block; width: 100%; max-width: 16px;"></a>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
+
                                     <table cellpadding="0" cellspacing="0" border="0" em="atom">
                                         <tr>
                                             <td align="center">
-                                                <div class="em-font-Mulish-Regular" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #595959;" align="center">This email sent to <u><a href="" target="_blank" style="text-decoration: underline; color: #333333;">hello@tod.graves</a></u>. You can update your profile settings  to change <span style="color: #333333;"><u><a href="" target="_blank" style="text-decoration: underline; color: #1f1f1f;">notifications</a></u></span>.<br></div>
-                                            </td>
-                                        </tr>
-                                    </table><table cellpadding="0" cellspacing="0" border="0" em="atom">
-                                        <tr>
-                                            <td align="center" style="padding-top: 20px;">
-                                                <div class="em-font-Mulish-Regular" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #595959;" align="center"><u><a href="" target="_blank" style="text-decoration: underline; color: #595959;">Unsubscribe</a></u><br></div>
+                                                <div class="em-font-Mulish-Regular" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #595959;" align="center">Para más información contáctese con la Dirección de Tecnología y Sistemas.<br></div>
                                             </td>
                                         </tr>
                                     </table>

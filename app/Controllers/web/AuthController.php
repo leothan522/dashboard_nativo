@@ -146,7 +146,7 @@ class AuthController extends Controller
             $model = new User();
             $existe = $model->where('two_factor_secret', $token)->first();
             if ($existe){
-
+                $validate = true;
                 //seguimos validando
                 $hasta = Carbon::create($existe->two_factor_confirmed_at)->addDay();
                 $hoy = Carbon::create(getFecha());
@@ -154,13 +154,17 @@ class AuthController extends Controller
                 if ($hasta->greaterThan($hoy)){
                     //procesamos
                     $data['email_verified_at'] = getFecha();
+                }else{
+                    $validate = false;
                 }
                 $data['two_factor_secret'] = null;
                 $data['two_factor_confirmed_at'] = null;
                 $model->update($existe->id, $data);
+            }else{
+                $validate = false;
             }
 
-            redirect('/');
+            return $this->view('auth.validated-email', ['validate' => $validate]);
 
         }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);
@@ -172,7 +176,7 @@ class AuthController extends Controller
     {
         $response = '';
         try {
-
+            Middleware::auth('/');
             $model = new User();
             $token = generarStringAleatorio(32, true);
             $data = [
@@ -183,7 +187,10 @@ class AuthController extends Controller
 
             $to = Auth::user()->email;
             $subject =  verUtf8('Correo de Verificación');
-            $body =  $this->view('emails.verify', ['token' => $token]);
+            $body =  $this->view('emails.verify', [
+                'nombre' => Auth::user()->name,
+                'url' => route('verify/email/'.$token)
+            ]);
 
             Mail::sendMail($to, $subject, $body);
             $response = "Email enviado.";
