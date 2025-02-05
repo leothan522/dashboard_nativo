@@ -45,7 +45,9 @@ Route::get('forgot/password', [GuestController::class, 'forgotPassword']);
 
 Route::get('reset/password', [GuestController::class, 'resetPassword']);
 
-Route::get('verify/email', [GuestController::class, 'verifyEmail']);
+Route::get('verify/email', [AuthController::class, 'validateEmail']);
+Route::get('verify/email/:token', [AuthController::class, 'verifyEmail']);
+
 
 Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);

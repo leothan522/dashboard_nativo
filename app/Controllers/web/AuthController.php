@@ -2,10 +2,12 @@
 
 namespace app\Controllers\web;
 use app\Controllers\Controller;
+use app\Middlewares\Middleware;
 use app\Models\User;
 use app\Providers\Auth;
 use app\Providers\Mail;
 use app\Providers\Rule;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -55,11 +57,8 @@ class AuthController extends Controller
             $data[] = getRowquid($model);
             $row = $model->save($data);
             Auth::loginUsingId($row->id);
-            $body =  $this->view('emails.verify');
-            $this->sendVerifyEmail($row->email, verUtf8('Correo de Verificación'), $body);
+            $row->sendEmail = $this->sendVerifyEmail();
             $row->ok = true;
-
-
             return $this->json($row);
 
 
@@ -116,7 +115,6 @@ class AuthController extends Controller
                 $row['errors'] = ['password' => 'La contraseña es incorrecta.'];
             }
 
-
             return $this->json($row);
 
         }catch (\Error|\Exception $e){
@@ -130,16 +128,77 @@ class AuthController extends Controller
         redirect('login');
     }
 
-    protected function sendVerifyEmail($to, $subject, $body): string
+    public function validateEmail()
     {
-        $respopnse = '';
-        try {
-            Mail::sendMail($to, $subject, $body);
-            $respopnse = "email enviado";
-        }catch (\Error|\Exception $e){
-            $respopnse = $e->getMessage();
+        Middleware::auth('/');
+
+        if (Auth::user()->email_verified_at){
+            redirect('/');
         }
-        return $respopnse;
+
+        return $this->view('auth.verify-email');
+    }
+
+    public function verifyEmail($token)
+    {
+        try {
+
+            $model = new User();
+            $existe = $model->where('two_factor_secret', $token)->first();
+            if ($existe){
+                $validate = true;
+                //seguimos validando
+                $hasta = Carbon::create($existe->two_factor_confirmed_at)->addDay();
+                $hoy = Carbon::create(getFecha());
+
+                if ($hasta->greaterThan($hoy)){
+                    //procesamos
+                    $data['email_verified_at'] = getFecha();
+                }else{
+                    $validate = false;
+                }
+                $data['two_factor_secret'] = null;
+                $data['two_factor_confirmed_at'] = null;
+                $model->update($existe->id, $data);
+            }else{
+                $validate = false;
+            }
+
+            return $this->view('auth.validated-email', ['validate' => $validate]);
+
+        }catch (\Error|\Exception $e){
+            $this->showError('Error en el Controller', $e);
+        }
+
+    }
+
+    protected function sendVerifyEmail(): string
+    {
+        $response = '';
+        try {
+            Middleware::auth('/');
+            $model = new User();
+            $token = generarStringAleatorio(32, true);
+            $data = [
+                'two_factor_secret' => $token,
+                'two_factor_confirmed_at' => getFecha()
+            ];
+            $model->update(Auth::user()->id, $data);
+
+            $to = Auth::user()->email;
+            $subject =  verUtf8('Correo de Verificación');
+            $body =  $this->view('emails.verify', [
+                'nombre' => Auth::user()->name,
+                'url' => route('verify/email/'.$token)
+            ]);
+
+            Mail::sendMail($to, $subject, $body);
+            $response = "Email enviado.";
+
+        }catch (\Error|\Exception $e){
+            $response = $e->getMessage();
+        }
+        return $response;
     }
 
 }

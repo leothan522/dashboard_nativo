@@ -55,52 +55,47 @@
                             <div class="col-12 col-lg-11 col-xl-10">
                                 <div class="card-body p-3 p-md-4 p-xl-5">
 
-                                    <?php require view_path('auth.layouts.section_logo') ?>
+
 
 
                                     <form class="needs-validation" novalidate action="#!" >
-                                        <p style="text-align: justify !important;">
-                                            Antes de continuar, ¿podría verificar su dirección de correo electrónico haciendo clic en
-                                            el enlace que le acabamos de enviar? Si no recibió el correo electrónico, con gusto le enviaremos otro.
-                                        </p>
-                                        <div class="row gy-3 overflow-hidden">
 
-                                            <div class="col-12 d-none">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                                                    <label class="form-check-label text-secondary" for="remember_me">
-                                                        Keep me logged in
-                                                    </label>
+                                        <?php if ($validate){ ?>
+                                            <div class="row">
+
+                                                <div class="text-center mb-4">
+                                                    <img class="img-fluid mb-3" src="<?php asset('img/email-verified.png'); ?>" alt="Email Verificado">
                                                 </div>
-                                            </div>
 
+                                                <p style="text-align: justify !important;">
+                                                    ¡En hora buena!, tu correo electrónico ha sido verificado correctamente.
+                                                </p>
+
+                                            </div>
+                                        <?php }else{ ?>
+                                            <div class="row">
+
+                                                <div class="text-center mb-4">
+                                                    <img class="img-fluid mb-3" src="<?php asset('img/warning_11892127.png'); ?>" alt="Email Verificado">
+                                                </div>
+
+                                                <p style="text-align: justify !important;">
+                                                    ¡Lo sentimos!, el token de verificación ya está vencido, debe solicitar uno nuevo.
+                                                </p>
+
+                                            </div>
+                                        <?php } ?>
+
+                                        <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-dark btn-lg gradient-custom-2" type="submit">
-                                                        Reenviar correo de verificación
-                                                    </button>
+                                                    <a href="<?= route('/')?>" class="btn btn-dark btn-lg gradient-custom-2" type="submit">
+                                                        Continuar
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
-
-
-
-                                    <div class="d-flex aling-items-center justify-content-between mt-5">
-                                        <a href="<?= route('register') ?>" class="link-secondary text-decoration-none">
-                                            Editar Perfil
-                                        </a>
-                                        <form id="form_sing_out">
-                                            <a href="<?= route('logout') ?>" class="btn btn-link link-secondary text-decoration-none">
-                                                Finalizar sesión
-                                            </a>
-                                        </form>
-
-                                    </div>
-
-
-
-
 
                                     <?php require view_path('auth.layouts.footer') ?>
 

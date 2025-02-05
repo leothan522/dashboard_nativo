@@ -33,9 +33,5 @@ class GuestController extends Controller
         return $this->view('auth.reset-password');
     }
 
-    public function verifyEmail()
-    {
-        return $this->view('auth.verify-email');
-    }
 
 }

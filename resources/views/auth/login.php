@@ -59,7 +59,7 @@
 
 
 
-                                    <form id="form_login_user" novalidate>
+                                    <form id="form_login_user" class="position-relative" novalidate>
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-2 has-validation">
@@ -97,6 +97,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php verCargando(); ?>
                                     </form>
 
                                     <div class="row">
@@ -147,8 +148,10 @@
 
         form.classList.add('was-validated');
         if (form.checkValidity()){
+            verCargando('form_login_user');
             let url = '<?= route('login') ?>';
             ajaxRequest({ url: url, form: form }, function (data) {
+                verCargando('form_login_user', false);
                 if (data.ok){
                     input_email.classList.remove('is-invalid');
                     input_password.classList.remove('is-invalid');

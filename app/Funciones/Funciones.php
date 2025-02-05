@@ -2,12 +2,17 @@
 
 use Carbon\Carbon;
 
-function generarStringAleatorio($largo = 10, $soloNumeros = false, $espacio = false): string
+function generarStringAleatorio($largo = 10, $soloLetras = false, $soloNumeros = false, $espacio = false): string
 {
     $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if ($soloNumeros) {
         $caracteres = '0123456789';
     }
+
+    if ($soloLetras){
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    }
+
     $caracteres = $espacio ? $caracteres . ' ' : $caracteres;
     $string = '';
     for ($i = 0; $i < $largo; $i++) {
@@ -181,7 +186,7 @@ function verCargando(): void
 {
     echo '
         <div class="position-absolute top-50 start-50 translate-middle d-none verCargando">
-            <div class="spinner-border" role="status">
+            <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>

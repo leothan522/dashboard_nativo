@@ -8,6 +8,7 @@ class Middleware
 {
     use Authenticate;
     use Guest;
+    use VerifyEmail;
 
     protected static function notAuthorized($closure): void
     {
