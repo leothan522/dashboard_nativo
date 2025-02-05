@@ -64,7 +64,7 @@
                                     <?php require view_path('auth.layouts.section_logo') ?>
 
 
-                                    <form class="needs-validation" novalidate action="#!" >
+                                    <form id="form_login_verify" class="position-relative"  novalidate>
                                         <p style="text-align: justify !important;">
                                             Antes de continuar, ¿podría verificar su dirección de correo electrónico haciendo clic en
                                             el enlace que le acabamos de enviar? Si no recibió el correo electrónico, con gusto le enviaremos otro.
@@ -88,6 +88,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php verCargando(); ?>
                                     </form>
 
 
@@ -134,9 +135,11 @@
     button.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
+        verCargando('form_login_verify');
         let url = "<?= route('verify/email') ?>";
         ajaxRequest({ url: url, data: {} }, function(data) {
            //
+            verCargando('form_login_verify', false);
         });
     });
 

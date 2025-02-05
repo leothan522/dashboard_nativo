@@ -189,7 +189,7 @@
                     input_email.classList.remove('is-invalid');
                     input_password.classList.remove('is-invalid');
 
-                    //window.location.replace('<?= route('/') ?>');
+                    window.location.replace('<?= route('/') ?>');
                 }else {
                     form.classList.remove('was-validated');
                    let errors = data.errors;
