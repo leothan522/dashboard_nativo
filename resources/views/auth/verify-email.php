@@ -28,6 +28,12 @@
     <meta name="theme-color" content="#ffffff">
 
 
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="<?php asset('vendor/fontawesome/css/fontawesome.css'); ?>" rel="stylesheet" />
+    <link href="<?php asset('vendor/fontawesome/css/brands.css'); ?>" rel="stylesheet" />
+    <link href="<?php asset('vendor/fontawesome/css/solid.css'); ?>" rel="stylesheet" />
+
+
 
     <!--Bootstrap -->
     <link href="<?php getAssetDominio('bootstrap/css/bootstrap.css'); ?>" rel="stylesheet">
@@ -76,7 +82,7 @@
 
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-dark btn-lg gradient-custom-2" type="submit">
+                                                    <button id="btn_reenvio_clave" class="btn btn-dark btn-lg gradient-custom-2" type="submit">
                                                         Reenviar correo de verificación
                                                     </button>
                                                 </div>
@@ -121,6 +127,21 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
+
+<script type="application/javascript">
+
+    const button = document.querySelector('#btn_reenvio_clave');
+    button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        let url = "<?= route('verify/email') ?>";
+        ajaxRequest({ url: url, data: {} }, function(data) {
+           //
+        });
+    });
+
+    console.log('Hi!')
+</script>
 
 </body>
 </html>

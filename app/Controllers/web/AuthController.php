@@ -139,6 +139,28 @@ class AuthController extends Controller
         return $this->view('auth.verify-email');
     }
 
+    public function reenviarEmail()
+    {
+        try {
+
+            $message = $this->sendVerifyEmail();
+            if ($message == 'Email enviado.'){
+                $ok = true;
+            }else{
+                $ok = false;
+            }
+            $response = crearResponse(
+                $message,
+                null,
+                $ok
+            );
+            return $this->json($response);
+
+        }catch (\Error|\Exception $e){
+            $this->showError('Error en el Controller', $e);
+        }
+    }
+
     public function verifyEmail($token)
     {
         try {

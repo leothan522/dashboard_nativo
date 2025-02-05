@@ -35,6 +35,7 @@ Route::get("home",[HomeController::class,'index']);
 
 Route::get('/', [WellcomeController::class, 'index']);
 
+//AUTH *************************************************************************************
 Route::get('login', [GuestController::class, 'login']);
 Route::post('login', [AuthController::class, 'login']);
 
@@ -46,24 +47,23 @@ Route::get('forgot/password', [GuestController::class, 'forgotPassword']);
 Route::get('reset/password', [GuestController::class, 'resetPassword']);
 
 Route::get('verify/email', [AuthController::class, 'validateEmail']);
+Route::post('verify/email', [AuthController::class, 'reenviarEmail']);
 Route::get('verify/email/:token', [AuthController::class, 'verifyEmail']);
 
+Route::get('logout', [AuthController::class, 'logout']);
+
+//TEST ******************************************************************************************
 
 Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
 
-
+//DASHBOARD **************************************************************************************
 Route::get('parametros', [ParametrosController::class, 'index']);
 Route::post('parametro', [ParametrosController::class, 'store']);
-
 Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
 
+//WEB **********************************************************************************************
 Route::get('web', [WebController::class, 'index']);
-
-Route::get('logout', [AuthController::class, 'logout']);
-
-
-
 
 /*
 | Esto debe estar siempre al final, ejecuta el enrutador y compara las rutas en el orden en

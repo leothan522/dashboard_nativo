@@ -154,6 +154,8 @@ function crearResponse($message = null, $title = null, $ok = false, $type = 'war
 
     if (is_null($message)){
         $response['message'] = "Los datos no cumplen con la validación requerida.";
+    }else{
+        $response['message'] = $message;
     }
 
     $response['ok'] = $ok;
