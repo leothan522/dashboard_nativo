@@ -61,11 +61,11 @@
 
 
 
-                                    <form class="needs-validation" novalidate action="#!" >
+                                    <form id="form_reset_password" class="position-relative" novalidate>
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-2 has-validation">
-                                                    <input id="email" type="email" class="form-control" name="email"  placeholder="name@example.com" required>
+                                                    <input id="email" type="email" class="form-control" readonly="readonly" name="email" value="<?= $email ?>"  placeholder="name@example.com" required>
                                                     <label for="email" class="form-label">Correo electrónico</label>
                                                     <div class="invalid-feedback">
                                                         Por favor ingrese su correo electrónico.
@@ -76,7 +76,7 @@
                                                 <div class="form-floating mb-2 has-validation">
                                                     <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                                                     <label for="password" class="form-label">Contraseña</label>
-                                                    <div class="invalid-feedback">
+                                                    <div id="error_password" class="invalid-feedback">
                                                         Por favor ingrese su contraseña.
                                                     </div>
                                                 </div>
@@ -109,13 +109,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php verCargando(); ?>
                                     </form>
-
-
-
-
-
-
 
                                     <?php require view_path('auth.layouts.footer') ?>
 
@@ -136,6 +131,56 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
+
+<script type="application/javascript">
+    const form = document.querySelector('#form_reset_password');
+    const input_email = document.querySelector('#email');
+    const input_password = document.querySelector('#password');
+    const input_confirmar = document.querySelector('#confirmar');
+    const error_password = document.querySelector('#error_password');
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        let procesar = false;
+
+        if (input_password.value !== input_confirmar.value) {
+            form.classList.remove('was-validated');
+            input_password.classList.add('is-invalid');
+            input_confirmar.classList.add('is-invalid');
+
+        }else {
+            procesar = true;
+            input_password.classList.remove('is-invalid');
+            input_confirmar.classList.remove('is-invalid');
+            form.classList.add('was-validated');
+        }
+
+        if (form.checkValidity() && procesar){
+            verCargando('form_reset_password');
+            let url = '<?= route('reset/password') ?>';
+            ajaxRequest({ url : url, form: form }, function (data) {
+                verCargando('form_reset_password', false);
+                if (data.ok){
+                    window.location.replace('<?= route('login') ?>');
+                }else {
+                    form.classList.remove('was-validated');
+                    let errors = data.errors;
+                    if (errors.password){
+                        input_password.classList.add('is-invalid');
+                        error_password.textContent = errors.password;
+                    }else {
+                        input_password.classList.remove('is-invalid');
+                        input_password.classList.add('is-valid');
+                    }
+                }
+            });
+        }
+
+    });
+
+    console.log('hola')
+</script>
 
 </body>
 </html>

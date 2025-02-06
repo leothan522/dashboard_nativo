@@ -43,8 +43,11 @@ Route::get('register', [GuestController::class, 'register']);
 Route::post('register', [AuthController::class, 'register']);
 
 Route::get('forgot/password', [GuestController::class, 'forgotPassword']);
+Route::post('forgot/password', [AuthController::class, 'forgotPassword']);
 
 Route::get('reset/password', [GuestController::class, 'resetPassword']);
+Route::post('reset/password', [AuthController::class, 'resetPassword']);
+Route::get('reset/password/:token', [AuthController::class, 'resetPasswordEmail']);
 
 Route::get('verify/email', [AuthController::class, 'validateEmail']);
 Route::post('verify/email', [AuthController::class, 'reenviarEmail']);
@@ -64,6 +67,11 @@ Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
 
 //WEB **********************************************************************************************
 Route::get('web', [WebController::class, 'index']);
+
+
+
+/*ruta temporal para probar vista de reset*/
+Route::get('prueba', [AuthController::class, 'prueba']);
 
 /*
 | Esto debe estar siempre al final, ejecuta el enrutador y compara las rutas en el orden en

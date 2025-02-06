@@ -194,6 +194,141 @@ class AuthController extends Controller
 
     }
 
+    public function resetPasswordEmail($token)
+    {
+        try {
+
+            $model = new User();
+            $existe = $model->where('two_factor_recovery_codes', $token)->first();
+            if ($existe){
+                $validate = true;
+                //seguimos validando
+                $hasta = Carbon::create($existe->two_factor_confirmed_at)->addDay();
+                $hoy = Carbon::create(getFecha());
+
+                if ($hasta->greaterThan($hoy)){
+                    //procesamos
+                    $data['email_verified_at'] = getFecha();
+                }else{
+                    $validate = false;
+                }
+                $data['two_factor_secret'] = null;
+                $data['two_factor_confirmed_at'] = null;
+                $model->update($existe->id, $data);
+            }else{
+                $validate = false;
+            }
+
+            if ($validate == true){
+                $response = $this->view('auth.reset-password', ['email' => $existe->email]);
+            }else{
+                $response = $this->view('auth.validated-email', ['validate' => $validate]);
+            }
+            return $response;
+
+
+        }catch (\Error|\Exception $e){
+            $this->showError('Error en el Controller', $e);
+        }
+
+    }
+
+
+    public function forgotPassword()
+    {
+        try {
+            $rules = [
+                'email' => 'required|valid_email'
+            ];
+
+            $messages = [
+                'email' => [
+                    'required' => 'El campo correo electrónico es requerido.',
+                    'valid_email' => 'Correo electrónico no válido.'
+                ]
+            ];
+
+            $filter = [
+                'email' => 'sanitize_email'
+            ];
+
+            $this->validate($rules, $messages, $filter);
+
+            $model = new User();
+
+
+            $existe = $model->where('email', $this->VALID_DATA['email'])->first();
+
+            if ($existe){
+                $response = $this->sendResetPassword($existe);
+            }else{
+                $response = crearResponse(
+                    'El correo no se encuentra en nuestros registros.',
+                    'Correo Inexistente',
+                    false,
+                    'warning',
+                    true
+                );
+            }
+            return $this->json($response);
+
+        }catch (\Error|\Exception $e){
+            $this->showError('Error en el Controller', $e);
+        }
+    }
+
+    public function resetPassword()
+    {
+        try {
+            $rules = [
+                'password'    => 'required|max_len,50|min_len,8'
+            ];
+
+            $messages = [
+                'email' => [
+                    'required' => 'El campo correo electrónico es requerido.',
+                    'valid_email' => 'Correo electrónico no válido.'
+                ],
+                'password' => [
+                    'required' => 'El campo contraseña es requerido.',
+                    'max_len' => 'El campo contraseña no puede tener más de 50 caracteres de longitud',
+                    'min_len' => 'El campo contraseña debe tener al menos 8 caracteres de longitud'
+                ]
+
+            ];
+
+            $filter = [
+                'email' => 'sanitize_email'
+            ];
+
+            $this->validate($rules, $messages, $filter);
+
+            $model = new User();
+            $user = $model->where('email', $this->VALID_DATA['email'])->first();
+
+            $password = $this->VALID_DATA['password'] = password_hash($this->VALID_DATA['password'], PASSWORD_DEFAULT);
+
+            $data = [
+                'password' => $password,
+                'two_factor_recovery_codes' => null,
+                'two_factor_confirmed_at' => null
+            ];
+            $model->update($user->id, $data);
+
+            return crearResponse(
+                'Datos Actualizados Exitosamente',
+                'Datos Actualizados',
+                true,
+                'success'
+            );
+
+        }catch (\Error|\Exception $e){
+            $this->showError('Error en el Controller', $e);
+        }
+
+    }
+
+
     protected function sendVerifyEmail(): string
     {
         $response = '';
@@ -221,6 +356,45 @@ class AuthController extends Controller
             $response = $e->getMessage();
         }
         return $response;
+    }
+
+    protected function sendResetPassword($user)
+    {
+        try {
+            $model = new User();
+            $token = generarStringAleatorio(32, true);
+
+            $data = [
+                'two_factor_recovery_codes' => $token,
+                'two_factor_confirmed_at' => getFecha()
+            ];
+
+            $model->update($user->id, $data);
+
+            $to = $user->email;
+            $subject =  verUtf8('Recuperar Contraseña');
+            $body =  $this->view('emails.reset', [
+                'nombre' => $user->name,
+                'url' => route('reset/password/'.$token)
+            ]);
+
+            Mail::sendMail($to, $subject, $body);
+            $response = crearResponse('email enviado', 'email enviado', true, 'success', true);
+        }catch (\Error|\Exception $e){
+            $response = $e->getMessage();
+        }
+
+        return $response;
+
+    }
+
+
+
+    /*funcion temporal para probar vista de reset*/
+    public function prueba()
+    {
+        return $this->view('emails.reset');
+
     }
 
 }

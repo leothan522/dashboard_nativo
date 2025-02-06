@@ -59,7 +59,7 @@
 
 
 
-                                    <form class="needs-validation" novalidate action="#!" >
+                                    <form id="form_forgot_password" class="position-relative" novalidate>
                                         <p style="text-align: justify !important;">
                                             ¿Olvidó su contraseña? No hay problema. Simplemente déjenos saber su dirección de correo electrónico
                                             y le enviaremos un enlace para restablecer la contraseña que le permitirá elegir una nueva.
@@ -69,7 +69,7 @@
                                                 <div class="form-floating mb-2 has-validation">
                                                     <input id="email" type="email" class="form-control" name="email"  placeholder="name@example.com" required>
                                                     <label for="email" class="form-label">Correo electrónico</label>
-                                                    <div class="invalid-feedback">
+                                                    <div id="error_email" class="invalid-feedback">
                                                         Por favor ingrese su correo electrónico.
                                                     </div>
                                                 </div>
@@ -92,6 +92,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php verCargando(); ?>
                                     </form>
 
 
@@ -117,6 +118,50 @@
 <script src="<?php getAssetDominio('bootstrap/js/bootstrap.bundle.js'); ?>"></script>
 <script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
 <script src="<?php asset('js/app.js', true); ?>"></script>
+
+<script type="application/javascript">
+    const form = document.querySelector('#form_forgot_password');
+    const input_email = document.querySelector('#email');
+    const error_email = document.querySelector('#error_email');
+
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        form.classList.add('was-validated');
+        if (form.checkValidity()){
+            verCargando('form_forgot_password');
+            let url = '<?= route('forgot/password') ?>';
+            ajaxRequest({ url : url, form: form }, function (data) {
+                verCargando('form_forgot_password', false);
+                
+                if (data.ok){
+                    form.classList.remove('was-validated');
+                    input_email.classList.remove('is-invalid');
+                    input_email.classList.add('is-valid');
+                    error_email.classList.remove('invalid-feedback');
+                    error_email.classList.add('valid-feedback');
+                    error_email.textContent = 'Email enviado exitosamente.';
+                }else {
+                    form.classList.remove('was-validated');
+                    input_email.classList.add('is-invalid');
+                    error_email.textContent = data.message;
+
+
+                }
+            });
+        }
+
+
+
+
+
+
+    });
+
+
+</script>
 
 </body>
 </html>
