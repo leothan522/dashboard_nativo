@@ -182,6 +182,19 @@ function verToast(): void
             <!-- JS -->
         </div>
     ';
+    if (isset($_SESSION['flashmessage'])){
+        $toast = $_SESSION['flashmessage'];
+        echo '<meta id="flashmessage" type="'.$toast['type'].'" message="'.$toast['message'].'">';
+        unset($_SESSION['flashmessage']);
+    }
+}
+
+function flashMessage($message, $type = 'success'): void
+{
+    $_SESSION['flashmessage'] = [
+        'type' => $type,
+        'message' => $message
+    ];
 }
 
 function verCargando(): void

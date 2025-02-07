@@ -35,6 +35,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php getAssetDominio('resources/css/auth.css'); ?>">
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="<?php asset('vendor/fontawesome/css/fontawesome.css'); ?>" rel="stylesheet" />
+    <link href="<?php asset('vendor/fontawesome/css/brands.css'); ?>" rel="stylesheet" />
+    <link href="<?php asset('vendor/fontawesome/css/solid.css'); ?>" rel="stylesheet" />
 
     <?php include view_path('layouts.preloader') ?>
 </head>

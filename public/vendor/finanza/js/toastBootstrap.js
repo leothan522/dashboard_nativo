@@ -201,4 +201,13 @@ function htmlToasBootstrap(options = {}) {
     confirmToastBootstrap(null, options);
 }
 
+window.onload = function () {
+    const flash = document.querySelector('#flashmessage');
+    if (flash){
+        let type = flash.getAttribute('type');
+        let message = flash.getAttribute('message');
+        toastBootstrap({type: type, message: message});
+    }
+}
+
 console.log('toastBootstrap.js')
