@@ -139,6 +139,11 @@ class AuthController extends Controller
         return $this->view('auth.verify-email');
     }
 
+    public function expiredToken()
+    {
+        return $this->view('auth.validated-email', ['validate' => false, 'message' => 'hola']);
+    }
+
     public function reenviarEmail()
     {
         try {
@@ -197,7 +202,7 @@ class AuthController extends Controller
     public function resetPasswordEmail($token)
     {
         try {
-
+            $validate = false;
             $model = new User();
             $existe = $model->where('two_factor_recovery_codes', $token)->first();
             if ($existe){
@@ -215,16 +220,22 @@ class AuthController extends Controller
                 $data['two_factor_secret'] = null;
                 $data['two_factor_confirmed_at'] = null;
                 $model->update($existe->id, $data);
-            }else{
-                $validate = false;
             }
 
-            if ($validate == true){
-                $response = $this->view('auth.reset-password', ['email' => $existe->email]);
+            if ($validate){
+                $route = 'auth.reset-password';
+                $data = [
+                    'email' => $existe->email,
+                    'token' => $token
+                ];
+
             }else{
-                $response = $this->view('auth.validated-email', ['validate' => $validate]);
+                $route = 'auth.validated-email';
+                $data = [
+                    'validate' => false
+                ];
             }
-            return $response;
+            return $this->view($route, $data);
 
 
         }catch (\Error|\Exception $e){
@@ -304,23 +315,39 @@ class AuthController extends Controller
             $this->validate($rules, $messages, $filter);
 
             $model = new User();
-            $user = $model->where('email', $this->VALID_DATA['email'])->first();
+            $email = $this->VALID_DATA['email'];
+            $token = $this->VALID_DATA['token'];
+            $sql = "SELECT * FROM users WHERE email = '$email' AND two_factor_recovery_codes = '$token';";
+            $user = $model->query($sql)->first();
 
-            $password = $this->VALID_DATA['password'] = password_hash($this->VALID_DATA['password'], PASSWORD_DEFAULT);
+            if ($user){
+                $password = $this->VALID_DATA['password'] = password_hash($this->VALID_DATA['password'], PASSWORD_DEFAULT);
 
-            $data = [
-                'password' => $password,
-                'two_factor_recovery_codes' => null,
-                'two_factor_confirmed_at' => null
-            ];
-            $model->update($user->id, $data);
+                $data = [
+                    'password' => $password,
+                    'two_factor_recovery_codes' => null,
+                    'two_factor_confirmed_at' => null
+                ];
+                $model->update($user->id, $data);
 
-            return crearResponse(
-                'Datos Actualizados Exitosamente',
-                'Datos Actualizados',
-                true,
-                'success'
-            );
+                $response = crearResponse(
+                    'Datos Actualizados Exitosamente',
+                    'Datos Actualizados',
+                    true,
+                    'success'
+                );
+            }else{
+                $response = crearResponse(
+                    'token vencido',
+                    'token vencido',
+                    false,
+                    'warning',
+                    true
+                );
+                $response['errors'] = ['token' => 'El token es incorrecto'];
+            }
+
+            return $this->json($response);
 
         }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);

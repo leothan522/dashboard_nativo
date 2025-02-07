@@ -65,7 +65,7 @@
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-2 has-validation">
-                                                    <input id="email" type="email" class="form-control" readonly="readonly" name="email" value="<?= $email ?>"  placeholder="name@example.com" required>
+                                                    <input id="email" type="email" class="form-control" name="email" value="<?= $email ?>"  placeholder="name@example.com" required>
                                                     <label for="email" class="form-label">Correo electrónico</label>
                                                     <div class="invalid-feedback">
                                                         Por favor ingrese su correo electrónico.
@@ -91,6 +91,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <input type="hidden" value="<?= $token ?>" name="token">
 
                                             <div class="col-12 d-none">
                                                 <div class="form-check">
@@ -173,6 +175,11 @@
                         input_password.classList.remove('is-invalid');
                         input_password.classList.add('is-valid');
                     }
+
+                    if (errors.token){
+                        window.location.replace('<?= route('expired/token') ?>');
+                    }
+
                 }
             });
         }

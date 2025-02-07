@@ -53,6 +53,8 @@ Route::get('verify/email', [AuthController::class, 'validateEmail']);
 Route::post('verify/email', [AuthController::class, 'reenviarEmail']);
 Route::get('verify/email/:token', [AuthController::class, 'verifyEmail']);
 
+Route::get('expired/token', [AuthController::class, 'expiredToken']);
+
 Route::get('logout', [AuthController::class, 'logout']);
 
 //TEST ******************************************************************************************

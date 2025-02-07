@@ -79,9 +79,17 @@
                                                     <img class="img-fluid mb-3" src="<?php asset('img/warning_11892127.png'); ?>" alt="Email Verificado">
                                                 </div>
 
-                                                <p style="text-align: justify !important;">
-                                                    ¡Lo sentimos!, el token de verificación ya está vencido, debe solicitar uno nuevo.
-                                                </p>
+                                                <?php if (isset($message) && !empty($message)){ ?>
+                                                    <p style="text-align: justify !important;">
+                                                        ¡Lo sentimos!, el correo electrónico no corresponde al token de verificacion asignado.!
+                                                    </p>
+                                                <?php }else { ?>
+                                                    <p style="text-align: justify !important;">
+                                                        ¡Lo sentimos!, el token de verificación ya está vencido, debe solicitar uno nuevo.!
+                                                    </p>
+                                                <?php } ?>
+
+
 
                                             </div>
                                         <?php } ?>
