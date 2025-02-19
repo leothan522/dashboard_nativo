@@ -262,16 +262,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.8.4",
+            "version": "3.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon.git",
-                "reference": "129700ed449b1f02d70272d2ac802357c8c30c58"
+                "reference": "b1a53a27898639579a67de42e8ced5d5386aa9a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/129700ed449b1f02d70272d2ac802357c8c30c58",
-                "reference": "129700ed449b1f02d70272d2ac802357c8c30c58",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/b1a53a27898639579a67de42e8ced5d5386aa9a4",
+                "reference": "b1a53a27898639579a67de42e8ced5d5386aa9a4",
                 "shasum": ""
             },
             "require": {
@@ -347,8 +347,8 @@
             ],
             "support": {
                 "docs": "https://carbon.nesbot.com/docs",
-                "issues": "https://github.com/briannesbitt/Carbon/issues",
-                "source": "https://github.com/briannesbitt/Carbon"
+                "issues": "https://github.com/CarbonPHP/carbon/issues",
+                "source": "https://github.com/CarbonPHP/carbon"
             },
             "funding": [
                 {
@@ -364,7 +364,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-27T09:25:35+00:00"
+            "time": "2025-02-11T16:28:45+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1285,16 +1285,16 @@
         },
         {
             "name": "wixel/gump",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wixel/GUMP.git",
-                "reference": "f2d73de0377986f3f97f0d1564b5e532562bbad0"
+                "reference": "887582c0e776c959517bd01644c9b5c1c6c43ea5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/f2d73de0377986f3f97f0d1564b5e532562bbad0",
-                "reference": "f2d73de0377986f3f97f0d1564b5e532562bbad0",
+                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/887582c0e776c959517bd01644c9b5c1c6c43ea5",
+                "reference": "887582c0e776c959517bd01644c9b5c1c6c43ea5",
                 "shasum": ""
             },
             "require": {
@@ -1337,7 +1337,6 @@
                 }
             ],
             "description": "A fast, extensible & stand-alone PHP input validation class that allows you to validate any data.",
-            "homepage": "https://wixelhq.com/",
             "keywords": [
                 "validate",
                 "validation",
@@ -1345,15 +1344,15 @@
             ],
             "support": {
                 "issues": "https://github.com/Wixel/GUMP/issues",
-                "source": "https://github.com/Wixel/GUMP/tree/v2.1.0"
+                "source": "https://github.com/Wixel/GUMP/tree/v2.2.0"
             },
-            "time": "2024-04-29T14:43:48+00:00"
+            "time": "2025-02-09T11:33:22+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -1361,6 +1360,6 @@
         "ext-json": "*",
         "ext-pdo": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }

@@ -23,6 +23,7 @@
       "files": [
         "config/app.php",
         "app/Funciones/Funciones.php",
+        "routes/admin.php",
         "routes/web.php"
       ],
     "psr-4": {

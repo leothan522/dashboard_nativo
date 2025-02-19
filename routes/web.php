@@ -1,7 +1,5 @@
 <?php
 
-use app\Controllers\dashboard\ParametrosController;
-use app\Controllers\test\TestController;
 use app\Controllers\web\AuthController;
 use app\Controllers\web\GuestController;
 use app\Controllers\web\WebController;
@@ -57,23 +55,10 @@ Route::get('expired/token', [AuthController::class, 'expiredToken']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 
-//TEST ******************************************************************************************
-
-Route::get('test', [TestController::class, 'index']);
-Route::post('test', [TestController::class, 'testGUMP']);
-
-//DASHBOARD **************************************************************************************
-Route::get('parametros', [ParametrosController::class, 'index']);
-Route::post('parametro', [ParametrosController::class, 'store']);
-Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
 
 //WEB **********************************************************************************************
 Route::get('web', [WebController::class, 'index']);
 
-
-
-/*ruta temporal para probar vista de reset*/
-Route::get('prueba', [AuthController::class, 'prueba']);
 
 /*
 | Esto debe estar siempre al final, ejecuta el enrutador y compara las rutas en el orden en

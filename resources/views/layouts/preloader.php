@@ -17,7 +17,7 @@
         left: 50%;
         width: 100px;
         height: 100px;
-        background: url('<?php asset('img/logo_alguarisa.png'); ?>') no-repeat center center;
+        background: url('<?php asset('img/preloader_171x171.png'); ?>') no-repeat center center;
         background-size: contain;
         transform: translate(-50%, -50%);
         animation: pulse 2s infinite;
