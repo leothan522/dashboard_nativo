@@ -49,9 +49,10 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_user_id_index` (`users_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla dashboard_nativo.sessions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla dashboard_nativo.sessions: ~1 rows (aproximadamente)
 INSERT INTO `sessions` (`id`, `users_id`, `ip_address`, `user_agent`, `user_client`, `user_os`, `rowquid`, `created_at`, `updated_at`) VALUES
-	(1, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', '{"type":"browser","name":"Microsoft Edge","short_name":"PS","version":"133.0","engine":"Blink","engine_version":"133.0.0.0","family":"Internet Explorer"}', '{"name":"Windows","short_name":"WIN","version":"10","platform":"x64","family":"Windows"}', 'Bpnsd1OlDYr6RkYQ', '2025-02-19 13:08:51', NULL);
+	(1, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', '{"type":"browser","name":"Microsoft Edge","short_name":"PS","version":"133.0","engine":"Blink","engine_version":"133.0.0.0","family":"Internet Explorer"}', '{"name":"Windows","short_name":"WIN","version":"10","platform":"x64","family":"Windows"}', 'Bpnsd1OlDYr6RkYQ', '2025-02-19 13:08:51', NULL),
+	(2, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', '{"type":"browser","name":"Microsoft Edge","short_name":"PS","version":"133.0","engine":"Blink","engine_version":"133.0.0.0","family":"Internet Explorer"}', '{"name":"Windows","short_name":"WIN","version":"10","platform":"x64","family":"Windows"}', 'QXlRsQQPCExJ3AGB', '2025-02-19 16:32:16', '2025-02-19 16:35:12');
 
 -- Volcando estructura para tabla dashboard_nativo.users
 CREATE TABLE IF NOT EXISTS `users` (
