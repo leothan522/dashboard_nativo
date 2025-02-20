@@ -15,7 +15,6 @@ class WebController extends Controller
 
     public function index()
     {
-        return $this->view('web.inicio.view');
-
+        return $this->view('web.home.view');
     }
 }
