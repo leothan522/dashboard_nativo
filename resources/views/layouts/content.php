@@ -6,7 +6,7 @@
                 <div class="card border-light-subtle shadow-sm">
                     <div class="row g-0">
                         <div class="col-12 col-md-6 d-none d-lg-flex">
-                            <img class="img-fluid rounded-start w-100 h-100" loading="lazy"
+                            <img class="img-fluid rounded-start w-100 h-100 object-fit-fill" loading="lazy"
                                  src="<?php asset('img/logo_tecnologia.png'); ?>"
                                  alt="Welcome back you've been missed!">
                         </div>
@@ -45,7 +45,7 @@
                                                 </a>
                                             </div>
 
-                                            <div class="d-flex gap-3 flex-column mb-3">
+                                            <div class="d-flex gap-3 flex-column mb-3 d-none">
                                                 <?php include view_path('layouts.list_tecnologias')?>
                                             </div>
 
