@@ -6,7 +6,6 @@ use app\Models\Session;
 
 trait Guest
 {
-
     public static function guest($closure = []): void
     {
         if (isset($_SESSION[APP_KEY])) {

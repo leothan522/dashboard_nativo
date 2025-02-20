@@ -244,7 +244,6 @@ class AuthController extends Controller
 
     }
 
-
     public function forgotPassword()
     {
         try {
@@ -355,7 +354,6 @@ class AuthController extends Controller
 
     }
 
-
     protected function sendVerifyEmail(): string
     {
         $response = '';
@@ -415,13 +413,5 @@ class AuthController extends Controller
 
     }
 
-
-
-    /*funcion temporal para probar vista de reset*/
-    public function prueba()
-    {
-        return $this->view('emails.reset');
-
-    }
 
 }

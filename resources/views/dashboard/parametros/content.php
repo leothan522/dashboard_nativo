@@ -1,15 +1,32 @@
-<div class="row justify-content-center" id="row_div_table_parametros">
-    <div class="col-lg-8 col-xl-6">
-        <?php include view_path('dashboard.parametros.components.table'); ?>
-    </div>
-</div>
+<?php
 
-<div class="row justify-content-center d-none" id="row_div_form_parametros">
-    <div class="col-md-6 col-lg-5 col-xl-4">
-        <?php require view_path('dashboard.parametros.components.form'); ?>
-    </div>
-</div>
+$response = '';
+// Obtener el protocolo (http o https)
+$protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+// Obtener el nombre del host
+$host = $_SERVER['HTTP_HOST'];
+//url actual
+$url = $protocolo . $host;
 
-<div class="row">
-    <?php require view_path('dashboard.parametros.components.modal'); ?>
-</div>
+$cadena = APP_URL;
+
+$explode = explode($url, $cadena);
+if (count($explode) > 1){
+    $response = trim($explode[1], '/');
+    $response = $response.'/';
+}
+
+$uri = str_replace($cadena, '', getURLActual());// getURLActual();
+
+
+echo trim($uri, '/');
+
+echo "<br />";
+
+echo route('parametros');
+
+echo "<br />";
+
+if (getURLActual() == route('parametros')){
+    echo "Son iguales.";
+}

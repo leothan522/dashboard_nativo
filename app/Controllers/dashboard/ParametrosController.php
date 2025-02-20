@@ -3,6 +3,7 @@
 namespace app\Controllers\dashboard;
 
 use app\Controllers\Controller;
+use app\Middlewares\Middleware;
 use app\Models\Parametro;
 use app\Providers\Mail;
 use app\Providers\Rule;
@@ -16,6 +17,8 @@ class ParametrosController extends Controller
     function index()
     {
         try {
+
+            Middleware::admin('web');
 
             $model = new Parametro();
             $total = $model->where('id', '!=', 0)->count();

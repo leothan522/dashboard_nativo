@@ -16,10 +16,10 @@ class GuestController extends Controller
     public function login()
     {
         return $this->view('auth.login');
-
     }
 
-    public function register(){
+    public function register()
+    {
         return $this->view('auth.register');
     }
 
