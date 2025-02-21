@@ -191,7 +191,10 @@ class AuthController extends Controller
                 $validate = false;
             }
 
-            return $this->view('auth.validated-email', ['validate' => $validate]);
+            return $this->view('auth.validated-email', [
+                'validate' => $validate,
+
+            ]);
 
         }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);
@@ -370,8 +373,11 @@ class AuthController extends Controller
             $to = Auth::user()->email;
             $subject =  verUtf8('Correo de Verificación');
             $body =  $this->view('emails.verify', [
-                'nombre' => Auth::user()->name,
-                'url' => route('verify/email/'.$token)
+                'nombre' => mb_strtoupper(Auth::user()->name),
+                'url' => route('verify/email/'.$token),
+                'name' => env('MAIL_FROM_NAME', 'Dashboard Nativo'),
+                'footer' => env('MAIL_FROM_FOOTER', '&copy; 2025 Dirección de Tecnología y Sistemas.'),
+                'logo' => env('MAIL_FROM_LOGO', 'https://i.postimg.cc/sD12RS2c/logo-Photoroom-fotor-20250220111822.png')
             ]);
 
             Mail::sendMail($to, $subject, $body);
@@ -400,7 +406,10 @@ class AuthController extends Controller
             $subject =  verUtf8('Recuperar Contraseña');
             $body =  $this->view('emails.reset', [
                 'nombre' => $user->name,
-                'url' => route('reset/password/'.$token)
+                'url' => route('reset/password/'.$token),
+                'name' => env('MAIL_FROM_NAME', 'Dashboard Nativo'),
+                'footer' => env('MAIL_FROM_FOOTER', '&copy; 2025 Dirección de Tecnología y Sistemas.'),
+                'logo' => env('MAIL_FROM_LOGO', 'https://i.postimg.cc/sD12RS2c/logo-Photoroom-fotor-20250220111822.png')
             ]);
 
             Mail::sendMail($to, $subject, $body);

@@ -93,7 +93,7 @@
                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                         <tr>
                                             <td align="center">
-                                                <img src="https://cdn.useblocks.io/47707/250205_2559_Izvb4is.png" width="300" border="0" alt="" style="display: inline-block; width: 100%; max-width: 300px;">
+                                                <img src="<?= $logo ?>" width="80" border="0" alt="" style="display: inline-block; width: 80%; max-width: 150px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -163,7 +163,7 @@
                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" em="atom">
                                         <tr>
                                             <td style="padding-right: 0px; padding-bottom: 16px; padding-left: 0px;">
-                                                <div class="em-font-Mulish-Bold" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #1f1f1f;" align="center"><strong>Alimentos del Guárico S.A (ALGUARISA)</strong></div>
+                                                <div class="em-font-Mulish-Bold" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #1f1f1f;" align="center"><strong><?= $name ?></strong></div>
                                             </td>
                                         </tr>
                                     </table>
@@ -171,7 +171,10 @@
                                     <table cellpadding="0" cellspacing="0" border="0" em="atom">
                                         <tr>
                                             <td align="center">
-                                                <div class="em-font-Mulish-Regular" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #595959;" align="center">Para más información contáctese con la Dirección de Tecnología y Sistemas.<br></div>
+                                                <div class="em-font-Mulish-Regular" style="font-family: -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #595959;" align="center">
+                                                    <?= $footer ?>
+                                                    <br>
+                                                </div>
                                             </td>
                                         </tr>
                                     </table>
