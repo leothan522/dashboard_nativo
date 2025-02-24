@@ -61,6 +61,7 @@ Route::get('logout', [AuthController::class, 'logout']);
 Route::get('web', [WebController::class, 'index']);
 
 Route::get('web/profile', [ProfileController::class, 'index']);
+Route::post('web/profile', [ProfileController::class, 'editProfile']);
 
 
 /*
