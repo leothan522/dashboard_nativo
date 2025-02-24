@@ -4,7 +4,6 @@ namespace app\Providers;
 
 use app\Models\Session;
 use app\Models\User;
-use JetBrains\PhpStorm\NoReturn;
 
 class Auth
 {
