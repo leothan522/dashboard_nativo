@@ -34,6 +34,9 @@ Route::get('test', [TestController::class, 'index']);
 Route::post('test', [TestController::class, 'testGUMP']);
 
 //DASHBOARD **************************************************************************************
+
+Route::get('admin', [\app\Controllers\dashboard\DashboardController::class, 'index']);
+
 Route::get('parametros', [ParametrosController::class, 'index']);
 Route::post('parametros', [ParametrosController::class, 'store']);
 Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
