@@ -1,6 +1,6 @@
 <a href="<?= route('admin') ?>" class="brand-link">
     <!--begin::Brand Image-->
-    <img src="<?php asset('vendor/adminlte/assets/img/AdminLTELogo.png'); ?>" alt="AdminLTE Logo"
+    <img src="<?php asset('img/preloader_171x171.png'); ?>" alt="Logo"
          class="brand-image opacity-75 shadow">
     <!--end::Brand Image-->
     <!--begin::Brand Text-->

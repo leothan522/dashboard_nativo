@@ -5,16 +5,41 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <title><?= env('app_name', 'Inicio') ?></title>
+    <title>
+        <?= env('app_name', 'DASHBOARD') ?> |
+        <?php
+        if (isset($title)) {
+            echo $title;
+        }else{
+            echo "Dashboard";
+        }
+        ?>
+    </title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php asset('favicon/apple-icon-57x57.png'); ?>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php asset('favicon/apple-icon-60x60.png'); ?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php asset('favicon/apple-icon-72x72.png'); ?>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php asset('favicon/apple-icon-76x76.png'); ?>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php asset('favicon/apple-icon-114x114.png'); ?>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php asset('favicon/apple-icon-120x120.png'); ?>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php asset('favicon/apple-icon-144x144.png'); ?>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php asset('favicon/apple-icon-152x152.png'); ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php asset('favicon/apple-icon-180x180.png'); ?>">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?php asset('favicon/android-icon-192x192.png'); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php asset('favicon/favicon-32x32.png'); ?>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php asset('favicon/favicon-96x96.png'); ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php asset('favicon/favicon-16x16.png'); ?>">
+    <link rel="manifest" href="<?php asset('favicon/manifest.json'); ?>">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="AdminLTE 4 | Sidebar Mini">
-    <meta name="author" content="ColorlibHQ">
-    <meta name="description"
-          content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
-    <meta name="keywords"
-          content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
+    <meta name="title" content="<?= env('app_name', 'Inicio') ?>">
+    <meta name="author" content="<?= env('meta_author', '') ?>">
+    <meta name="description" content="<?= env('meta_description', '') ?>">
+    <meta name="keywords" content="<?= env('meta_keywords', '') ?>">
     <!--end::Primary Meta Tags-->
 
     <!--begin::Fonts-->
@@ -30,6 +55,10 @@
     <link rel="stylesheet" href="<?php asset('vendor/adminlte/css/adminlte.css'); ?>">
     <!--end::Required Plugin(AdminLTE)-->
 
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="<?php asset('vendor/fontawesome/css/fontawesome.css'); ?>" rel="stylesheet" />
+    <link href="<?php asset('vendor/fontawesome/css/brands.css'); ?>" rel="stylesheet" />
+    <link href="<?php asset('vendor/fontawesome/css/solid.css'); ?>" rel="stylesheet" />
 
     <!--Switch Theme -->
     <script src="<?php getAssetDominio('resources/js/color-modes.js'); ?>"></script>
@@ -41,9 +70,6 @@
 <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary">
 
-<!--Icons Switch Theme-->
-<?php include view_path('layouts.switch'); ?>
-
 <!--begin::App Wrapper-->
 <div class="app-wrapper">
 
@@ -54,15 +80,10 @@
 
             <!--begin::Start Navbar Links-->
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                        <i class="bi bi-list"></i> </a>
+                <li class="nav-item">
+                    <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a>
                 </li>
-
-                <?php include view_path('layouts.adminlte._blank.components.navbar_links'); ?>
-                <!--
-                <li class="nav-item d-none d-md-block"> <a href="#" class="nav-link">Home</a> </li>
-                <li class="nav-item d-none d-md-block"> <a href="#" class="nav-link">Contact</a> </li>
-                -->
+                <?php /*include view_path('dashboard.parametros.links'); */?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -71,159 +92,27 @@
 
                 <!--begin::Navbar Search-->
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="bi bi-search"></i>
-                    </a>
+                    <?php include view_path('layouts.adminlte.search_menu'); ?>
                 </li>
                 <!--end::Navbar Search-->
 
                 <!--begin::Messages Dropdown Menu-->
                 <li class="nav-item dropdown">
                     <?php include view_path('layouts.adminlte.messages_menu'); ?>
-                    <!--
-                    <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                        <i class="bi bi-chat-text"></i>
-                        <span class="navbar-badge badge text-bg-danger">3</span>
-                    </a>
-                    -->
-                    <!--
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-
-                        <a href="#" class="dropdown-item">
-                        -->
-                    <!--begin::Message-->
-                    <!--<div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img src="<?php /*asset('vendor/adminlte/assets/img/user1-128x128.jpg'); */ ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-end fs-7 text-danger">
-                                            <i class="bi bi-star-fill"></i>
-                                        </span>
-                                    </h3>
-                                    <p class="fs-7">
-                                        Call me whenever you can...
-                                    </p>
-                                    <p class="fs-7 text-secondary">
-                                        <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
-                                    </p>
-                                </div>
-                            </div>-->
-                    <!--end::Message-->
-                    <!--</a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a href="#" class="dropdown-item">-->
-                    <!--begin::Message-->
-                    <!--<div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img src="<?php /*asset('vendor/adminlte/assets/img/user8-128x128.jpg'); */ ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-end fs-7 text-secondary">
-                                            <i class="bi bi-star-fill"></i>
-                                        </span>
-                                    </h3>
-                                    <p class="fs-7">
-                                        I got your message bro
-                                    </p>
-                                    <p class="fs-7 text-secondary">
-                                        <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
-                                    </p>
-                                </div>
-                            </div>-->
-                    <!--end::Message-->
-                    <!--
-                    </a>
-
-                     <div class="dropdown-divider"></div>
-
-                     <a href="#" class="dropdown-item">
-                     -->
-                    <!--begin::Message-->
-                    <!--<div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img src="<?php /*asset('vendor/adminlte/assets/img/user3-128x128.jpg'); */ ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-end fs-7 text-warning">
-                                            <i class="bi bi-star-fill"></i>
-                                        </span>
-                                    </h3>
-                                    <p class="fs-7">
-                                        The subject goes here
-                                    </p>
-                                    <p class="fs-7 text-secondary">
-                                        <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
-                                    </p>
-                                </div>
-                            </div>-->
-                    <!--end::Message-->
-                    <!--</a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-
-                </div>-->
-
                 </li>
                 <!--end::Messages Dropdown Menu-->
 
                 <!--begin::Notifications Dropdown Menu-->
                 <li class="nav-item dropdown">
                     <?php include view_path('layouts.adminlte.notifications_menu'); ?>
-                    <!--
-                    <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                        <i class="bi bi-bell-fill"></i>
-                        <span class="navbar-badge badge text-bg-warning">15</span>
-                    </a>
-                    -->
-                    <!--
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="#" class="dropdown-item">
-                            <i class="bi bi-envelope me-2"></i>
-                            4 new messages
-                            <span class="float-end text-secondary fs-7">3 mins</span>
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="#" class="dropdown-item">
-                            <i class="bi bi-people-fill me-2"></i>
-                            8 friend requests
-                            <span class="float-end text-secondary fs-7">12 hours</span>
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="#" class="dropdown-item">
-                            <i class="bi bi-file-earmark-fill me-2"></i>
-                            3 new reports
-                            <span class="float-end text-secondary fs-7">2 days</span>
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="#" class="dropdown-item dropdown-footer">
-                            See All Notifications
-                        </a>
-
-                    </div>-->
                 </li>
                 <!--end::Notifications Dropdown Menu-->
+
+                <!--begin::Navbar Search-->
+                <li class="nav-item">
+                    <?php include view_path('layouts.adminlte.color_mode_toggle'); ?>
+                </li>
+                <!--end::Navbar Search-->
 
                 <!--begin::Fullscreen Toggle-->
                 <li class="nav-item">
@@ -237,41 +126,6 @@
                 <!--begin::User Menu Dropdown-->
                 <li class="nav-item dropdown user-menu">
                     <?php include view_path('layouts.adminlte.user_menu'); ?>
-
-                    <!--<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="<?php /*asset('vendor/adminlte/assets/img/user2-160x160.jpg'); */ ?>" class="user-image rounded-circle shadow" alt="User Image">
-                        <span class="d-none d-md-inline">Alexander Pierce</span>
-                    </a>-->
-                    <!--<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">-->
-
-                    <!--begin::User Image-->
-                    <!--<li class="user-header text-bg-primary">
-                            <img src="<?php /*asset('vendor/adminlte/assets/img/user2-160x160.jpg'); */ ?>" class="rounded-circle shadow" alt="User Image">
-                            <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2023</small>
-                            </p>
-                        </li>-->
-                    <!--end::User Image-->
-
-                    <!--begin::Menu Body-->
-                    <!--<li class="user-body">-->
-                    <!--begin::Row-->
-                    <!--<div class="row">
-                        <div class="col-4 text-center"> <a href="#">Followers</a> </div>
-                        <div class="col-4 text-center"> <a href="#">Sales</a> </div>
-                        <div class="col-4 text-center"> <a href="#">Friends</a> </div>
-                    </div>-->
-                    <!--end::Row-->
-                    <!--</li>-->
-                    <!--end::Menu Body-->
-
-                    <!--begin::Menu Footer-->
-                    <!--<li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                        <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
-                    </li>-->
-                    <!--end::Menu Footer-->
                 </li>
                 <!--end::User Menu Dropdown-->
             </ul>
@@ -289,15 +143,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
             <!--begin::Brand Link-->
-            <a href="<?= route('/') ?>" class="brand-link">
-                <!--begin::Brand Image-->
-                <img src="<?php asset('vendor/adminlte/assets/img/AdminLTELogo.png'); ?>" alt="AdminLTE Logo"
-                     class="brand-image opacity-75 shadow">
-                <!--end::Brand Image-->
-                <!--begin::Brand Text-->
-                <span class="brand-text fw-light">AdminLTE 4</span>
-                <!--end::Brand Text-->
-            </a>
+            <?php include view_path('layouts.adminlte.sidebar_brand') ?>
             <!--end::Brand Link-->
         </div>
         <!--end::Sidebar Brand-->
@@ -308,43 +154,6 @@
                 <!--begin::Sidebar Menu-->
                 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                     <?php include view_path('layouts.adminlte.sidebar_menu'); ?>
-                    <!--
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-palette"></i>
-                            <p>Level 1</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-speedometer"></i>
-                            <p>
-                                Level 1
-                                <i class="nav-arrow bi bi-chevron-right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
-                                    <p>Level 2</p>
-                                </a> </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
-                                    <p>Level 2</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
-                                    <p>Level 2</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    -->
                 </ul>
                 <!--end::Sidebar Menu-->
             </nav>
@@ -364,22 +173,7 @@
             <div class="container-fluid">
 
                 <!--begin::Row-->
-                <?php include view_path('layouts.adminlte._blank.components.content_header'); ?>
-                <!--<div class="row">
-                    <div class="col-sm-6">
-                        <h3 class="mb-0">Content Header</h3>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                Content Header
-                            </li>
-                        </ol>
-                    </div>
-                </div>-->
+                <?php include view_path('dashboard.parametros.header'); ?>
                 <!--end::Row-->
 
             </div>
@@ -389,34 +183,12 @@
 
 
         <!--begin::App Content-->
-        <div class="app-content">
+        <div class="app-content" id="content_view_parametros">
             <!--begin::Container-->
             <div class="container-fluid">
-
-
-                <!--begin::Row-->
-                <?php include view_path('layouts.adminlte._blank.components.content'); ?>
-                <!--<div class="row">
-                    <div class="col-12">-->
-                <!-- Default box -->
-                <!--<div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Title</h3>
-                        <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
-                    </div>
-                    <div class="card-body">
-                        Start creating your amazing application!
-                    </div>-->
-                <!-- /.card-body -->
-                <!--<div class="card-footer">Footer</div>-->
-                <!-- /.card-footer-->
-                <!--</div>-->
-                <!-- /.card -->
-                <!-- </div>-->
+                <?php include view_path('dashboard.parametros.content'); ?>
             </div>
-            <!--end::Row-->
-
-
+            <?php verCargando(); ?>
         </div>
         <!--end::Container-->
 
@@ -427,23 +199,12 @@
 <!--begin::Footer-->
 <footer class="app-footer">
     <?php include view_path('layouts.adminlte.footer'); ?>
-    <!--begin::To the end-->
-<!--    <div class="float-end d-none d-sm-inline">Anything you want</div>-->
-    <!--end::To the end-->
-
-    <!--begin::Copyright-->
-<!--    <strong>-->
-<!--        Copyright &copy; 2014-2024&nbsp;-->
-<!--        <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.-->
-<!--    </strong>-->
-<!--    All rights reserved.-->
-    <!--end::Copyright-->
-
 </footer>
 <!--end::Footer-->
 </div>
 <!--end::App Wrapper-->
 
+<?php verToast(); ?>
 
 <!--begin::Script-->
 
@@ -464,7 +225,12 @@
 <script src="<?php asset('vendor/adminlte/js/config-overlayscrollbars.js'); ?>"></script>
 <!--end::OverlayScrollbars Configure-->
 
+<script src="<?php asset('js/toastBootstrap.js', true); ?>"></script>
+<!--Js para notificaciones y peticiones asincronas-->
+<script src="<?php asset('js/app.js', true); ?>"></script>
+
 <!--end::Script-->
+<?php include view_path('dashboard.parametros.scripts'); ?>
 </body>
 <!--end::Body-->
 </html>

@@ -16,6 +16,24 @@
         ?>
     </title>
 
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php asset('favicon/apple-icon-57x57.png'); ?>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php asset('favicon/apple-icon-60x60.png'); ?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php asset('favicon/apple-icon-72x72.png'); ?>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php asset('favicon/apple-icon-76x76.png'); ?>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php asset('favicon/apple-icon-114x114.png'); ?>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php asset('favicon/apple-icon-120x120.png'); ?>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php asset('favicon/apple-icon-144x144.png'); ?>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php asset('favicon/apple-icon-152x152.png'); ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php asset('favicon/apple-icon-180x180.png'); ?>">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?php asset('favicon/android-icon-192x192.png'); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php asset('favicon/favicon-32x32.png'); ?>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php asset('favicon/favicon-96x96.png'); ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php asset('favicon/favicon-16x16.png'); ?>">
+    <link rel="manifest" href="<?php asset('favicon/manifest.json'); ?>">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="<?= env('app_name', 'Inicio') ?>">
@@ -65,7 +83,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a>
                 </li>
-                    <?php include view_path('dashboard._blank.links'); ?>
+                <?php include view_path('dashboard._blank.links'); ?>
             </ul>
             <!--end::Start Navbar Links-->
 
@@ -125,15 +143,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
             <!--begin::Brand Link-->
-            <a href="<?= route('/') ?>" class="brand-link">
-                <!--begin::Brand Image-->
-                <img src="<?php asset('vendor/adminlte/assets/img/AdminLTELogo.png'); ?>" alt="AdminLTE Logo"
-                     class="brand-image opacity-75 shadow">
-                <!--end::Brand Image-->
-                <!--begin::Brand Text-->
-                <span class="brand-text fw-light">AdminLTE 4</span>
-                <!--end::Brand Text-->
-            </a>
+            <?php include view_path('layouts.adminlte.sidebar_brand') ?>
             <!--end::Brand Link-->
         </div>
         <!--end::Sidebar Brand-->

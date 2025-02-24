@@ -10,9 +10,35 @@ $items = [
         'text' => 'Configuración',
         'treeview' => [
             [
-                'icon' => 'bi bi-circle',
-                'text' => 'Level 25',
-                'route' => 'hola'
+                'icon' => 'bi bi-person-fill-gear',
+                'text' => 'Usuarios',
+                'route' => 'usuarios'
+            ],
+            [
+                'icon' => 'bi bi-list-ul',
+                'text' => 'Parametros',
+                'route' => 'parametros'
+            ]
+        ]
+    ]
+];
+
+
+/*
+ * **************** EXAMPLE **********************
+    [
+        'icon' => 'bi bi-speedometer',
+        'text' => 'Dashboard',
+        'route' => 'admin',
+    ],
+    [
+        'icon' => 'bi bi-gear',
+        'text' => 'Configuración',
+        'treeview' => [
+            [
+                'icon' => 'bi bi-person-fill-gear',
+                'text' => 'Usuarios',
+                'route' => 'usuarios'
             ],
             [
                 'icon' => 'bi bi-circle',
@@ -21,7 +47,7 @@ $items = [
             ]
         ]
     ]
-];
+ */
 
 
 ?>

@@ -18,9 +18,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return $this->json([
-           'user' => Auth::user(),
-           'text' => "Bienvenido " . Auth::user()->name
-        ]);
+        return $this->view('dashboard.home.view');
     }
 }

@@ -37,12 +37,6 @@ Route::post('test', [TestController::class, 'testGUMP']);
 
 Route::get('admin', [\app\Controllers\dashboard\DashboardController::class, 'index']);
 
-Route::get('parametros', [ParametrosController::class, 'index']);
-Route::post('parametros', [ParametrosController::class, 'store']);
-Route::post('parametros/setLimit', [ParametrosController::class, 'setLimit']);
-
-
-
 
 /*
 | Este archivo depende de "routes/web.php" para ejecutarse, asqui que deben
