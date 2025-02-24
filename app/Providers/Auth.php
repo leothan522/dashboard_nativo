@@ -49,4 +49,23 @@ class Auth
         session_destroy();
     }
 
+    public static function validatePermissions($permission = null): bool
+    {
+        $response = false;
+        $user = Auth::user();
+        if ($user) {
+            $permissions = Auth::user()->permissions;
+            $is_admin = Auth::user()->role == 1 || Auth::user()->role == -1;
+            if (empty($permission)) {
+                $uri = getURIRoute();
+            }else{
+                $uri = trim($permission, '/');
+            }
+            if (leerJson($permissions, $uri) || $is_admin){
+                $response = true;
+            }
+        }
+        return $response;
+    }
+
 }
