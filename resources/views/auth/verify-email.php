@@ -94,7 +94,7 @@
 
 
                                     <div class="d-flex aling-items-center justify-content-between mt-5">
-                                        <a href="<?= route('register') ?>" class="link-secondary text-decoration-none">
+                                        <a href="<?= route('web/profile') ?>" class="link-secondary text-decoration-none">
                                             Editar Perfil
                                         </a>
                                         <form id="form_sing_out">

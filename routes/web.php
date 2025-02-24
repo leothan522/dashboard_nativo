@@ -2,6 +2,7 @@
 
 use app\Controllers\web\AuthController;
 use app\Controllers\web\GuestController;
+use app\Controllers\web\ProfileController;
 use app\Controllers\web\WebController;
 use app\Controllers\web\WellcomeController;
 use lib\Facades\Route;
@@ -58,6 +59,8 @@ Route::get('logout', [AuthController::class, 'logout']);
 
 //WEB **********************************************************************************************
 Route::get('web', [WebController::class, 'index']);
+
+Route::get('web/profile', [ProfileController::class, 'index']);
 
 
 /*
