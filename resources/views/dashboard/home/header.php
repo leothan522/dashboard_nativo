@@ -6,7 +6,7 @@
         </h3>
     </div>
 
-    <div class="col-md-6 mt-2 mt-sm-auto">
+    <div class="col-md-6 mt-2 mt-sm-auto d-none">
         <div class="float-sm-end">
             <form class="form-inline" novalidate id="form_buscar">
                 <div class="input-group mb-3 has-validation">

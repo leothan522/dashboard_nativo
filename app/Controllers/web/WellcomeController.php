@@ -13,7 +13,7 @@ class WellcomeController extends Controller
             if (Auth::user()){
                 if (Auth::user()->role){
                     //user admin al dashboard
-                    redirect('parametros');
+                    redirect('admin');
                 }else{
                     //user public a web
                     redirect('web');

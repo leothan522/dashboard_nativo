@@ -1,6 +1,5 @@
 <?php
 
-use app\Controllers\dashboard\ParametrosController;
 use app\Controllers\test\TestController;
 use lib\Facades\Route;
 
