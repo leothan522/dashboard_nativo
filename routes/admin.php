@@ -1,5 +1,7 @@
 <?php
 
+use app\Controllers\dashboard\DashboardController;
+use app\Controllers\dashboard\ParametrosController;
 use app\Controllers\test\TestController;
 use lib\Facades\Route;
 
@@ -34,7 +36,17 @@ Route::post('test', [TestController::class, 'testGUMP']);
 
 //DASHBOARD **************************************************************************************
 
-Route::get('admin', [\app\Controllers\dashboard\DashboardController::class, 'index']);
+Route::get('admin', [DashboardController::class, 'index']);
+
+Route::get('parametros', [ParametrosController::class, 'index']);
+Route::post('parametros/limit', [ParametrosController::class, 'limit']);
+Route::post('parametros/refresh', [ParametrosController::class, 'refresh']);
+Route::post('parametros/show', [ParametrosController::class, 'show']);
+Route::post('parametros/save', [ParametrosController::class, 'save']);
+Route::post('parametros/update', [ParametrosController::class, 'update']);
+Route::post('parametros/destroy', [ParametrosController::class, 'destroy']);
+Route::post('parametros/search', [ParametrosController::class, 'search']);
+
 
 
 /*

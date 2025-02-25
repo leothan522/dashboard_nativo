@@ -31,7 +31,8 @@
       "app\\Models\\": "app\\Models",
       "lib\\Facades\\": "lib\\Facades",
       "app\\Middlewares\\": "app\\Middlewares",
-      "app\\Providers\\": "app\\Providers"
+      "app\\Providers\\": "app\\Providers",
+      "app\\Traits\\": "app\\Traits"
     }
   }
 }

@@ -8,8 +8,8 @@
     <title>
         <?= env('app_name', 'DASHBOARD') ?> |
         <?php
-        if (isset($title)) {
-            echo $title;
+        if (isset($this->title)) {
+            echo $this->title;
         }else{
             echo "Dashboard";
         }
