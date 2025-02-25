@@ -17,7 +17,8 @@
     "nesbot/carbon": "^3.8",
     "wixel/gump": "^2.1",
     "matomo/device-detector": "^6.4",
-    "phpmailer/phpmailer": "^6.9"
+    "phpmailer/phpmailer": "^6.9",
+    "phpoffice/phpspreadsheet": "^4.0"
   },
   "autoload": {
       "files": [

@@ -46,6 +46,7 @@ Route::post('parametros/save', [ParametrosController::class, 'save']);
 Route::post('parametros/update', [ParametrosController::class, 'update']);
 Route::post('parametros/destroy', [ParametrosController::class, 'destroy']);
 Route::post('parametros/search', [ParametrosController::class, 'search']);
+Route::get('parametros/export', [ParametrosController::class, 'export']);
 
 
 

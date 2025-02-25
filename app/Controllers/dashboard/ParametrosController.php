@@ -7,6 +7,8 @@ use app\Middlewares\Middleware;
 use app\Models\Parametro;
 use app\Providers\Rule;
 use app\Traits\CardView;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer;
 
 class ParametrosController extends Controller
 {
@@ -171,6 +173,24 @@ class ParametrosController extends Controller
         }catch (\Error|\Exception $e){
             $this->showError('Error en el Controller', $e);
         }
+    }
+
+    public function export()
+    {
+//        $spreadsheet = new Spreadsheet();           // create excel instance
+//        $sheet = $spreadsheet->getActiveSheet();    // get sheet instance
+//        $sheet->setTitle('Demo');                   // set sheet title
+//
+//        // populate data
+//        $sheet->setCellValue('A1', 'Nombres:');
+//        $sheet->setCellValue('B1', 'Luis Armstrong');
+//
+//        $sheet->setCellValue('A2', 'Email:');
+//        $sheet->setCellValue('B2', 'louis@gmail.com');
+//
+//        // write file
+//        $writer = new Xlsx($spreadsheet);
+        //$writer->save('storage/tmp/hello.xlsx');
     }
     protected function refreshTable($refresh = false): false|string|null
     {
